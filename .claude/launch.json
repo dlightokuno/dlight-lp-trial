@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lp",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/Users/yudaiokuno/Desktop/クロードプロジェクト/LP作成/serve.py"],
+      "port": 4322
+    }
+  ]
+}

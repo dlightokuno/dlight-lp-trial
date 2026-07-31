@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# プレビュー・検証用の一時ファイル
+_*.html
+
+# Claude Code のローカル設定（個人環境用）
+.claude/settings.local.json
+
+# エディタ
+.vscode/
+*.swp
