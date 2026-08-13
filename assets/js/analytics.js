@@ -7,7 +7,7 @@
    空のままなら計測は一切行われません（外部への送信もしません）。
    ※本家サイトと同じ測定IDを入れれば、同じレポートで比較できます。
    ========================================================= */
-var GA_MEASUREMENT_ID = '';   // 例: 'G-XXXXXXXXXX'
+var GA_MEASUREMENT_ID = 'G-LESJ5MJNHV';   // 例: 'G-XXXXXXXXXX'
 
 (function () {
   'use strict';
@@ -32,6 +32,7 @@ var GA_MEASUREMENT_ID = '';   // 例: 'G-XXXXXXXXXX'
     if (el.closest('.mcta'))     return 'mobile_bar';    // スマホ下部の固定バー
     if (el.closest('.header'))   return 'header';        // ヘッダー
     if (el.closest('.hero'))     return 'hero';          // メインビジュアル
+    if (el.closest('#results'))  return 'results';       // ビフォーアフター
     if (el.closest('#trial'))    return 'trial_section'; // 体験トレーニングの案内
     if (el.closest('#price'))    return 'price_block';   // 料金
     if (el.closest('#faq'))      return 'faq';           // FAQ
@@ -56,7 +57,9 @@ var GA_MEASUREMENT_ID = '';   // 例: 'G-XXXXXXXXXX'
     if (href.indexOf('book.squareup.com') > -1) {
       params.service = 'trial_training';
       gtag('event', 'reserve_click', params);
-      gtag('event', 'generate_lead', { currency: 'JPY', value: 5000 });
+      /* GA4推奨イベント版。position などを引き継がないと
+         「どのCTAがリードを生んだか」を標準レポートで分解できない */
+      gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: 5000 }, params));
     } else if (href.indexOf('lin.ee') > -1) {
       gtag('event', 'line_click', params);
     } else if (href.indexOf('instagram.com') > -1) {
