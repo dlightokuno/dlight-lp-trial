@@ -4,7 +4,9 @@
     {
       "name": "lp",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["/Users/yudaiokuno/Desktop/クロードプロジェクト/LP作成/serve.py"],
+      "runtimeArgs": [
+        "/Users/yudaiokuno/Desktop/クロードプロジェクト/D:LIGHT/LP作成/serve.py"
+      ],
       "port": 4322
     }
   ]
