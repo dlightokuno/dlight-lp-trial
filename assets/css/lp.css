@@ -175,7 +175,9 @@ table { border-collapse: collapse; width: 100%; }
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: min(100svh, 860px); display: flex; align-items: center; padding-block: 120px 96px; overflow: hidden; }
 .hero__media { position: absolute; inset: 0; z-index: 0; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero__media picture { display: block; width: 100%; height: 100%; }
+/* 人物写真に変えたので、2人の顔が切れない位置で止める（やや上寄せ） */
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
 .hero__media::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(13,20,48,.72) 0%, rgba(13,20,48,.52) 42%, rgba(13,20,48,.82) 100%);
@@ -188,12 +190,39 @@ table { border-collapse: collapse; width: 100%; }
   font-size: 12px; font-weight: 600; letter-spacing: .18em; font-family: var(--f-en);
 }
 .hero__en { font-family: var(--f-en); font-size: clamp(13px, 1.6vw, 15px); letter-spacing: .28em; color: var(--gold); margin-top: 26px; line-height: 1.9; }
+/* h1の上に置くリード。見出しより先に「誰に向けたものか」を伝える役割 */
+.hero__tag{margin-top:16px;font-size:clamp(12.5px,1.6vw,14.5px);font-weight:600;
+  letter-spacing:.06em;color:var(--gold);text-shadow:0 1px 8px rgba(0,0,0,.45)}
+@media(max-width:560px){.hero__tag{margin-top:10px;font-size:12px}}
 .hero__ja {
   font-family: var(--f-serif); font-weight: 600;
   font-size: clamp(28px, 5.6vw, 52px); line-height: 1.5; letter-spacing: .05em;
   margin-top: 14px; text-shadow: 0 2px 24px rgba(0,0,0,.3);
 }
-.hero__note { margin-top: 22px; font-size: clamp(13px, 1.5vw, 15px); color: rgba(255,255,255,.86); line-height: 2.1; }
+/* 日本語を文節で折り返す（対応ブラウザのみ。「担当」が行をまたぐのを防ぐ） */
+/* 義訳ルビ（戦え＝働け）。ルビは行送りを押し上げるので、
+   ルビを使う見出しだけ line-height を広げて上の行との衝突を防ぐ。 */
+.hero__ja--ruby { line-height: 1.72; }
+.hero__ja ruby { ruby-position: over; -webkit-ruby-position: before; }
+.hero__ja rt {
+  font-family: var(--f-serif); font-weight: 600;
+  /* 漢字ルビは9pxを切ると潰れて読めない。スマホでは下限を優先する */
+  font-size: max(12px, .3em);
+  color: #fff; letter-spacing: 0;
+  /* 写真の上に乗るので、白のままだと背景に溶ける。細い影で輪郭を出す */
+  text-shadow: 0 1px 6px rgba(0,0,0,.65);
+  transform: translateY(.34em);
+}
+/* 日本語は文節の途中でも平気で折り返す。意味のかたまりを inline-block に
+   しておくと、行が変わるときは必ずその境目で変わる。「この／順番」のような
+   分断や、行末に「ただ、」だけが残る事故を防ぐため。 */
+/* 意味のかたまりを「割れない塊」にして、行が変わるなら必ずその境目で変わるようにする。
+   inline-block だけでは中身が折り返してしまうので nowrap が要る。
+   auto-phrase / text-wrap:pretty は Chrome 系しか対応しないため、
+   目立つ箇所はこちらで固めて Safari でも同じ見え方にする。
+   ※塊が行幅を超えるとはみ出すので、1つあたり14文字程度までに収めること。 */
+.nw { display: inline-block; white-space: nowrap; }
+.hero__note { word-break: auto-phrase; margin-top: 22px; font-size: clamp(13px, 1.5vw, 15px); color: rgba(255,255,255,.86); line-height: 2.1; }
 .hero__offer {
   display: inline-flex; align-items: baseline; gap: 8px; flex-wrap: wrap; justify-content: center;
   margin-top: 26px; padding: 14px 30px;
@@ -234,17 +263,37 @@ a.proof:hover { background: rgba(255,255,255,.2); }
 .hero__scroll { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 1; font-family: var(--f-en); font-size: 10px; letter-spacing: .3em; color: rgba(255,255,255,.7); }
 .hero__scroll::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: linear-gradient(rgba(255,255,255,.8), transparent); }
 @media (max-width: 560px) {
-  .hero { min-height: 0; padding-block: 84px 56px; }
+  /* スマホのヒーローは縦に長く（375×1400程度）、写真を全面に敷くと
+     縦に細長い一部しか映らず、人物の顔が文字の裏に隠れてしまう。
+     写真を上に独立させ、文字は紺地の上に置くことで両方成立させる。 */
+  .hero { display: block; min-height: 0; padding-block: 0 56px; background: var(--navy); }
+  /* ヘッダー（実測64px）が写真の上に重なる。2人の顔は縦に約160px離れているので、
+     写真が260pxを下回るとどう位置を変えても片方が隠れる。 */
+  /* 画像は表示枠と同じ比率(1.154)で切ってあるので、この高さを保つこと。
+     変えると顔の位置がずれる。 */
+  .hero__media { position: relative; inset: auto; height: 40vh; min-height: 300px; max-height: 340px; }
+  .hero__media::after {
+    background: linear-gradient(180deg,
+      rgba(13,20,48,.42) 0%, rgba(13,20,48,.10) 38%,
+      rgba(13,20,48,.55) 78%, var(--navy) 100%);
+  }
+  .hero__inner { padding-top: 6px; }
   .hero__scroll { display: none; }
   /* 小さい画面では飾りを削り、予約ボタンを初期表示に収める */
-  .hero__badge { display: none; }
+  /* 地域密着なので、スマホでも駅からの距離だけは最初に見せる。
+     ローカル検索で来た人が最初に確かめるのは「近いか」なので、
+     ここを隠すと直帰に直結する。 */
+  .hero__badge { font-size: 11px; letter-spacing: .08em; padding: 5px 14px; }
   .hero__note { font-size: 12.5px; line-height: 1.95; }
-  .hero__offer { padding: 12px 20px; row-gap: 2px; margin-top: 18px; }
+  .hero__offer { padding: 9px 18px; row-gap: 0; margin-top: 12px; }
   .hero__offer .label { flex: 0 0 100%; text-align: center; }
-  .hero__media img { object-position: 50% 62%; }
+  /* スマホ用画像は表示枠と同じ比率(1.32)で切り出してあるので、位置合わせは不要 */
+  .hero__media img { object-position: center; }
   .hero__ja { margin-top: 10px; }
-  .hero__note { margin-top: 16px; }
-  .hero .btn-row { margin-top: 20px; }
+  .hero__note { margin-top: 12px; line-height: 1.9; }
+  .hero .btn-row { margin-top: 16px; }
+  .proof { margin-top: 11px; }
+  .hero__offer { margin-top: 14px; }
   .hero__points { margin-top: 18px; }
   /* スマホでは予約ボタンを価格の直後に置き、キャンペーンはその下へ回す
      （ボタンがファーストビューから押し出されるのを防ぐ） */
@@ -254,9 +303,11 @@ a.proof:hover { background: rgba(255,255,255,.2); }
   .hero__note   { order: 2; }
   .proof        { order: 3; }
   .hero__offer  { order: 4; }
+  /* 写真を上に置いたぶん縦が足りない。初期表示に必ず入れるべきは予約ボタンなので、
+     入会金無料バナーはボタンの直後へ回す（スクロールして最初に目に入る位置）。 */
   .hero .btn-row{ order: 5; }
-  .hero .cta-note { order: 6; margin-top: 12px; }
-  .hero .campaign { order: 7; margin-top: 16px; }
+  .hero .campaign { order: 6; margin-top: 14px; }
+  .hero .cta-note { order: 7; margin-top: 12px; }
   .hero__points { order: 8; }
 }
 
@@ -269,6 +320,13 @@ a.proof:hover { background: rgba(255,255,255,.2); }
 @media (max-width: 760px) { .grid--2, .grid--3 { grid-template-columns: 1fr; } }
 /* スマホでも2列で見せたいグリッド（お悩みカードなど） */
 @media (max-width: 760px) { .grid--sp2 { grid-template-columns: 1fr 1fr !important; gap: 12px; } }
+/* 2列のままだと1行あたり9文字しか入らず、どこで割っても語が切れる。
+   スマホでは1列に落として、1カード2行できれいに収める。 */
+@media (max-width: 560px) {
+  #trouble .grid--sp2 { grid-template-columns: 1fr !important; gap: 10px; }
+  #trouble .trouble { flex-direction: row; align-items: center; gap: 14px; text-align: left; padding: 16px 18px; }
+  #trouble .trouble__q { flex: 0 0 auto; }
+}
 
 .card { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-lg); padding: clamp(24px, 3vw, 34px); box-shadow: var(--shadow-sm); }
 .section--paper .card { background: var(--bg); }
@@ -279,6 +337,30 @@ a.proof:hover { background: rgba(255,255,255,.2); }
 .split__media img, .split__media iframe { width: 100%; border-radius: var(--radius-lg); }
 .split__media img { aspect-ratio: 4/3; object-fit: cover; }
 @media (max-width: 860px) { .split { grid-template-columns: 1fr; } .split--rev .split__media { order: 0; } }
+
+/* ---------- 日本語の折り返し ----------
+   ブラウザは日本語を1文字単位で折り返すため、放っておくと語の途中で切れたり、
+   最終行に2〜3文字だけ残る（ぶら下がり）。次の2つで整える。
+     word-break: auto-phrase … 文節の切れ目で折り返す
+     text-wrap: pretty        … 最終行が極端に短くならないよう行を再配分する
+   どちらも非対応ブラウザでは無視されるだけなので、崩れる心配はない。 */
+.h-sec, .lead,
+.trouble p,
+.ba__ttl, .ba__txt, .ba__meta,
+.reason__ttl, .reason__txt,
+.prog__ttl, .prog__txt,
+.made__lead, .made__item h3, .made__item p,
+.rec__item, .rec__note,
+.flow__ttl, .flow__txt,
+.assure__ttl, .assure__txt,
+.voice__ttl, .voice__body,
+.acc__q, .acc__a,
+.notes li, .ptable__foot,
+.cta-note, .chart__note, .sim__sub, .price-lead,
+.campaign__body, .trial-card__meta {
+  word-break: auto-phrase;
+  text-wrap: pretty;
+}
 
 /* ---------- Trouble ---------- */
 .trouble {
@@ -360,6 +442,32 @@ a.proof:hover { background: rgba(255,255,255,.2); }
   .made__item h3 br.pc-br { display: none; }
 }
 
+/* 「毎回あなたに合わせる」と言い切った直後が、体験を試す動機の最高点。
+   帯の中に置くことで、説明の続きではなく結論として読ませる。 */
+.made__cta { grid-column: 1 / -1; margin-top: clamp(24px, 3vw, 34px); text-align: center; }
+@media (max-width: 900px) { .made__cta { text-align: left; } }
+
+/* Googleクチコミの評価。数値は実データのみを載せる約束なので、
+   件数を教えてもらえるまでは平均点だけを出している。 */
+.rating {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  width: fit-content; margin: 0 auto clamp(28px, 3.6vw, 40px);
+  padding: 14px 26px; border: 1px solid var(--line-soft); border-radius: 999px;
+  background: var(--surface); box-shadow: var(--shadow-sm);
+  transition: box-shadow .3s var(--ease);
+}
+.rating:hover { box-shadow: 0 6px 22px rgba(22,32,74,.12); }
+.rating__stars { color: var(--gold); font-size: 19px; letter-spacing: .12em; line-height: 1; }
+.rating__body { display: flex; align-items: baseline; gap: 10px; }
+.rating__body b { font-family: var(--f-en); font-size: 26px; font-weight: 600; color: var(--navy); line-height: 1; }
+.rating__label { font-size: 12.5px; color: var(--ink-3); letter-spacing: .04em; }
+@media (max-width: 560px) {
+  .rating { gap: 11px; padding: 12px 18px; }
+  .rating__stars { font-size: 16px; }
+  .rating__body b { font-size: 22px; }
+  .rating__label { font-size: 11.5px; }
+}
+
 /* ---------- Recommend（こんな方におすすめです） ---------- */
 .rec { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(12px, 1.6vw, 18px); }
 .rec__item {
@@ -391,6 +499,14 @@ a.proof:hover { background: rgba(255,255,255,.2); }
   .rec__item br.pc-br { display: none; }
   .rec__note { text-align: left; font-size: 12.5px; }
 }
+
+/* 料金セクションの中見出し代わり。h2 を2つ置くと視覚的に別セクションに
+   見えてしまうので、リード文1本で受ける。 */
+.price-lead {
+  text-align: center; max-width: 34em; margin-inline: auto;
+  font-size: clamp(14px, 1.7vw, 15.5px); line-height: 2.05; color: var(--ink-2);
+}
+.price-lead strong { color: var(--navy); font-weight: 600; }
 
 /* ---------- Numbers ---------- */
 .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 26px); }
@@ -427,7 +543,15 @@ a.proof:hover { background: rgba(255,255,255,.2); }
 
 /* ---------- 料金の前置き3点（縛りなし等） ---------- */
 .assure { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 22px); }
-@media (max-width: 760px) { .assure { grid-template-columns: 1fr; } }
+@media (max-width: 760px) {
+  /* スマホでは3枚が縦に積まれて画面を1つ使い切ってしまう。ここは料金の前置きで
+     主役ではないので、カードの余白と改行を削って読み流せる密度に落とす。 */
+  .assure { grid-template-columns: 1fr; gap: 10px; }
+  .assure__item { padding: 16px 18px; text-align: left; }
+  .assure__ttl { font-size: 15px; line-height: 1.5; }
+  .assure__ttl br { display: none; }
+  .assure__txt { margin-top: 6px; font-size: 13px; line-height: 1.85; }
+}
 .assure__item {
   background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-lg);
   padding: 24px 20px; box-shadow: var(--shadow-sm); text-align: center;

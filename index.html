@@ -6,7 +6,7 @@
 <title>体験トレーニング 80分 5,000円｜八丁堀・新富町のパーソナルジム D/LIGHT GYM</title>
 <!-- GA4 のタグは assets/js/analytics.js が読み込みます（測定IDもそちらの1行だけ）。
      Google が案内する gtag スニペットをここに貼ると二重計測になるので追加しないこと。 -->
-<meta name="description" content="八丁堀・新富町のパーソナルジム D/LIGHT GYM の体験トレーニング。整えてから鍛えるので、運動から10年離れた方でも痛みが出にくい。カウンセリング・身体チェック込みで80分5,000円（税込）。このページ限定で入会金半額（33,000円→16,500円・毎月5名様）。火〜土は朝8時から夜22時まで、完全個室・手ぶらでOK。">
+<meta name="description" content="八丁堀・新富町のパーソナルジム D/LIGHT GYM の体験トレーニング。整えてから鍛えるので、運動から10年離れた方でも痛みが出にくい。カウンセリング・身体チェック込みで80分5,000円（税込）。このページ限定で入会金無料（通常 33,000円・毎月5名様）。火〜土は朝8時から夜22時まで、完全個室・手ぶらでOK。">
 <!-- GitHub Pages（dlightokuno.github.io/dlight-lp-trial/）は確認用の仮URL。
      本番 dlightgym.com/lp/trial/ へ移すまでは検索結果に出さない。
      公開時にここを "index, follow" へ戻すこと。 -->
@@ -14,7 +14,7 @@
 <link rel="canonical" href="https://dlightgym.com/lp/trial/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="体験トレーニング 80分 5,000円｜D/LIGHT GYM（八丁堀・新富町）">
-<meta property="og:description" content="整えてから鍛えるパーソナルジム。実際に通われた方の変化を写真で公開しています。体験80分5,000円（税込）、完全個室・手ぶらでOK・無理な勧誘なし。このページ限定で入会金半額。">
+<meta property="og:description" content="整えてから鍛えるパーソナルジム。実際に通われた方の変化を写真で公開しています。体験80分5,000円（税込）、完全個室・手ぶらでOK・無理な勧誘なし。このページ限定で入会金無料。">
 <meta property="og:image" content="https://dlightgym.com/assets/img/hero-home.jpg">
 <meta property="og:url" content="https://dlightgym.com/lp/trial/">
 <meta property="og:site_name" content="D/LIGHT GYM">
@@ -86,14 +86,19 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero__media">
-    <img src="assets/img/hero-home.webp" alt="D/LIGHT GYM のトレーニングフロア" width="1600" height="1200" fetchpriority="high">
+    <picture>
+      <!-- スマホは縦に長いので、横位置のままだと左右が大きく切れて2人が入らない -->
+      <source media="(max-width: 760px)" srcset="assets/img/hero-training-tall.webp" width="920" height="1350">
+      <img src="assets/img/hero-training-wide.webp" alt="代表・奥野が50代男性のトレーニングを指導している様子" width="1024" height="640" fetchpriority="high">
+    </picture>
   </div>
   <div class="hero__inner wrap">
-    <p class="hero__badge">TRIAL TRAINING</p>
-    <h1 class="hero__ja">運動は10年ぶり。<br>それでも、<br class="sp-br">体は変えられる。</h1>
+    <p class="hero__badge">八丁堀駅・新富町駅から徒歩5分</p>
+    <p class="hero__tag"><span class="nw">仕事で戦う人に、</span><span class="nw">戦えるコンディションを。</span></p>
+    <h1 class="hero__ja hero__ja--ruby">疲れたその体で、<br>明日も<ruby>戦え<rt>働け</rt></ruby>ますか？</h1>
     <p class="hero__note">
-      <strong>通われている方の中心は30〜50代。入会時は3人に2人がトレーニング未経験です。</strong><br>
-      まずストレッチで整えてから鍛えるので、痛みが出にくく、続きます。
+      <strong><span class="nw">鍛えるだけでは解決しない、</span><span class="nw">重さ・硬さ・動きにくさへ。</span></strong><br>
+      <span class="nw">八丁堀の働き盛りのための</span><span class="nw">コンディショニングジム。</span>
     </p>
     <a class="proof" href="#results">
       <span class="proof__img"><img src="assets/img/ba-posture-50s.webp" alt="" aria-hidden="true" width="1600" height="1600"></span>
@@ -105,7 +110,7 @@
     </p>
     <p class="campaign">
       <span class="campaign__label">このページ限定</span>
-      <span class="campaign__body">入会金 <s>33,000円</s> → <strong>16,500円</strong>（税込）／体験当日のご入会で<strong>体験料も無料</strong></span>
+      <span class="campaign__body">入会金 <s>33,000円</s> → <strong>0円</strong>（税込・毎月5名様限定）／体験当日のご入会で<strong>体験料も無料</strong></span>
     </p>
     <div class="btn-row btn-row--center">
       <a class="btn btn--gold btn--lg" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
@@ -116,6 +121,7 @@
       <a href="#price" class="cta-note__link">先に料金を見る →</a>
     </p>
     <ul class="hero__points">
+      <li>入会時は3人に2人が未経験</li>
       <li>朝8時〜夜22時／<strong>平日夜の枠に空きあり</strong></li>
       <li>手ぶらでOK</li>
       <li>完全個室・貸切</li>
@@ -133,12 +139,12 @@
       <h2 class="h-sec">こんなお悩みを<br class="sp-br">抱えていませんか</h2>
     </div>
     <div class="grid grid--3 grid--sp2">
-      <div class="trouble" data-reveal><span class="trouble__q">Q1</span><p>マッサージに行っても<br>すぐ元に戻ってしまう</p></div>
-      <div class="trouble" data-reveal><span class="trouble__q">Q2</span><p>肩こり・腰痛が<br>ずっと治らない</p></div>
-      <div class="trouble" data-reveal><span class="trouble__q">Q3</span><p>午後になると<br>身体が重く集中できない</p></div>
-      <div class="trouble" data-reveal><span class="trouble__q">Q4</span><p>ジム通いが<br>続いたことがない</p></div>
-      <div class="trouble" data-reveal><span class="trouble__q">Q5</span><p>ハードな運動は<br>身体が心配で不安</p></div>
-      <div class="trouble" data-reveal><span class="trouble__q">Q6</span><p>このまま50代を迎えるのが<br>漠然と不安</p></div>
+      <div class="trouble" data-reveal><span class="trouble__q">Q1</span><p><span class="nw">マッサージに行っても</span><span class="nw">すぐ元に戻ってしまう</span></p></div>
+      <div class="trouble" data-reveal><span class="trouble__q">Q2</span><p><span class="nw">肩こり・腰痛が</span><span class="nw">ずっと治らない</span></p></div>
+      <div class="trouble" data-reveal><span class="trouble__q">Q3</span><p><span class="nw">午後になると</span><span class="nw">身体が重く集中できない</span></p></div>
+      <div class="trouble" data-reveal><span class="trouble__q">Q4</span><p><span class="nw">ジム通いが</span><span class="nw">続いたことがない</span></p></div>
+      <div class="trouble" data-reveal><span class="trouble__q">Q5</span><p><span class="nw">ハードな運動は</span><span class="nw">身体が心配で不安</span></p></div>
+      <div class="trouble" data-reveal><span class="trouble__q">Q6</span><p><span class="nw">このまま50代を</span><span class="nw">迎えるのが漠然と不安</span></p></div>
     </div>
     <p class="lead center" style="margin-top:44px" data-reveal>
       ひとつでも当てはまるなら、原因は「意志の弱さ」ではありません。<br class="pc-br">
@@ -181,7 +187,7 @@
         <div class="ba__media"><img src="assets/img/ba-diet-30s.webp" alt="30代男性のビフォーアフター：1ヶ月で体重9kg減、体脂肪4%減" loading="lazy" width="1600" height="1600"></div>
         <figcaption class="ba__body">
           <p class="ba__tag">ダイエット</p>
-          <h3 class="ba__ttl">1ヶ月で <span class="ba__num">−9</span>kg／体脂肪 <span class="ba__num">−4</span>%</h3>
+          <h3 class="ba__ttl"><span class="nw">1ヶ月で <span class="ba__num">−9</span>kg</span><span class="nw">／体脂肪 <span class="ba__num">−4</span>%</span></h3>
           <p class="ba__meta">30代 男性 ／ 期間 1ヶ月</p>
           <p class="ba__txt">食事を極端に削るのではなく、まず身体を整えて「動ける状態」をつくることから。無理なく続けられる設計にしたことが、この変化につながっています。</p>
         </figcaption>
@@ -218,13 +224,13 @@
     <div class="sec-head center" data-reveal>
       <p class="eyebrow">Why D/LIGHT</p>
       <h2 class="h-sec">なぜ、運動が続かなかった人でも<br class="sp-br">結果が出るのか</h2>
-      <p class="lead">D/LIGHT は、ストレッチで「整える」とトレーニングで「鍛える」を掛け合わせたトータルコンディショニングジムです。順番を守るからこそ、身体は安全に、確実に変わります。</p>
+      <p class="lead">D/LIGHT は、ストレッチで「整える」とトレーニングで「鍛える」を掛け合わせたトータルコンディショニングジムです。順番を守るからこそ、身体は安全に、<span class="nw">確実に変わります。</span></p>
     </div>
     <div class="grid grid--3">
       <div class="reason" data-reveal>
         <p class="reason__no">Reason 01</p>
         <h3 class="reason__ttl">整えてから鍛えるので、<br>痛みが出にくい</h3>
-        <p class="reason__txt">硬いまま・歪んだまま鍛えると、負担は弱いところに集中します。まずストレッチとコンディショニングで可動域と姿勢を整え、動ける状態をつくってから負荷をかけます。だから、無理なく続きます。</p>
+        <p class="reason__txt">硬いまま・歪んだまま鍛えると、負担は弱いところに集中します。まずストレッチとコンディショニングで可動域と姿勢を整え、動ける状態をつくってから負荷をかけます。だから、<span class="nw">無理なく続きます。</span></p>
       </div>
       <div class="reason" data-reveal>
         <p class="reason__no">Reason 02</p>
@@ -246,11 +252,14 @@
         <p class="eyebrow">Concept</p>
         <h2 class="h-sec">D/LIGHT GYM は<br>「鍛えること」を<br>目的にしない</h2>
         <p class="lead" style="margin-top:26px">
-          姿勢・可動域・筋力・習慣までを一貫して整え、その場しのぎではない、一生使える身体づくりのサポートをします。
+          姿勢・可動域・筋力・習慣までを一貫して整え、その場しのぎではない、一生使える身体づくりの<span class="nw">サポートをします。</span>
         </p>
         <p class="lead" style="margin-top:1.3em">
-          ただ痩せる、ただ筋肉をつけるのではなく、人生の質そのものを高めること。5年後、10年後、今よりも豊かな生活をお届けします。それが、D/LIGHT の提供する価値です。
+          ただ痩せる、ただ筋肉をつけるのではなく、人生の質そのものを高めること。5年後、10年後、今よりも豊かな生活をお届けします。それが、<span class="nw">D/LIGHT の提供する価値です。</span>
         </p>
+        <div class="btn-row" style="margin-top:32px">
+          <a class="btn btn--gold" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験で試してみる</a>
+        </div>
       </div>
     </div>
   </div>
@@ -363,7 +372,7 @@
         <li class="made__item">
           <span class="made__no">01</span>
           <h3>身体チェックから<br class="pc-br">組み立てます</h3>
-          <p>初回に体力測定と姿勢・可動域の確認を行い、そこから逆算してメニューを設計します。全員に同じ型を当てはめることはありません。</p>
+          <p>初回に体力測定と姿勢・可動域の確認を行い、そこから逆算してメニューを設計します。全員に同じ型を<span class="nw">当てはめることはありません。</span></p>
         </li>
         <li class="made__item">
           <span class="made__no">02</span>
@@ -376,6 +385,9 @@
           <p>年齢や体力に合わせて負荷そのものを決めるので、無理なく安全に、それでいて効果が出る強度で進められます。</p>
         </li>
       </ul>
+      <div class="made__cta">
+        <a class="btn btn--gold" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">自分に合う内容を体験で確かめる</a>
+      </div>
     </div>
   </div>
 </section>
@@ -390,19 +402,27 @@
     </div>
 
     <ul class="rec">
-      <li class="rec__item" data-reveal>デスクワークで、肩こりや腰痛が<br class="pc-br">慢性化している</li>
-      <li class="rec__item" data-reveal>マッサージや整体に行っても、<br class="pc-br">数日で元に戻ってしまう</li>
-      <li class="rec__item" data-reveal>運動から何年も離れていて、<br class="pc-br">何から始めればいいか分からない</li>
-      <li class="rec__item" data-reveal>ジムに入会したことはあるが、<br class="pc-br">続かなかった</li>
-      <li class="rec__item" data-reveal>痩せることより、まず健康を<br class="pc-br">維持したい・不調をなくしたい</li>
-      <li class="rec__item" data-reveal>人目を気にせず、自分のペースで<br class="pc-br">身体を動かしたい</li>
-      <li class="rec__item" data-reveal>ゴルフの飛距離やスコアを、<br class="pc-br">怪我なく伸ばしたい</li>
-      <li class="rec__item" data-reveal>仕事前の朝、または仕事帰りに<br class="pc-br">通える場所を探している</li>
+      <li class="rec__item" data-reveal><span class="nw">デスクワークで、</span><span class="nw">肩こりや腰痛が慢性化している</span></li>
+      <li class="rec__item" data-reveal><span class="nw">マッサージや整体に行っても、</span><span class="nw">数日で元に戻ってしまう</span></li>
+      <li class="rec__item" data-reveal><span class="nw">運動から何年も離れていて、</span><span class="nw">何から始めればいいか分からない</span></li>
+      <li class="rec__item" data-reveal><span class="nw">ジムに入会したことはあるが、</span><span class="nw">続かなかった</span></li>
+      <li class="rec__item" data-reveal><span class="nw">痩せることより、</span><span class="nw">まず健康を維持したい・</span><span class="nw">不調をなくしたい</span></li>
+      <li class="rec__item" data-reveal><span class="nw">人目を気にせず、</span><span class="nw">自分のペースで身体を動かしたい</span></li>
+      <li class="rec__item" data-reveal><span class="nw">ゴルフの飛距離やスコアを、</span><span class="nw">怪我なく伸ばしたい</span></li>
+      <li class="rec__item" data-reveal><span class="nw">仕事前の朝、または仕事帰りに</span><span class="nw">通える場所を探している</span></li>
     </ul>
 
     <p class="rec__note" data-reveal>
-      ダイエットをご希望の方には、<strong>リバウンドをしない適切な痩せ方</strong>をご提案しております。<br class="pc-br">
-      急激なダイエットは推奨しておりません。
+      ダイエットをご希望の方には、<strong><span class="nw">リバウンドをしない</span><span class="nw">適切な痩せ方</span></strong><span class="nw">をご提案しております。</span><br class="pc-br">
+      <span class="nw">急激なダイエットは</span><span class="nw">推奨しておりません。</span>
+    </p>
+
+    <div class="btn-row btn-row--center" style="margin-top:clamp(30px,4vw,42px)" data-reveal>
+      <a class="btn btn--gold btn--lg" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
+      <a class="btn btn--line btn--lg" href="https://lin.ee/v4NK1TV" target="_blank" rel="noopener">LINEで空き状況を聞く</a>
+    </div>
+    <p class="cta-note" data-reveal style="color:var(--ink-3)">
+      当てはまるものがあれば、まず一度お試しください。<strong>体験だけでのご利用も歓迎です。</strong>
     </p>
   </div>
 </section>
@@ -435,7 +455,7 @@
     <p class="campaign" style="display:flex;width:100%;margin-top:20px" data-reveal>
       <span class="campaign__label">このページ限定</span>
       <span class="campaign__body">
-        入会金 <s>33,000円</s> → <strong>16,500円</strong>（税込・毎月5名様限定）／
+        入会金 <s>33,000円</s> → <strong>0円</strong>（税込・毎月5名様限定）／
         さらに<strong>体験当日</strong>にご入会の場合は、体験料 <s>5,000円</s> → <strong>0円</strong>
       </span>
     </p>
@@ -443,7 +463,7 @@
     <div class="flow" data-reveal>
       <div class="flow__item">
         <p class="flow__no">STEP 1</p>
-        <div><h3 class="flow__ttl">カウンセリング</h3><p class="flow__txt">お客様の悩みや理想を丁寧に伺い、最適な改善策を提案します。</p></div>
+        <div><h3 class="flow__ttl">カウンセリング</h3><p class="flow__txt"><span class="nw">お客様の悩みや理想を丁寧に伺い、</span><span class="nw">最適な改善策を提案します。</span></p></div>
       </div>
       <div class="flow__item">
         <p class="flow__no">STEP 2</p>
@@ -455,7 +475,7 @@
       </div>
       <div class="flow__item">
         <p class="flow__no">STEP 4</p>
-        <div><h3 class="flow__ttl">トレーニング</h3><p class="flow__txt">狙った筋肉を逃さない。精密なフォーム調整で効率的に鍛える。</p></div>
+        <div><h3 class="flow__ttl">トレーニング</h3><p class="flow__txt"><span class="nw">狙った筋肉を逃さない。</span><span class="nw">精密なフォーム調整で</span><span class="nw">効率的に鍛える。</span></p></div>
       </div>
       <div class="flow__item">
         <p class="flow__no">STEP 5</p>
@@ -463,24 +483,24 @@
       </div>
       <div class="flow__item">
         <p class="flow__no">STEP 6</p>
-        <div><h3 class="flow__ttl">最適なプランのご案内</h3><p class="flow__txt">目標に合わせ、通いやすさを重視した最適なプランをご提案。</p></div>
+        <div><h3 class="flow__ttl">最適なプランのご案内</h3><p class="flow__txt"><span class="nw">目標に合わせ、</span><span class="nw">通いやすさを重視した</span><span class="nw">最適なプランをご提案。</span></p></div>
       </div>
     </div>
 
     <div class="notes" data-reveal style="margin-top:30px">
       <h3>ご来店時の持ち物</h3>
       <ul>
-        <li>レンタルウェア・タオル・お水を無料でご用意しています。お仕事帰りに手ぶらでお越しいただけます。</li>
+        <li>レンタルウェア・タオル・お水を無料でご用意しています。お仕事帰りに<span class="nw">手ぶらでお越しいただけます。</span></li>
         <li>シューズも不要です。ご自身のウェアをご利用の場合のみ、お持ちください。</li>
         <li>ご予約の24時間前までにご連絡いただければ、キャンセル料なしで日程変更が可能です。</li>
-        <li>入会の意思にかかわらず、無理な勧誘は一切いたしません。</li>
+        <li><span class="nw">入会の意思にかかわらず、</span><span class="nw">無理な勧誘は一切いたしません。</span></li>
       </ul>
     </div>
 
     <div class="btn-row btn-row--center" style="margin-top:36px" data-reveal>
       <a class="btn btn--gold btn--lg" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
     </div>
-    <p class="cta-note" data-reveal><strong>その場で決めなくて構いません。</strong>公式LINEを追加いただくと、空いている日時と料金プランをお送りします。<br>ご質問はスタンプ1つでも大丈夫です。無理な勧誘は一切いたしません。</p>
+    <p class="cta-note" data-reveal><strong>その場で決めなくて構いません。</strong>公式LINEを追加いただくと、空いている日時と料金プランをお送りします。<br><span class="nw">ご質問はスタンプ1つでも大丈夫です。</span><span class="nw">無理な勧誘は一切いたしません。</span></p>
   </div>
 </section>
 
@@ -527,6 +547,14 @@
       <h2 class="h-sec">お客様の声</h2>
     </div>
 
+    <a class="rating" href="https://maps.google.com/?cid=6342977323958173212" target="_blank" rel="noopener" data-reveal>
+      <span class="rating__stars" aria-hidden="true">★★★★★</span>
+      <span class="rating__body">
+        <b>5.0</b>
+        <span class="rating__label">Google のクチコミ評価</span>
+      </span>
+    </a>
+
     <div class="voice" data-reveal>
       <div class="voice__meta"><span class="tag">40代 男性</span><span class="tag">肩・腰・膝の痛み</span><span class="tag">トレーニング復帰</span></div>
       <h3 class="voice__ttl">「痛くて動けなかった体が、また動くようになりました」</h3>
@@ -557,6 +585,13 @@
     <p class="center" style="margin-top:30px" data-reveal>
       <a class="link-arrow" href="https://maps.google.com/?cid=6342977323958173212" target="_blank" rel="noopener">Googleのクチコミを見る</a>
     </p>
+
+    <div class="btn-row btn-row--center" style="margin-top:clamp(28px,3.6vw,40px)" data-reveal>
+      <a class="btn btn--gold btn--lg" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
+    </div>
+    <p class="cta-note" data-reveal style="color:var(--ink-3)">
+      この方たちも、最初は体験からでした。<strong>入会金は無料、体験当日のご入会なら体験料もかかりません。</strong>
+    </p>
   </div>
 </section>
 
@@ -566,12 +601,13 @@
     <div class="sec-head center" data-reveal>
       <p class="eyebrow">Before You Decide</p>
       <h2 class="h-sec">料金を見る前に、<br class="sp-br">3つだけお伝えさせてください</h2>
+      <p class="lead">結局いくらかかるのかを、先にお出しします。</p>
     </div>
 
     <div class="assure">
       <div class="assure__item" data-reveal>
         <h3 class="assure__ttl">契約期間の<br>縛りはありません</h3>
-        <p class="assure__txt">月額定額制も「◯ヶ月継続が条件」といった縛りはございません。ご自身のペースで続けていただけます。</p>
+        <p class="assure__txt">月額定額制も「◯ヶ月継続が条件」といった縛りはございません。ご自身のペースで<span class="nw">続けていただけます。</span></p>
       </div>
       <div class="assure__item" data-reveal>
         <h3 class="assure__ttl">退会手続きは<br>不要です</h3>
@@ -583,22 +619,20 @@
       </div>
     </div>
 
-    <div class="sec-head center" style="margin-top:clamp(50px,7vw,84px)" data-reveal>
-      <p class="eyebrow">Price</p>
-      <h2 class="h-sec">初月のお支払い例</h2>
-      <p class="lead">「結局いくらかかるのか」が分かりにくいと思いますので、代表的な2つのプランで初月の合計をお出ししました。当ジムでは、<strong>まず週1回・3ヶ月間の継続</strong>をおすすめしています。</p>
-    </div>
+    <p class="price-lead" style="margin-top:clamp(40px,5vw,60px)" data-reveal>
+      代表的な2つのプランで、初月の合計です。<strong>まず週1回・3ヶ月間の継続</strong>をおすすめしています。
+    </p>
 
     <div class="sim">
       <div class="sim__card" data-reveal>
         <p class="sim__plan">50 MIN 月4回</p>
         <p class="sim__sub">まずは気軽に始めたい方へ</p>
         <div class="sim__rows">
-          <p class="sim__row"><span>入会金（初回のみ）</span><span><s>33,000円</s>16,500円</span></p>
+          <p class="sim__row"><span>入会金（初回のみ）</span><span><s>33,000円</s>0円</span></p>
           <p class="sim__row"><span>月額（50分 月4回）<br><small style="color:var(--ink-3);font-size:12px">9,350円/回</small></span><span>37,400円</span></p>
         </div>
-        <p class="sim__total"><span class="label">初月のお支払い合計</span><span class="val">53,900<small>円（税込）</small></span></p>
-        <p class="sim__after">2ヶ月目以降は 37,400円／月</p>
+        <p class="sim__total"><span class="label">初月のお支払い合計</span><span class="val">37,400<small>円（税込）</small></span></p>
+        <p class="sim__after">入会金が無料なので、2ヶ月目以降も 37,400円／月</p>
       </div>
 
       <div class="sim__card sim__card--best" data-reveal>
@@ -606,30 +640,20 @@
         <p class="sim__plan">80 MIN 月4回</p>
         <p class="sim__sub">週1回ペース・じっくり整えたい方へ</p>
         <div class="sim__rows">
-          <p class="sim__row"><span>入会金（初回のみ）</span><span><s>33,000円</s>16,500円</span></p>
+          <p class="sim__row"><span>入会金（初回のみ）</span><span><s>33,000円</s>0円</span></p>
           <p class="sim__row"><span>月額（80分 月4回）<br><small style="color:var(--ink-3);font-size:12px">14,025円/回</small></span><span>56,100円</span></p>
         </div>
-        <p class="sim__total"><span class="label">初月のお支払い合計</span><span class="val">72,600<small>円（税込）</small></span></p>
-        <p class="sim__after">2ヶ月目以降は 56,100円／月</p>
+        <p class="sim__total"><span class="label">初月のお支払い合計</span><span class="val">56,100<small>円（税込）</small></span></p>
+        <p class="sim__after">入会金が無料なので、2ヶ月目以降も 56,100円／月</p>
       </div>
     </div>
 
     <p class="lead center" style="margin-top:18px;font-size:12.5px;color:var(--ink-3)" data-reveal>
-      入会金は、このページからご予約いただき体験にお越しになった方限定で半額（通常 33,000円 → 16,500円・税込／毎月5名様限定）。<br>
+      入会金は、このページからご予約いただき体験にお越しになった方限定で無料（通常 33,000円・税込／毎月5名様限定）。<br>
       さらに<strong>体験当日にご入会の場合、体験料 5,000円（税込）は無料</strong>になります。上の合計にも体験料は含まれていません。
     </p>
 
-    <div class="ptable" data-reveal style="margin-top:clamp(34px,4vw,50px)">
-      <div class="ptable__head"><h3>体験トレーニング</h3><span>初めての方向け／お一人様1回限り</span></div>
-      <table>
-        <tbody>
-          <tr><th>体験トレーニング（80分）<br><small style="color:var(--ink-3);font-size:12px">カウンセリング・身体チェック込み</small></th><td>5,000円<small>税込</small></td></tr>
-        </tbody>
-      </table>
-      <p class="ptable__foot">ウェア・タオル・お水は無料でご用意しています。手ぶらでお越しいただけます。</p>
-    </div>
-
-    <div class="ptable" data-reveal style="margin-top:24px">
+    <div class="ptable" data-reveal style="margin-top:clamp(30px,4vw,44px)">
       <div class="ptable__head"><h3>都度払い</h3><span>入会金なし・回数の縛りなし</span></div>
       <table>
         <tbody>
@@ -645,8 +669,7 @@
       <h3>お支払い・キャンセルについて</h3>
       <ul>
         <li>お支払い方法：クレジットカード決済／QRコード決済／銀行振込／現金</li>
-        <li>お支払い時期：入会金・チケットは購入時、月額制プランは毎月初回のサービス提供時</li>
-        <li>ご予約の変更・キャンセルは24時間前まで無料。それ以降は1回分消化、または所定のキャンセル料を申し受けます</li>
+        <li>ご予約の変更・キャンセルは24時間前まで無料</li>
         <li>50分・80分のほか110分、月2回・月8回のコース、チケット制もご用意しています</li>
       </ul>
     </div>
@@ -682,7 +705,7 @@
         <div class="acc__a">火曜から土曜は8:00〜22:00、日曜は15:00〜22:00の営業です。出社前の朝でも、お仕事帰りの夜でもご利用いただけます。とくに平日19時以降は比較的お取りいただきやすい時間帯です。レンタルウェア・タオル・お水を無料でご用意しているため、手ぶらでお越しいただけます。シューズも不要です。</div>
       </div>
       <div class="acc__item">
-        <button class="acc__q" type="button" aria-expanded="false">体験のあとに無理な勧誘はありませんか？</button>
+        <button class="acc__q" type="button" aria-expanded="false"><span><span class="nw">体験のあとに</span><span class="nw">無理な勧誘はありませんか？</span></span></button>
         <div class="acc__a">ありません。入会の意思にかかわらず、無理な勧誘は一切いたしません。体験の最後に、目標に合わせた最適なプランをご案内するのみです。持ち帰ってご検討いただけます。</div>
       </div>
       <div class="acc__item">
@@ -761,7 +784,7 @@
     <div>
       <p class="campaign">
         <span class="campaign__label">このページ限定</span>
-        <span class="campaign__body">入会金 <s>33,000円</s> → <strong>16,500円</strong>（税込・毎月5名様限定）／体験当日のご入会で<strong>体験料も無料</strong></span>
+        <span class="campaign__body">入会金 <s>33,000円</s> → <strong>0円</strong>（税込・毎月5名様限定）／体験当日のご入会で<strong>体験料も無料</strong></span>
       </p>
     </div>
     <ul class="cta-band__points">

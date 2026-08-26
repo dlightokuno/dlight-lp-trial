@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>A案 / B案 見比べ｜D/LIGHT GYM 体験LP</title>
+<style>
+:root{--navy:#16204A;--line:#E4E1D8}
+*{box-sizing:border-box}
+body{margin:0;background:#EFEDE7;font-family:"Noto Sans JP",-apple-system,sans-serif;color:#1B1F2A}
+.bar{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);
+  padding:10px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.bar h1{font-size:15px;margin:0;letter-spacing:.02em}
+.bar label{font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.bar .hint{font-size:12px;color:#7A8092}
+.stage{display:flex;gap:22px;justify-content:center;padding:22px 16px 40px;align-items:flex-start}
+.col{background:#fff;border-radius:14px;box-shadow:0 6px 22px rgba(22,32,74,.14);overflow:hidden;
+  width:375px;flex:0 0 375px}
+.col h2{margin:0;background:var(--navy);color:#fff;font-size:13px;font-weight:700;
+  padding:10px 14px;letter-spacing:.04em;display:flex;justify-content:space-between;gap:8px}
+.col h2 span{font-weight:400;opacity:.72;font-size:11.5px}
+.col iframe{width:375px;height:78vh;border:0;display:block}
+@media(max-width:820px){
+  .stage{flex-direction:column;align-items:center}
+  .col{width:min(100%,375px);flex:0 0 auto}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>D/LIGHT GYM 体験LP　A案 / B案の見比べ</h1>
+  <label><input type="checkbox" id="sync" checked> スクロールを連動させる</label>
+  <span class="hint">スマホ幅（375px）で表示しています</span>
+</div>
+<div class="stage">
+  <div class="col"><h2>A案（じっくり読ませる）<span>index.html ／ 全31画面</span></h2>
+    <iframe id="a" src="index.html"></iframe></div>
+  <div class="col"><h2>B案（参考LPの型）<span>lp-b.html ／ 全14.6画面</span></h2>
+    <iframe id="b" src="lp-b.html"></iframe></div>
+</div>
+<script>
+/* 連動スクロール：総高さが違うので「何％まで読んだか」で合わせる。
+   px で合わせると、短いB案だけ先に終わってしまい比較にならない。 */
+var a=document.getElementById('a'), b=document.getElementById('b'),
+    sync=document.getElementById('sync'), lock=false;
+function link(from,to){
+  from.contentWindow.addEventListener('scroll',function(){
+    if(!sync.checked||lock) return;
+    lock=true;
+    var fd=from.contentDocument.documentElement, td=to.contentDocument.documentElement;
+    var max=fd.scrollHeight-from.contentWindow.innerHeight;
+    var r=max>0 ? from.contentWindow.scrollY/max : 0;
+    to.contentWindow.scrollTo(0,(td.scrollHeight-to.contentWindow.innerHeight)*r);
+    requestAnimationFrame(function(){lock=false});
+  },{passive:true});
+}
+var ready=0;
+[a,b].forEach(function(f){ f.onload=function(){ if(++ready===2){ link(a,b); link(b,a); } }; });
+</script>
+</body>
+</html>
