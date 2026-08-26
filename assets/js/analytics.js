@@ -27,18 +27,20 @@ var GA_MEASUREMENT_ID = 'G-LESJ5MJNHV';   // 例: 'G-XXXXXXXXXX'
     gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
   }
 
-  /* ---------- ボタンが「どこで」押されたかを判定 ---------- */
+  /* ---------- ボタンが「どこで」押されたかを判定 ----------
+     A案とB案でラッパーのクラス名が違う（A: .header / .hero / .cta-band / .footer、
+     B: .hd / .fv / .cta / .ft）。片方しか書かないと、書いていないほうのLPでは
+     ヘッダー・ファーストビュー・最終CTAのクリックが全部 'body' に落ちてしまい、
+     「どのCTAが予約につながったか」をGA4で分解できなくなる。必ず両方を見ること。
+     どれにも当てはまらないときは、囲っている section の id をそのまま使う。 */
   function positionOf(el) {
-    if (el.closest('.mcta'))     return 'mobile_bar';    // スマホ下部の固定バー
-    if (el.closest('.header'))   return 'header';        // ヘッダー
-    if (el.closest('.hero'))     return 'hero';          // メインビジュアル
-    if (el.closest('#results'))  return 'results';       // ビフォーアフター
-    if (el.closest('#trial'))    return 'trial_section'; // 体験トレーニングの案内
-    if (el.closest('#price'))    return 'price_block';   // 料金
-    if (el.closest('#faq'))      return 'faq';           // FAQ
-    if (el.closest('.cta-band')) return 'cta_band';      // ページ下部のCTA
-    if (el.closest('.footer'))   return 'footer';        // フッター
-    return 'body';
+    if (el.closest('.mcta'))           return 'mobile_bar';  // スマホ下部の固定バー
+    if (el.closest('.header, .hd'))    return 'header';      // ヘッダー
+    if (el.closest('.hero, .fv'))      return 'hero';        // メインビジュアル
+    if (el.closest('.cta-band, .cta')) return 'cta_band';    // ページ下部のCTA
+    if (el.closest('.footer, .ft'))    return 'footer';      // フッター
+    var sec = el.closest('section[id]');                     // #results #price #trial など
+    return sec ? sec.id : 'body';
   }
 
   /* ---------- 予約 / LINE / Instagram / メール / 地図のクリックを記録 ---------- */

@@ -100,9 +100,23 @@ done
 
 ## 広告を回すときの準備（未実施）
 
-### 1. まず計測ID（これが無いと何も検証できない）
+### 1. 計測ID（設定済み）
 
-`assets/js/analytics.js` 冒頭の `GA_MEASUREMENT_ID` が**空のまま＝完全に無計測**。広告に1円使う前に測定IDを入れること。
+`assets/js/analytics.js` 冒頭の `GA_MEASUREMENT_ID` に `G-LESJ5MJNHV` を設定済み。
+GA4スニペットを HTML の `<head>` に貼ってはいけない（このファイルが読み込むので二重計測になる）。
+
+**`positionOf()` を触るときの注意。** この関数が `reserve_click` / `generate_lead` の
+`position` を決めている。A案とB案でラッパーのクラス名が違う（A: `.header` `.hero`
+`.cta-band` `.footer` ／ B: `.hd` `.fv` `.cta` `.ft`）ので、**両方を書かないと
+書いていないほうのLPでCTAの内訳が取れなくなる。**
+実際に2026年8月にこれが起きていて、B案10個のCTAのうち6個が `body` に落ちていた。
+どれにも当てはまらないときは、囲っている `section` の id をそのまま使う。
+
+```
+確認方法：ブラウザのコンソールで
+document.querySelectorAll('a[href*="book.squareup.com"]').length
+と、GA4のDebugViewで position が全部バラけているかを見る
+```
 
 ### 2. UTM の付け方
 
@@ -172,9 +186,27 @@ https://dlightgym.com/lp/trial/?utm_source=google&utm_medium=cpc&utm_campaign=tr
 **`index.html` と `lp-a.html` の `?v=` の日付を必ず更新すること。**
 
 ```bash
-# 例：?v=20260826b → ?v=20260827a に一括置換
-sed -i '' 's/?v=20260826b/?v=20260827a/g' index.html lp-a.html
+# 例：?v=20260827a → ?v=20260828a に一括置換
+sed -i '' 's/?v=20260827a/?v=20260828a/g' index.html lp-a.html
 ```
+
+## FAQ を増やす・減らす・書き換えるとき
+
+`index.html` の `<head>` にある **FAQPage の構造化データも、同じ数・同じ文面に直すこと。**
+Googleは「ページに表示されていない内容」が書かれた構造化データを無視するか、
+悪質な場合は手動対策の対象にする。現在は7問で一致している。
+
+`lp-a.html` にも別に10問ぶんの FAQPage が入っているが、こちらは比較用に残しているだけ。
+
+## SNS・LINEに貼ったときのサムネ
+
+`assets/img/og-trial.jpg`（1200×630）が `og:image` に指定してある。
+**絶対URLでないと読まれない**ので、いま実際に配信されている GitHub Pages を指している。
+本番 `dlightgym.com/lp/trial/` へ移したら、`index.html` の `og:image` も
+`https://dlightgym.com/lp/trial/assets/img/og-trial.jpg` に直すこと。
+
+作り直すときは、写真を切るのではなく**高さを全部使って幅を人物の中心に寄せる**。
+1200×630 に直接切ると、下側の人の顎が切れる。
 
 ## 編集時のルール
 

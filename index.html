@@ -6,24 +6,75 @@
 <title>体験トレーニング 80分 5,000円｜八丁堀・新富町のパーソナルジム D/LIGHT GYM</title>
 <!-- GA4 は assets/js/analytics.js が読み込む。gtag スニペットをここに貼ると二重計測になる -->
 <meta name="description" content="八丁堀・新富町のパーソナルジム D/LIGHT GYM。ストレッチで整えてから鍛えるので、運動が10年ぶりでも痛みが出にくい。体験80分5,000円（税込）、このページ限定で入会金無料（通常33,000円・毎月5名様）。朝8時〜夜22時、手ぶらでOK。">
-<!-- B案は検証用。A案（index.html）と内容が重複するため、常に検索対象外にする -->
-<!-- GitHub Pages は確認用の仮URL。本番 dlightgym.com/lp/trial/ へ移すまでは
-     検索結果に出さない。公開時にここを "index, follow" へ戻すこと。 -->
+<!-- このページが本番のLP（B案）。lp-a.html は比較用に残しているだけ。
+     GitHub Pages は確認用の仮URLなので、同じ内容が2箇所にある状態を避けるため
+     いまは検索対象外にしている。本番 dlightgym.com/lp/trial/ へ移すときに
+     ここを "index, follow" へ戻すこと。 -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://dlightgym.com/lp/trial/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="体験トレーニング 80分 5,000円｜D/LIGHT GYM（八丁堀・新富町）">
 <meta property="og:description" content="整えてから鍛えるパーソナルジム。入会金無料キャンペーン実施中。体験80分5,000円（税込）、完全個室・手ぶらでOK・無理な勧誘なし。">
-<meta property="og:image" content="https://dlightgym.com/assets/img/hero-home.jpg">
+<!-- LINEやSNSに貼ったときのサムネ。絶対URLでないと読まれないため、いま実際に
+     配信されている GitHub Pages を指している。本番へ移したら
+     https://dlightgym.com/lp/trial/assets/img/og-trial.jpg に直すこと。 -->
+<meta property="og:image" content="https://dlightokuno.github.io/dlight-lp-trial/assets/img/og-trial.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="代表・奥野が50代男性を指導している様子と、体験80分5,000円・入会金0円の案内">
+<meta property="og:site_name" content="D/LIGHT GYM">
+<meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://dlightgym.com/lp/trial/">
-<meta name="theme-color" content="#16204A">
+<meta name="twitter:card" content="summary_large_image">
+<!-- スマホのブラウザ上部の色。ページ最上部（固定ヘッダー）が白なので白に合わせる -->
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/lp-b.css?v=20260826b">
+<link rel="stylesheet" href="assets/css/lp-b.css?v=20260827a">
 <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.acc__a{display:block!important}.mcta{transform:none!important}</style></noscript>
+
+<!-- ============ 構造化データ ============
+     検索エンジンに「何の店か・いくらか・どんな質問に答えているか」を機械可読で渡す。
+     FAQPage は、ページに実際に表示されている質問と回答だけを、同じ文面で書くこと。
+     見えていないものを書くとGoogleに無視されるか、手動対策の対象になる。
+     FAQを増減したら、必ずこちらも同じ数・同じ文面に直す（現在7問）。 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "D/LIGHT GYM",
+  "description": "ストレッチで「整える」とトレーニングで「鍛える」を掛け合わせたトータルコンディショニングジム",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "104-0042",
+    "addressRegion": "東京都",
+    "addressLocality": "中央区",
+    "streetAddress": "入船2-2-7 ドルチェ銀座東弐番館1101号室"
+  },
+  "email": "dlight.okuno@gmail.com",
+  "url": "https://dlightgym.com/",
+  "image": "https://dlightgym.com/assets/img/hero-home.jpg",
+  "sameAs": ["https://www.instagram.com/dlight_personalgym"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "22:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday"], "opens": "15:00", "closes": "22:00" }
+  ],
+  "priceRange": "¥¥¥"
+}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"体験パーソナルトレーニング","provider":{"@type":"HealthAndBeautyBusiness","name":"D/LIGHT GYM"},"areaServed":"東京都中央区","offers":{"@type":"Offer","name":"体験トレーニング 80分","price":"5000","priceCurrency":"JPY","availability":"https://schema.org/InStock","url":"https://dlightgym.com/lp/trial/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"運動経験がなくても大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"もちろんです。体力測定から始めて、その日の体調に合わせた無理のないメニューをご提案します。入会時にトレーニング未経験だった方が、およそ3人に2人です。"}},
+{"@type":"Question","name":"肩こりや腰痛があってもトレーニングできますか？","acceptedAnswer":{"@type":"Answer","text":"はい。肩こりや腰痛がある方こそお越しください。ストレッチで筋肉をほぐし、正しい動きを身につけることで根本的な改善を目指します。"}},
+{"@type":"Question","name":"仕事帰りでも間に合いますか？","acceptedAnswer":{"@type":"Answer","text":"火曜から土曜は8:00〜22:00、日曜は15:00〜22:00の営業です。出社前の朝でも、お仕事帰りの夜でもご利用いただけます。とくに平日19時以降は比較的お取りいただきやすい時間帯です。"}},
+{"@type":"Question","name":"体験のあとに無理な勧誘はありませんか？","acceptedAnswer":{"@type":"Answer","text":"ありません。入会の意思にかかわらず、無理な勧誘は一切いたしません。体験の最後に、目標に合わせた最適なプランをご案内するのみです。"}},
+{"@type":"Question","name":"月々の会費以外に、追加でかかる費用はありますか？","acceptedAnswer":{"@type":"Answer","text":"基本的に、入会金とコース料金以外にかかる費用はございません。ウェア・タオル・お水も無料でご用意しています。体験の際に、ご希望の通い方に合わせた総額をその場でお出しします。"}},
+{"@type":"Question","name":"契約期間の縛りはありますか？","acceptedAnswer":{"@type":"Answer","text":"月額定額制に契約期間の縛りはありません。退会手続きも不要で、継続をご希望されない場合はそのままご利用を終了いただけます。都度払いなら入会金もかかりません。"}},
+{"@type":"Question","name":"どのくらいの頻度で通えば、体の変化を感じられますか？","acceptedAnswer":{"@type":"Answer","text":"目的や個人差はありますが、5回以内には「体が軽くなった」「階段の上り下りが楽になった」といった変化を実感される方が多いです。見た目に明らかな変化が現れるのは2〜3ヶ月後が目安です。"}}
+]}</script>
 </head>
 <body>
 
@@ -515,7 +566,7 @@
   <a class="btn btn--red" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
 </div>
 
-<script src="assets/js/analytics.js?v=20260826b" defer></script>
-<script src="assets/js/lp-b.js?v=20260826b" defer></script>
+<script src="assets/js/analytics.js?v=20260827a" defer></script>
+<script src="assets/js/lp-b.js?v=20260827a" defer></script>
 </body>
 </html>
