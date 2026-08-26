@@ -65,6 +65,7 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 /* 画像は比率1.154で切ってあるので、幅375pxのとき高さ325px前後が原寸。 */
 .fv__grid{display:contents}
 .fv__photo{position:relative;height:clamp(280px,40vh,340px)}
+.fv__photo picture{display:block;width:100%;height:100%}
 .fv__photo img{width:100%;height:100%;object-fit:cover;object-position:center}
 /* 地が白なので、写真は下端だけ白へ溶かす（暗く沈ませない） */
 .fv__photo::after{content:"";position:absolute;inset:0;
@@ -386,7 +387,8 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
   .fv__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.86fr);
     gap:clamp(28px,3.6vw,56px);align-items:center;
     max-width:1180px;margin:0 auto;padding:clamp(24px,3vw,44px) 24px 0}
-  .fv__photo{order:2;height:auto;aspect-ratio:1024/1000;border-radius:18px;overflow:hidden;
+  /* PC用画像と同じ比率にして、左右も上下も切らずに全部見せる */
+  .fv__photo{order:2;height:auto;aspect-ratio:830/940;border-radius:18px;overflow:hidden;
     box-shadow:0 14px 40px rgba(17,24,39,.16)}
   .fv__photo::after{display:none}          /* 白へのぼかしは全幅のときだけ必要 */
   .fv__in{order:1;text-align:left;margin-top:0;padding:0}

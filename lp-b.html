@@ -35,7 +35,11 @@
 <section class="fv">
   <div class="fv__grid">
   <div class="fv__photo">
-    <img src="assets/img/hero-training-tall.webp" alt="代表・奥野が50代男性のトレーニングを指導している様子" width="1024" height="776" fetchpriority="high">
+    <picture>
+      <!-- PCは2カラムの右側に縦長で入るので、左右を詰めて2人に寄せた版を使う -->
+      <source media="(min-width: 900px)" srcset="assets/img/hero-training-pc.webp" width="830" height="940">
+      <img src="assets/img/hero-training-tall.webp" alt="代表・奥野が50代男性のトレーニングを指導している様子" width="1024" height="887" fetchpriority="high">
+    </picture>
   </div>
   <div class="fv__in">
     <p class="fv__badge">八丁堀駅・新富町駅から徒歩5分</p>
