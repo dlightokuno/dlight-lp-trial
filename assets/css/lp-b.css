@@ -367,15 +367,19 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 .plan__n{margin-top:7px;font-size:11px;line-height:1.65;color:var(--ink-3)}
 .plan__svc{color:#fff;text-align:center;font-weight:700;font-size:13.5px;
   letter-spacing:.06em;padding:14px 0 10px}
-/* 5項目を3列で並べると最終行が2つになって左に寄る。
-   中央寄せにして収まりを整える。 */
+/* 5項目を3列で並べると最終行が2つになって左に寄るので、中央寄せにする。
+   flex の省略記法に calc() を書くと Safari が宣言ごと落とすことがあるため、
+   flex-basis は必ず個別プロパティで指定すること。落ちると1列に崩れる。 */
 .svc{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
-.svc li{flex:0 0 calc((100% - 14px)/3)}
+.svc li{flex-grow:0;flex-shrink:0;flex-basis:calc((100% - 14px)/3);min-width:0}
 .svc li{background:#fff;border-radius:8px;padding:9px 4px 8px;text-align:center;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
 .svc svg{width:22px;height:22px;stroke:var(--navy-d);fill:none;stroke-width:1.7;
   stroke-linecap:round;stroke-linejoin:round}
-.svc span{font-size:9.5px;line-height:1.35;font-weight:700;color:var(--ink-2)}
+/* 日本語は1文字ずつ折り返せてしまうので、端末の文字サイズ設定で拡大されると
+   「パ／ー／ソ／ナ／ル」と縦に割れる。改行位置は <br> だけに固定する。 */
+.svc span{font-size:9.5px;line-height:1.35;font-weight:700;color:var(--ink-2);
+  white-space:nowrap}
 
 
 /* ---------- PCのファーストビューは2カラム ----------
