@@ -16,13 +16,20 @@ python3 serve.py
 
 ## 構成
 
+**本番は `index.html`（B案）。** 2026年8月に、反応型LPの構成を参考にしたB案へ差し替えた。
+`lp-a.html` は差し替え前のA案で、比較用に残してある（本番URLを名乗らないよう canonical は外してある）。
+
 ```
 LP作成/
-├── index.html          LP本体（これ1枚だけ）
+├── index.html          LP本体＝B案（本番）
+├── lp-a.html           A案（差し替え前。比較用に保存）
+├── compare.html        A案とB案を並べて見比べるページ
 ├── serve.py            ローカルプレビュー用サーバー
 └── assets/
-    ├── css/lp.css      全デザイン。冒頭 :root に色・書体・余白の変数
-    ├── js/lp.js        ヘッダー透過切替／スクロール表示／FAQ開閉／スマホ固定CTA
+    ├── css/lp-b.css    B案（本番）のデザイン。冒頭 :root に色の変数
+    ├── css/lp.css      A案のデザイン
+    ├── js/lp-b.js      B案の挙動
+    ├── js/lp.js        A案の挙動（ヘッダー透過切替／スクロール表示／FAQ開閉／固定CTA）
     ├── js/analytics.js GA4計測（測定IDを入れるまで何も送信しません）
     └── img/            写真（本家から流用し、LP用に軽量化済み）
 ```
