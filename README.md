@@ -198,6 +198,38 @@ Googleは「ページに表示されていない内容」が書かれた構造�
 
 `lp-a.html` にも別に10問ぶんの FAQPage が入っているが、こちらは比較用に残しているだけ。
 
+## ファーストビューの切り抜き写真
+
+`hero-cutout.webp`（トレーニング）と `hero-cutout-stretch.webp`（ストレッチ）は、
+写真の背景をmacOS標準のVisionで抜いたもの。色面の上端から人物の頭が飛び出す配置にしている。
+
+新しく作るときは `tools/cutout.swift` を使う。`rembg` などのインストールは要らない。
+
+```bash
+swiftc -O tools/cutout.swift -o /tmp/cutout && /tmp/cutout 元画像.png 抜き.png
+```
+
+そのあと Python で仕上げる。**この2工程を飛ばすと輪郭に芝生の緑が残る。**
+
+```python
+from PIL import Image, ImageFilter
+im = Image.open('抜き.png'); r,g,b,a = im.split()
+a = a.filter(ImageFilter.MinFilter(5)).filter(ImageFilter.GaussianBlur(0.6))  # 2px内側へ削る
+out = Image.merge('RGBA',(r,g,b,a)); out = out.crop(out.split()[3].getbbox())
+out.save('assets/img/hero-cutout-xxx.webp','WEBP',quality=82,method=6)
+```
+
+**配置で守ること。**
+
+- **画像の下端は胴体が切れた平らな面。** 必ず色面の下端にそろえて隠す。下や横へはみ出させない。
+- **上へ飛び出す量は `--cut-out`。** 固定ヘッダー（狭い端末では65px→85pxに伸びる）に
+  頭がかからないよう、`.fv` の `padding-top` を必ず一緒に確認する。
+- **2枚並べるのに必要な幅は「人物の高さ × 約1.53」。** PCの右カラムはこれより狭くなりやすく、
+  大きくすると左へあふれて料金表の上に人物が乗る。高さはカラム幅から逆算すること。
+- **並び順に意味がある。** スマホでは2枚合わせて帯より広くなり左右が切れるので、
+  切れてよい側（トレーニング＝トレーナーの腕／ストレッチ＝お客様の足）が外を向くように、
+  トレーニングを左、ストレッチを右に置いている。入れ替えると寝ているお客様の顔が画面外に出る。
+
 ## SNS・LINEに貼ったときのサムネ
 
 `assets/img/og-trial.jpg`（1200×630）が `og:image` に指定してある。
