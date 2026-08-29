@@ -80,7 +80,7 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
    すぐ下の .fv__in（z-index:1）より前に出て、駅名バッジの上に写真が乗る。 */
 .fv__photo{position:relative;isolation:isolate;
   display:flex;align-items:flex-end;justify-content:center;
-  height:clamp(232px,30vh,286px);margin-top:var(--cut-out)}
+  height:clamp(250px,32vh,300px);margin-top:var(--cut-out)}
 /* 色面は淡すぎると「飛び出している」ことが伝わらない。
    人物の頭が越える上端に、はっきり色の差が要る。 */
 .fv__stage{position:absolute;inset:0;overflow:hidden;
@@ -88,8 +88,9 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 .fv__stage::before{content:"";position:absolute;inset:0;
   background-image:radial-gradient(rgba(31,41,55,.09) 1.5px,transparent 1.6px);
   background-size:15px 15px}
-/* 2枚を下端でそろえて並べる。ストレッチ側は縦長（比0.52）なので、
-   同じ高さにすると幅は約半分になり、2枚合わせて高さの約1.53倍の幅を使う。 */
+/* 2枚を下端でそろえて並べる。比はトレーニング0.78・ストレッチ0.46なので、
+   同じ高さにすると2枚で高さの約1.24倍の幅を使う（重なり分だけ差し引く）。
+   写真を差し替えたら比が変わる。高さは必ずカラム幅から逆算し直すこと。 */
 .fv__cut{position:relative;z-index:1;width:auto;max-width:none;flex:none;
   height:calc(100% + var(--cut-out));
   filter:drop-shadow(0 14px 20px rgba(17,24,39,.22))}
@@ -98,10 +99,13 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 /* 狭い端末ではヘッダーが2行になって65px→85pxに伸びる。
    そのぶん余白を足さないと、飛び出した頭がヘッダーの裏に隠れる。 */
 @media(max-width:380px){.fv{padding-top:108px}}
-/* タブレット幅では色面だけが横に伸びて人物が小さく見えるので、少し大きくする */
+/* タブレット幅は色面だけが横に伸びて、人物が真ん中に小さく浮いて見える。
+   全幅をやめて角丸のパネルにし、そのぶん人物も大きくする。 */
 @media(min-width:600px) and (max-width:899px){
   .fv{--cut-out:clamp(74px,10vw,100px)}
-  .fv__photo{height:clamp(286px,40vw,356px)}
+  .fv__photo{width:min(100% - 48px,560px);margin-inline:auto;
+    height:clamp(300px,44vw,400px)}
+  .fv__stage{border-radius:20px}
 }
 .fv__in{position:relative;z-index:1;padding:0 16px clamp(26px,4vw,40px);text-align:center;margin-top:-14px}
 
@@ -463,7 +467,7 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
   .fv{--cut-out:clamp(40px,3.4vw,52px)}
   /* 左のコピーが長いので、写真は上に寄せて見出しと並ばせる（中央寄せだと右上が空く）。
      margin-top は飛び出し量より大きく取ること。足りないと頭がヘッダーの裏へ入る。 */
-  .fv__photo{order:2;height:clamp(240px,27vw,390px);margin-top:clamp(56px,5.4vw,86px)}
+  .fv__photo{order:2;height:clamp(280px,32vw,464px);margin-top:clamp(56px,5.4vw,86px)}
   .fv__stage{border-radius:22px;box-shadow:0 16px 40px rgba(17,24,39,.13)}
   .fv__in{order:1;text-align:left;margin-top:0;padding:0}
   .fv__ttl{font-size:clamp(35px,3.6vw,49px)}
