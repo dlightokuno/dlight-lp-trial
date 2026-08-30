@@ -32,6 +32,13 @@
     });
   });
 
+  /* 見出しの「残り◯ヶ月」を今日の日付から入れ直す。
+     手で書いたままだと月をまたいだ瞬間に嘘になるため。
+     当月は数えない（8月なら9〜12月で4ヶ月）。12月だけは0にせず1と出す。 */
+  document.querySelectorAll('[data-months-left]').forEach(function (e) {
+    e.textContent = Math.max(1, 11 - new Date().getMonth());
+  });
+
   document.querySelectorAll('[data-year]').forEach(function (e) { e.textContent = new Date().getFullYear(); });
 
   /* 流入元（utm_* / gclid / fbclid）を Square の予約URLへ引き継ぐ。

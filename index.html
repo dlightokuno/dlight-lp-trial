@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/lp-b.css?v=20260829u">
+<link rel="stylesheet" href="assets/css/lp-b.css?v=20260829v">
 <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.acc__a{display:block!important}.mcta{transform:none!important}</style></noscript>
 
 <!-- ============ 構造化データ ============
@@ -102,7 +102,14 @@
   </div>
   <div class="fv__in">
     <p class="fv__badge">八丁堀駅・新富町駅から徒歩5分</p>
-    <h1 class="fv__ttl">「まだ大丈夫」が、<br><em>一番怖い。</em></h1>
+    <!-- 見出しはオーナーの原稿。括弧の中は読み手の心の声なので、そこを主役にする。
+         「残り◯ヶ月」は lp-b.js が今日の日付から入れ直す。手書きのままだと
+         月をまたいだ瞬間に嘘になる。JSが動かない場合はこの 4 がそのまま出る。 -->
+    <h1 class="fv__ttl">
+      <span class="fv__ttl__q">「今年こそは健康に」</span>
+      <span class="fv__ttl__ask">残り<span data-months-left>4</span>ヶ月、今年は何回考えましたか。</span>
+    </h1>
+    <p class="fv__go">どうせやるなら今から</p>
 
     <ul class="syms">
       <li>疲れやすくなった</li><li>身体が硬くなった</li><li>肩や腰が気になる</li>
@@ -598,7 +605,7 @@
   <a class="btn btn--red" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
 </div>
 
-<script src="assets/js/analytics.js?v=20260829u" defer></script>
-<script src="assets/js/lp-b.js?v=20260829u" defer></script>
+<script src="assets/js/analytics.js?v=20260829v" defer></script>
+<script src="assets/js/lp-b.js?v=20260829v" defer></script>
 </body>
 </html>

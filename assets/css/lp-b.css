@@ -118,9 +118,16 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
   font-size:13px;letter-spacing:.06em;padding:5px 16px;border-radius:999px}
 .fv__tag{margin-top:14px;font-weight:700;color:var(--red);
   font-size:clamp(13.5px,1.8vw,16px);letter-spacing:.05em}
+/* 見出しは3段。心の声（明朝で大きく）→ 問いかけ（ゴシックで小さく）→
+   行動の合図（.fv__go／赤）。1行に流すとスマホで4行に折れて勢いが死ぬ。 */
 .fv__ttl{font-family:var(--f-serif);font-weight:700;margin-top:8px;
   font-size:clamp(28px,6.6vw,53px);line-height:1.42;letter-spacing:.03em;color:var(--navy-d)}
 .fv__ttl em{font-style:normal;color:var(--red)}
+.fv__ttl__q{display:block}
+.fv__ttl__ask{display:block;margin-top:10px;font-family:var(--f-sans);font-weight:700;
+  font-size:clamp(16.5px,3.2vw,23px);line-height:1.6;letter-spacing:.02em;color:var(--ink-2)}
+.fv__go{margin-top:14px;font-family:var(--f-serif);font-weight:700;color:var(--red);
+  font-size:clamp(21px,3.8vw,30px);line-height:1.45;letter-spacing:.04em}
 .fv__ttl ruby{ruby-position:over;-webkit-ruby-position:before}
 .fv__ttl rt{font-family:var(--f-sans);font-size:max(13px,.28em);font-weight:700;
   color:var(--red);letter-spacing:0;transform:translateY(.3em)}
