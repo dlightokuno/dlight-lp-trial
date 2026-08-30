@@ -144,8 +144,6 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 .fv__key{margin-top:18px;font-family:var(--f-serif);font-weight:700;
   font-size:clamp(19px,3.3vw,27px);line-height:1.62;letter-spacing:.02em;color:var(--navy-d)}
 .fv__key em{font-style:normal;color:var(--red)}
-.fv__key__s{display:block;font-family:var(--f-sans);font-size:.66em;
-  letter-spacing:.04em;margin-bottom:6px;color:var(--ink-2)}
 
 /* 店名 */
 .fv__brand{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
