@@ -67,52 +67,42 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 }
 
 /* ---------- ファーストビュー ---------- */
-/* --cut-out は人物が色面より上へ飛び出す量。padding-top はこの量を足しても
-   固定ヘッダー（65px）に頭がかからない値にしておくこと。 */
-.fv{--cut-out:clamp(58px,11vw,84px);
-  position:relative;padding-top:86px;background:#fff;color:var(--ink);overflow:hidden}
-/* 切り抜いた人物を色面の上端から飛び出させる。
-   .fv__photo は「色面の高さ」を持つ枠。人物はそれより背が高く、
-   下端を枠の下端にそろえるので、はみ出したぶんが上（＝頭側）に出る。
-   人物画像の下端は胴体が切れた平らな面なので、上以外へはみ出させないこと。 */
+/* 本家HP（2026-08-30 改訂）のトップと同じ見せ方にそろえている。
+   人物は切り抜かない。写真パネルの下辺を斜めに切り、その下から金のくさびを
+   のぞかせる。金は本家の #C6A667→#D8C8A8 をそのまま持ってきている（B案の
+   --gold はオレンジ寄りで、本家と並べたとき別ブランドに見えるため）。 */
+/* padding-top はヘッダーの実測値（--hd-h、lp-b.js が入れる）。ヘッダーは中身の
+   折り返しで69px〜91pxの間で変わり、折り返す幅も文字サイズ次第で動くので、
+   メディアクエリで決め打ちすると必ずどこかの幅でずれる。JSが動かなかった
+   ときは 94px（いちばん高いとき）を使う。写真がヘッダーの裏に潜るより、
+   白い余白が少し残るほうが軽い失敗なので、フォールバックは大きいほうへ倒す。 */
+.fv{position:relative;padding-top:var(--hd-h,94px);background:#fff;color:var(--ink);overflow:hidden}
 .fv__grid{display:contents}
-/* isolation は必須。これが無いと .fv__cut の z-index(1,2) が外まで効いてしまい、
+/* isolation は必須。これが無いと .fv__shot の z-index が外まで効いてしまい、
    すぐ下の .fv__in（z-index:1）より前に出て、駅名バッジの上に写真が乗る。 */
-.fv__photo{position:relative;isolation:isolate;
-  display:flex;align-items:flex-end;justify-content:center;
-  height:clamp(250px,32vh,300px);margin-top:var(--cut-out)}
-/* 色面は淡すぎると「飛び出している」ことが伝わらない。
-   人物の頭が越える上端に、はっきり色の差が要る。 */
-.fv__stage{position:absolute;inset:0;overflow:hidden;
-  background:linear-gradient(158deg,#FFE7B8 0%,#FFD9A6 46%,#CFE6FB 100%)}
-.fv__stage::before{content:"";position:absolute;inset:0;
-  background-image:radial-gradient(rgba(31,41,55,.09) 1.5px,transparent 1.6px);
-  background-size:15px 15px}
-/* 2枚を下端でそろえて並べる。比はトレーニング0.78・ストレッチ0.46なので、
-   同じ高さにすると2枚で高さの約1.24倍の幅を使う（重なり分だけ差し引く）。
-   写真を差し替えたら比が変わる。高さは必ずカラム幅から逆算し直すこと。 */
-.fv__cut{position:relative;z-index:1;width:auto;max-width:none;flex:none;
-  height:calc(100% + var(--cut-out));
-  filter:drop-shadow(0 14px 20px rgba(17,24,39,.22))}
-/* ストレッチ側は、寝ているお客様の身体が横に長い。どこで切っても右端に
-   まっすぐな切り口が出るので、端をぼかして消す。マスクは filter のあとに
-   かかるので、drop-shadow の輪郭も一緒に消えてくれる。 */
-.fv__cut--st{margin-left:-12%;z-index:1;
-  -webkit-mask-image:linear-gradient(to right,#000 84%,transparent 99%);
-  mask-image:linear-gradient(to right,#000 84%,transparent 99%)}
-.fv__cut--tr{z-index:2}
-/* 狭い端末ではヘッダーが2行になって65px→85pxに伸びる。
-   そのぶん余白を足さないと、飛び出した頭がヘッダーの裏に隠れる。 */
-@media(max-width:380px){.fv{padding-top:108px}}
-/* タブレット幅は色面だけが横に伸びて、人物が真ん中に小さく浮いて見える。
-   全幅をやめて角丸のパネルにし、そのぶん人物も大きくする。 */
+/* 高さは画面の高さ（svh）ではなく「枠の幅」から決めている。svh にすると
+   ウィンドウが低いときだけ枠が平たくなり、そのぶん写真の上下が余計に切れて
+   顔が欠ける。幅基準なら、どんなウィンドウの高さでも切れ方が変わらない。 */
+.fv__photo{position:relative;isolation:isolate;height:min(95vw,370px)}
+/* 写真は縦位置（1024×1536）。枠は必ず横長なので、cover で入れると左右は
+   全部入り、上下だけが切れる。つまり顔の入り方は object-position の Y だけで
+   決まる。残したいのはトレーナーの頭の上（縦18%）からお客様の顎（縦59%）まで。
+   Y=30% はその41%ぶんが枠に収まる位置。ここを動かすとどちらかが切れる。
+   枠の高さを幅の44%より低くしても同じことが起きるので、両方セットで見ること。 */
+.fv__shot{position:absolute;inset:0;z-index:2;width:100%;height:100%;
+  object-fit:cover;object-position:50% 30%;
+  clip-path:polygon(0 0,100% 0,100% 90%,0 100%)}
+/* 斜めに落とした下辺の三角形を金で埋める。写真より手前に出さないこと。 */
+.fv__wedge{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,#C6A667 0%,#D8C8A8 100%);
+  clip-path:polygon(0 100%,100% 90%,100% 100%)}
+/* タブレット幅は全幅だと写真だけが横に伸びて人物が小さく見える。
+   全幅をやめて中央のパネルにし、そのぶん高さを足す。 */
 @media(min-width:600px) and (max-width:899px){
-  .fv{--cut-out:clamp(74px,10vw,100px)}
-  .fv__photo{width:min(100% - 48px,560px);margin-inline:auto;
-    height:clamp(300px,44vw,400px)}
-  .fv__stage{border-radius:20px}
+  .fv__photo{width:min(100% - 48px,560px);margin-inline:auto;height:min(72vw,420px)}
 }
-.fv__in{position:relative;z-index:1;padding:0 16px clamp(26px,4vw,40px);text-align:center;margin-top:-14px}
+.fv__in{position:relative;z-index:1;text-align:center;
+  padding:clamp(18px,3vw,26px) 16px clamp(26px,4vw,40px)}
 
 .fv__badge{display:inline-block;background:var(--red);color:#fff;font-weight:700;
   font-size:13px;letter-spacing:.06em;padding:5px 16px;border-radius:999px}
@@ -469,16 +459,20 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 
 
 /* ---------- PCのファーストビュー ----------
-   1カラム。左右に振り分けず、色面のパネルを中央に置いて、その下にコピーを
+   1カラム。左右に振り分けず、写真パネルを中央に置いて、その下にコピーを
    中央寄せで積む。2カラムにすると写真だけが右に離れて見えるため。
-   人物2枚は「高さ×1.24 −（重ね量12%）」の幅を使う。パネル幅から逆算して、
-   左右に40px前後の余白が残る高さにしておくこと。 */
+   パネルを全幅にしない理由：横に広げるほど cover の拡大率が上がり、枠に残る
+   縦の範囲が狭くなる。全幅（1440px級）だと縦2割しか見えず、トレーナーと
+   お客様の顔（縦26%と54%）が同時に入らない。
+   幅820px・高さ530pxなら縦の約43%（17%〜60%）が残り、両方の顔が入る。
+   幅を広げるときは高さも一緒に上げること。幅だけ広げると顔が切れる。
+   これ以上大きくしない理由：写真を高くするとコピーがそのぶん下がる。
+   この寸法で「どうせやるなら今から」の下端が854px。1512×860（MacBook Air）と
+   1920×1080では画面内に入り、1440×800だけ54px はみ出す。ここを上げるなら
+   幅も一緒に詰めること（幅を残したまま高さだけ削ると顔が切れる）。 */
 @media(min-width:900px){
-  .fv{--cut-out:clamp(56px,4.6vw,70px);
-    padding-top:100px;padding-bottom:clamp(30px,4vw,56px)}
-  .fv__photo{width:min(100% - 64px,620px);margin-inline:auto;
-    height:clamp(340px,42vw,430px)}
-  .fv__stage{border-radius:24px;box-shadow:0 16px 40px rgba(17,24,39,.13)}
+  .fv{padding-bottom:clamp(30px,4vw,56px)}
+  .fv__photo{width:min(100% - 64px,820px);margin-inline:auto;height:min(64vw,530px)}
   /* コピーが横に伸びきると読みづらいので、1行の長さを抑える */
   .fv__in{max-width:760px;margin-inline:auto;padding-inline:24px}
   .fv__ttl{font-size:clamp(38px,4vw,52px)}

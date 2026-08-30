@@ -64,3 +64,22 @@
     a.href = url.toString();
   });
 })();
+
+/* ---------- ヘッダーの高さを実測して CSS に渡す ----------
+   ヘッダーは固定配置なので、ファーストビューの写真は自力でその高さぶん
+   下がる必要がある。ところがヘッダーの高さは中身の折り返しで 69px〜91px の
+   間で変わり、折り返す幅は端末の文字サイズ設定でも動く。メディアクエリで
+   決め打ちすると必ずどこかの幅で「写真がヘッダーの裏に潜る」か「上に白い帯が
+   残る」になるので、実測値を --hd-h に入れて lp-b.css に使わせている。
+   フォントが後から届くと高さが変わるので、読み込み後にもう一度測る。 */
+(function () {
+  var hd = document.querySelector('.hd');
+  if (!hd) return;
+  function apply() {
+    document.documentElement.style.setProperty(
+      '--hd-h', Math.ceil(hd.getBoundingClientRect().height) + 'px');
+  }
+  apply();
+  addEventListener('resize', apply, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
+})();
