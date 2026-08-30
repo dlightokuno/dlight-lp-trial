@@ -145,9 +145,11 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
   color:var(--red);letter-spacing:.06em;font-size:clamp(14px,1.9vw,16.5px)}
 
 /* 実績。数字を先に読ませる */
-.proof{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:14px}
-.proof li{display:flex;align-items:baseline;gap:7px;background:var(--cream);
-  border-radius:11px;padding:8px 15px}
+/* 文言が伸びると2行に折り返す。390px級で1行に収まるよう余白は詰めてある。
+   これ以上長い文言を入れるなら、折り返す前提で高さを見ておくこと。 */
+.proof{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:14px}
+.proof li{display:flex;align-items:baseline;gap:6px;background:var(--cream);
+  border-radius:11px;padding:8px 12px}
 .proof b{font-family:var(--f-en);font-weight:600;color:var(--navy-d);
   font-size:clamp(17px,2.4vw,22px);letter-spacing:.02em}
 .proof span{font-weight:700;color:var(--ink-2);font-size:clamp(11.5px,1.5vw,13.5px);
