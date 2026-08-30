@@ -232,7 +232,13 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 /* ---------- CTA帯 ---------- */
 .cta{background:linear-gradient(160deg,#FFF1D6 0%,var(--cream) 100%);color:var(--ink);
   padding-block:clamp(40px,6vw,68px);text-align:center}
-.cta__ttl{font-family:var(--f-serif);font-size:clamp(22px,3.6vw,33px);font-weight:700;line-height:1.5;color:var(--navy-d)}
+/* 最終CTAの見出し。ヒーローの .push と同じ3行を、こちらは明朝で大きく。
+   最後の一行だけ赤にして、そのままオファー枠へ落とす。 */
+.cta__ttl{font-family:var(--f-serif);font-size:clamp(22px,3.6vw,33px);font-weight:700;
+  line-height:1.5;color:var(--navy-d)}
+.cta__ttl span{display:block}
+.cta__ttl em{display:block;margin-top:6px;font-style:normal;color:var(--red);
+  font-size:1.18em}
 .cta .offer{max-width:520px;margin-inline:auto}
 
 /* ---------- 悩みチェック ---------- */
