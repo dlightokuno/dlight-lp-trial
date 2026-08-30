@@ -80,26 +80,31 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 .fv__grid{display:contents}
 /* isolation は必須。これが無いと .fv__shot の z-index が外まで効いてしまい、
    すぐ下の .fv__in（z-index:1）より前に出て、駅名バッジの上に写真が乗る。 */
-/* 高さは画面の高さ（svh）ではなく「枠の幅」から決めている。svh にすると
-   ウィンドウが低いときだけ枠が平たくなり、そのぶん写真の上下が余計に切れて
-   顔が欠ける。幅基準なら、どんなウィンドウの高さでも切れ方が変わらない。 */
-.fv__photo{position:relative;isolation:isolate;height:min(95vw,370px)}
-/* 写真は縦位置（1024×1536）。枠は必ず横長なので、cover で入れると左右は
-   全部入り、上下だけが切れる。つまり顔の入り方は object-position の Y だけで
-   決まる。残したいのはトレーナーの頭の上（縦18%）からお客様の顎（縦59%）まで。
-   Y=30% はその41%ぶんが枠に収まる位置。ここを動かすとどちらかが切れる。
-   枠の高さを幅の44%より低くしても同じことが起きるので、両方セットで見ること。 */
+/* 高さは画面の高さ（svh）でも固定pxでもなく、aspect-ratio で「枠の幅」から
+   出している。svh や px にすると、画面が低いときや幅が広いときだけ枠が平たくなり、
+   そのぶん写真の上下が余計に切れる。幅基準なら、どの端末でも切れ方が変わらない。
+
+   20/19（＝高さは幅の95%）という、ほぼ正方形の枠にしている理由：
+   この写真でラットプルダウンだと分かるのに要るのは、トレーナーの頭の上（縦18%）から
+   お客様が握るバー（縦76%）までの58%。写真は縦位置（1024×1536）で、枠に残る縦の
+   割合は「(高さ÷幅)×0.667」なので、58%を残すには高さが幅の0.87倍以上要る。
+   横長の枠では物理的に入らない。バーが切れて「ただ座っている写真」になる。 */
+.fv__photo{position:relative;isolation:isolate;aspect-ratio:20/19}
+/* 枠は縦長寄り・写真も縦位置なので、cover で入れると左右は全部入り、上下だけが
+   切れる。つまり何が写るかは object-position の Y だけで決まる（X は50%のままで
+   結果が変わらない）。Y=44% で縦16%〜79%が残り、トレーナーの頭からバーを握る
+   両手までが入る。Yを上げると手が、下げると頭が切れる。 */
 .fv__shot{position:absolute;inset:0;z-index:2;width:100%;height:100%;
-  object-fit:cover;object-position:50% 30%;
+  object-fit:cover;object-position:50% 44%;
   clip-path:polygon(0 0,100% 0,100% 90%,0 100%)}
 /* 斜めに落とした下辺の三角形を金で埋める。写真より手前に出さないこと。 */
 .fv__wedge{position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,#C6A667 0%,#D8C8A8 100%);
   clip-path:polygon(0 100%,100% 90%,100% 100%)}
 /* タブレット幅は全幅だと写真だけが横に伸びて人物が小さく見える。
-   全幅をやめて中央のパネルにし、そのぶん高さを足す。 */
+   全幅をやめて中央のパネルにする。高さは aspect-ratio が幅から出す。 */
 @media(min-width:600px) and (max-width:899px){
-  .fv__photo{width:min(100% - 48px,560px);margin-inline:auto;height:min(72vw,420px)}
+  .fv__photo{width:min(100% - 48px,560px);margin-inline:auto}
 }
 .fv__in{position:relative;z-index:1;text-align:center;
   padding:clamp(18px,3vw,26px) 16px clamp(26px,4vw,40px)}
@@ -461,18 +466,13 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 /* ---------- PCのファーストビュー ----------
    1カラム。左右に振り分けず、写真パネルを中央に置いて、その下にコピーを
    中央寄せで積む。2カラムにすると写真だけが右に離れて見えるため。
-   パネルを全幅にしない理由：横に広げるほど cover の拡大率が上がり、枠に残る
-   縦の範囲が狭くなる。全幅（1440px級）だと縦2割しか見えず、トレーナーと
-   お客様の顔（縦26%と54%）が同時に入らない。
-   幅820px・高さ530pxなら縦の約43%（17%〜60%）が残り、両方の顔が入る。
-   幅を広げるときは高さも一緒に上げること。幅だけ広げると顔が切れる。
-   これ以上大きくしない理由：写真を高くするとコピーがそのぶん下がる。
-   この寸法で「どうせやるなら今から」の下端が854px。1512×860（MacBook Air）と
-   1920×1080では画面内に入り、1440×800だけ54px はみ出す。ここを上げるなら
-   幅も一緒に詰めること（幅を残したまま高さだけ削ると顔が切れる）。 */
+   パネルを全幅にしない理由：枠は 20/19（幅の95%の高さ）で固定なので、幅を広げると
+   高さがそのまま比例して伸びる。全幅1440pxなら高さ1368pxになり、コピーが
+   画面2つぶん下へ落ちる。620pxは「ラットプルダウンだと分かる大きさ」を保ったまま
+   コピーを画面内に残せる上限。幅を変えるときは高さも一緒に動くことを前提に見ること。 */
 @media(min-width:900px){
   .fv{padding-bottom:clamp(30px,4vw,56px)}
-  .fv__photo{width:min(100% - 64px,820px);margin-inline:auto;height:min(64vw,530px)}
+  .fv__photo{width:min(100% - 64px,620px);margin-inline:auto}
   /* コピーが横に伸びきると読みづらいので、1行の長さを抑える */
   .fv__in{max-width:760px;margin-inline:auto;padding-inline:24px}
   .fv__ttl{font-size:clamp(38px,4vw,52px)}
