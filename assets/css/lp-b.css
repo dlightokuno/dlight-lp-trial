@@ -94,7 +94,12 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
 .fv__cut{position:relative;z-index:1;width:auto;max-width:none;flex:none;
   height:calc(100% + var(--cut-out));
   filter:drop-shadow(0 14px 20px rgba(17,24,39,.22))}
-.fv__cut--st{margin-left:-12%;z-index:1}
+/* ストレッチ側は、寝ているお客様の身体が横に長い。どこで切っても右端に
+   まっすぐな切り口が出るので、端をぼかして消す。マスクは filter のあとに
+   かかるので、drop-shadow の輪郭も一緒に消えてくれる。 */
+.fv__cut--st{margin-left:-12%;z-index:1;
+  -webkit-mask-image:linear-gradient(to right,#000 84%,transparent 99%);
+  mask-image:linear-gradient(to right,#000 84%,transparent 99%)}
 .fv__cut--tr{z-index:2}
 /* 狭い端末ではヘッダーが2行になって65px→85pxに伸びる。
    そのぶん余白を足さないと、飛び出した頭がヘッダーの裏に隠れる。 */
@@ -469,7 +474,9 @@ mark{background:linear-gradient(transparent 55%,var(--yellow) 55%);color:inherit
   .fv{--cut-out:clamp(40px,3.4vw,52px)}
   /* 左のコピーが長いので、写真は上に寄せて見出しと並ばせる（中央寄せだと右上が空く）。
      margin-top は飛び出し量より大きく取ること。足りないと頭がヘッダーの裏へ入る。 */
-  .fv__photo{order:2;height:clamp(280px,32vw,464px);margin-top:clamp(56px,5.4vw,86px)}
+  /* 高さを上げすぎると2枚がパネルの左右いっぱいまで届き、角丸の外へ
+     はみ出して見える。左右に20px以上の余白が残る高さに抑えること。 */
+  .fv__photo{order:2;height:clamp(280px,30vw,432px);margin-top:clamp(56px,5.4vw,86px)}
   .fv__stage{border-radius:22px;box-shadow:0 16px 40px rgba(17,24,39,.13)}
   .fv__in{order:1;text-align:left;margin-top:0;padding:0}
   .fv__ttl{font-size:clamp(35px,3.6vw,49px)}
