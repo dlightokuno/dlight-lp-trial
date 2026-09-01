@@ -9,17 +9,20 @@
    ========================================================= */
 var GA_MEASUREMENT_ID = 'G-LESJ5MJNHV';   // 例: 'G-XXXXXXXXXX'
 
-/* ▼ Google広告のコンバージョン計測（広告を回すときだけ設定） ▼
-   Google広告 →「目標」→「コンバージョン」→ 計測したいアクション →「タグを設定する」
-   に進むと、こういう1行が表示される。そこから2つの値を取り出して下に貼る。
+/* ▼ Google広告のコンバージョン計測 ▼
+   Google広告 →「目標」→「コンバージョン」→ 各アクション →「タグを設定する」に出る
+   send_to: 'AW-XXXXXXXXX/ラベル' を、スラッシュの前後で分けて入れてある。
 
-     send_to: 'AW-123456789/AbC-D_efGhIjKlMn'
-               ~~~~~~~~~~~~ ID    ~~~~~~~~~~~~~~ ラベル
+   ★Google広告が案内するスニペットを <head> にそのまま貼らないこと。
+     このLPは assets/js/analytics.js が gtag.js を1本だけ読み込んでいる。
+     案内どおりに貼ると2本目が読まれ、さらに下のクリック処理と二重になって
+     コンバージョンが2倍に膨らむ。IDはここに置き、送信もここから行う。
 
-   両方そろって初めて計測が始まる。片方でも空なら広告へは何も送らない。
-   ※金額はここでは送っていない。理由は下の「Google広告へのコンバージョン送信」に書いた。 */
-var ADS_CONVERSION_ID    = '';   // 例: 'AW-123456789'
-var ADS_CONVERSION_LABEL = '';   // 例: 'AbC-D_efGhIjKlMn'
+   ラベルを '' にすれば、そのアクションだけ送らなくなる。
+   ID が 'AW-' 形式でなければ、広告へは一切送らない（GA4だけ動く）。 */
+var ADS_CONVERSION_ID = 'AW-18357784683';
+var ADS_LABEL_RESERVE = 'peb6CK742OscEOug1rFE';   // 体験予約ボタン（Squareへのリンク）
+var ADS_LABEL_LINE    = 'Y0arCOnuzescEOug1rFE';   // 公式LINEへのリンク
 
 (function () {
   'use strict';
@@ -29,7 +32,14 @@ var ADS_CONVERSION_LABEL = '';   // 例: 'AbC-D_efGhIjKlMn'
   window.gtag = gtag;
 
   var gaOn  = /^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID);
-  var adsOn = /^AW-[0-9]+$/i.test(ADS_CONVERSION_ID) && ADS_CONVERSION_LABEL !== '';
+  var adsOn = /^AW-[0-9]+$/i.test(ADS_CONVERSION_ID);
+
+  /* 広告へコンバージョンを1件送る。ラベルが空のものは送らない。
+     呼ぶ場所は下のクリック処理の中だけにすること（2か所から呼ぶと二重になる）。 */
+  function adsConversion(label) {
+    if (!adsOn || !label) return;
+    gtag('event', 'conversion', { send_to: ADS_CONVERSION_ID + '/' + label });
+  }
 
   /* gtag.js は1本読み込めば、GA4と広告の両方をその1本で送れる。
      広告用にもう1本 <script> を足すと同じイベントが二重に飛ぶので、
@@ -85,7 +95,7 @@ var ADS_CONVERSION_LABEL = '';   // 例: 'AbC-D_efGhIjKlMn'
       gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: 5000 }, params));
 
       /* ---------- Google広告へのコンバージョン送信 ----------
-         予約ボタンは10個すべて target="_blank"。別タブが開いてこのページは
+         予約もLINEもリンクは全部 target="_blank"。別タブが開いてこのページは
          生きたまま残るので、送信が途中で切れる心配はない。
          同じタブで遷移する作りに変えたら、event_callback で待つ必要が出る。
 
@@ -96,13 +106,10 @@ var ADS_CONVERSION_LABEL = '';   // 例: 'AbC-D_efGhIjKlMn'
 
          ★このコンバージョンは予約の完了ではなく、予約ページを開いたクリック。
            実際の予約はSquare側（別ドメイン）で起きるので、このLPからは見えない。 */
-      if (adsOn) {
-        gtag('event', 'conversion', {
-          send_to: ADS_CONVERSION_ID + '/' + ADS_CONVERSION_LABEL
-        });
-      }
+      adsConversion(ADS_LABEL_RESERVE);
     } else if (href.indexOf('lin.ee') > -1) {
       gtag('event', 'line_click', params);
+      adsConversion(ADS_LABEL_LINE);
     } else if (href.indexOf('instagram.com') > -1) {
       gtag('event', 'instagram_click', params);
     } else if (href.indexOf('mailto:') === 0) {
