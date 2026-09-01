@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/lp-b.css?v=20260830f">
+<link rel="stylesheet" href="assets/css/lp-b.css?v=20260901a">
 <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.acc__a{display:block!important}.mcta{transform:none!important}</style></noscript>
 
 <!-- ============ 構造化データ ============
@@ -368,25 +368,12 @@
     <h2 class="ttl" data-reveal><span class="ttl__en">Price</span>料金と、含まれるもの</h2>
     <p class="lead" data-reveal>いま<strong>入会金は無料</strong>なので、初月のお支払いは月額のみです。<br class="pc-br">どのプランでも受けられる内容は変わりません。</p>
 
+    <!-- 並び順は「月額50分 → 月額80分（一番人気）→ 都度払い」。値段順ではない。
+         見せたい月額80分を真ん中に置き、比較の起点にするための順番。
+         都度払いを最後にしているのは、先に置くと「1回だけ試す」が既定の選択肢に
+         見えてしまうため。スマホは1カラムに積まれるので、この順番がそのまま
+         上から下の順になる。CSS側に nth-child は無いので、並べ替えても崩れない。 -->
     <div class="plans" style="margin-top:clamp(26px,4vw,40px)">
-      <div class="plan" data-reveal>
-        <p class="plan__name">都度払い</p>
-        <div class="plan__body">
-          <div class="plan__box"><p class="plan__k">セッション時間</p><p class="plan__v">1回 50<small>分</small></p>
-            <p class="plan__n">80分・110分もお選びいただけます</p></div>
-          <div class="plan__box"><p class="plan__k">料金（1回あたり）</p><p class="plan__v plan__v--price">12,000<small>円（税込）</small></p>
-            <p class="plan__n">80分 18,000円／110分 24,000円<br><strong>入会金なし・回数の縛りなし</strong></p></div>
-      <p class="plan__svc">サービス内容</p>
-      <ul class="svc">
-        <li><svg viewBox="0 0 24 24"><path d="M4 9v6M8 7v10M16 7v10M20 9v6M8 12h8"/></svg><span>パーソナル<br>トレーニング</span></li>
-        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="4.2" r="2"/><path d="M12 6.6v6.4M8 9.4h8M12 13l-2.6 5.6M12 13l2.6 5.6"/><path d="M4.8 10.8 2.8 12.8l2 2M19.2 10.8l2 2-2 2"/></svg><span>パーソナル<br>ストレッチ</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg><span>姿勢・可動域<br>チェック</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M8 4l-4 3 2 3 2-1.5V20h8V8.5L18 10l2-3-4-3-2 2h-4z"/></svg><span>ウェア<br>タオル</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M12 3c3.5 4.2 5.5 7 5.5 9.6A5.5 5.5 0 0 1 12 18a5.5 5.5 0 0 1-5.5-5.4C6.5 10 8.5 7.2 12 3z"/></svg><span>お水</span></li>
-              </ul>
-        </div>
-      </div>
-
       <div class="plan" data-reveal>
         <p class="plan__name">月額 50分コース</p>
         <div class="plan__body">
@@ -413,6 +400,24 @@
             <p class="plan__n">月4回の場合／週1回ペース</p></div>
           <div class="plan__box"><p class="plan__k">料金（1回あたり）</p><p class="plan__v plan__v--price">14,025<small>円（税込）</small></p>
             <p class="plan__n">月額 56,100円（税込）<br>まず週1回・3ヶ月の継続がおすすめ</p></div>
+      <p class="plan__svc">サービス内容</p>
+      <ul class="svc">
+        <li><svg viewBox="0 0 24 24"><path d="M4 9v6M8 7v10M16 7v10M20 9v6M8 12h8"/></svg><span>パーソナル<br>トレーニング</span></li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="4.2" r="2"/><path d="M12 6.6v6.4M8 9.4h8M12 13l-2.6 5.6M12 13l2.6 5.6"/><path d="M4.8 10.8 2.8 12.8l2 2M19.2 10.8l2 2-2 2"/></svg><span>パーソナル<br>ストレッチ</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg><span>姿勢・可動域<br>チェック</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M8 4l-4 3 2 3 2-1.5V20h8V8.5L18 10l2-3-4-3-2 2h-4z"/></svg><span>ウェア<br>タオル</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3c3.5 4.2 5.5 7 5.5 9.6A5.5 5.5 0 0 1 12 18a5.5 5.5 0 0 1-5.5-5.4C6.5 10 8.5 7.2 12 3z"/></svg><span>お水</span></li>
+              </ul>
+        </div>
+      </div>
+
+      <div class="plan" data-reveal>
+        <p class="plan__name">都度払い</p>
+        <div class="plan__body">
+          <div class="plan__box"><p class="plan__k">セッション時間</p><p class="plan__v">1回 50<small>分</small></p>
+            <p class="plan__n">80分・110分もお選びいただけます</p></div>
+          <div class="plan__box"><p class="plan__k">料金（1回あたり）</p><p class="plan__v plan__v--price">12,000<small>円（税込）</small></p>
+            <p class="plan__n">80分 18,000円／110分 24,000円<br><strong>入会金なし・回数の縛りなし</strong></p></div>
       <p class="plan__svc">サービス内容</p>
       <ul class="svc">
         <li><svg viewBox="0 0 24 24"><path d="M4 9v6M8 7v10M16 7v10M20 9v6M8 12h8"/></svg><span>パーソナル<br>トレーニング</span></li>
@@ -601,7 +606,7 @@
   <a class="btn btn--red" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
 </div>
 
-<script src="assets/js/analytics.js?v=20260830f" defer></script>
-<script src="assets/js/lp-b.js?v=20260830f" defer></script>
+<script src="assets/js/analytics.js?v=20260901a" defer></script>
+<script src="assets/js/lp-b.js?v=20260901a" defer></script>
 </body>
 </html>
