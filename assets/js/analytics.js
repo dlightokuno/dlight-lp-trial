@@ -9,6 +9,18 @@
    ========================================================= */
 var GA_MEASUREMENT_ID = 'G-LESJ5MJNHV';   // 例: 'G-XXXXXXXXXX'
 
+/* ▼ Google広告のコンバージョン計測（広告を回すときだけ設定） ▼
+   Google広告 →「目標」→「コンバージョン」→ 計測したいアクション →「タグを設定する」
+   に進むと、こういう1行が表示される。そこから2つの値を取り出して下に貼る。
+
+     send_to: 'AW-123456789/AbC-D_efGhIjKlMn'
+               ~~~~~~~~~~~~ ID    ~~~~~~~~~~~~~~ ラベル
+
+   両方そろって初めて計測が始まる。片方でも空なら広告へは何も送らない。
+   ※金額はここでは送っていない。理由は下の「Google広告へのコンバージョン送信」に書いた。 */
+var ADS_CONVERSION_ID    = '';   // 例: 'AW-123456789'
+var ADS_CONVERSION_LABEL = '';   // 例: 'AbC-D_efGhIjKlMn'
+
 (function () {
   'use strict';
 
@@ -16,16 +28,25 @@ var GA_MEASUREMENT_ID = 'G-LESJ5MJNHV';   // 例: 'G-XXXXXXXXXX'
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
 
-  var enabled = /^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID);
+  var gaOn  = /^G-[A-Z0-9]+$/i.test(GA_MEASUREMENT_ID);
+  var adsOn = /^AW-[0-9]+$/i.test(ADS_CONVERSION_ID) && ADS_CONVERSION_LABEL !== '';
 
-  if (enabled) {
+  /* gtag.js は1本読み込めば、GA4と広告の両方をその1本で送れる。
+     広告用にもう1本 <script> を足すと同じイベントが二重に飛ぶので、
+     必ずどちらか片方のIDで読むこと。送り先は config で分ける。 */
+  if (gaOn || adsOn) {
     var s = document.createElement('script');
     s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?' + 'id=' + GA_MEASUREMENT_ID;
+    s.src = 'https://www.googletagmanager.com/gtag/js?' +
+            'id=' + (gaOn ? GA_MEASUREMENT_ID : ADS_CONVERSION_ID);
     document.head.appendChild(s);
     gtag('js', new Date());
-    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
   }
+  if (gaOn) gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+  /* 広告側の config は必須。これが無いと広告クリックの gclid がCookieに残らず、
+     「どの広告クリックがコンバージョンしたか」が結び付かない。
+     タグ自体は動いているのにコンバージョン0件、という状態になる。 */
+  if (adsOn) gtag('config', ADS_CONVERSION_ID);
 
   /* ---------- ボタンが「どこで」押されたかを判定 ----------
      A案とB案でラッパーのクラス名が違う（A: .header / .hero / .cta-band / .footer、
@@ -62,6 +83,24 @@ var GA_MEASUREMENT_ID = 'G-LESJ5MJNHV';   // 例: 'G-XXXXXXXXXX'
       /* GA4推奨イベント版。position などを引き継がないと
          「どのCTAがリードを生んだか」を標準レポートで分解できない */
       gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: 5000 }, params));
+
+      /* ---------- Google広告へのコンバージョン送信 ----------
+         予約ボタンは10個すべて target="_blank"。別タブが開いてこのページは
+         生きたまま残るので、送信が途中で切れる心配はない。
+         同じタブで遷移する作りに変えたら、event_callback で待つ必要が出る。
+
+         金額を送っていない理由：ここで分かるのは「予約ページを開いた」ことだけで、
+         体験の5,000円が入ったわけではない。仮の金額を送ると、その嘘の数字で
+         入札が最適化されてしまう。金額を入れるなら、Google広告の
+         コンバージョンアクション側で「デフォルト値」として設定すること。
+
+         ★このコンバージョンは予約の完了ではなく、予約ページを開いたクリック。
+           実際の予約はSquare側（別ドメイン）で起きるので、このLPからは見えない。 */
+      if (adsOn) {
+        gtag('event', 'conversion', {
+          send_to: ADS_CONVERSION_ID + '/' + ADS_CONVERSION_LABEL
+        });
+      }
     } else if (href.indexOf('lin.ee') > -1) {
       gtag('event', 'line_click', params);
     } else if (href.indexOf('instagram.com') > -1) {
