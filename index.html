@@ -37,7 +37,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/lp-b.css?v=20260903d">
+<link rel="stylesheet" href="assets/css/lp-b.css?v=20260903f">
 <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.acc__a{display:block!important}.mcta{transform:none!important}</style></noscript>
 
 <!-- ============ 構造化データ ============
@@ -236,35 +236,41 @@
 <!-- ============ ハイブリッド方式 ============ -->
 <section class="sec sec--white" id="hybrid">
   <div class="wrap">
-    <h2 class="ttl" data-reveal><span class="ttl__en">How</span>その日の身体に、<br class="sp-br">その日の最適な80分を。</h2>
+    <h2 class="ttl" data-reveal><span class="ttl__en">How</span>その日の身体に、<br class="sp-br">その日の最適な時間を。</h2>
     <p class="lead" data-reveal>毎回、<strong>姿勢・可動域・疲労状態</strong>を確認します。決まったメニューを繰り返すのではなく、身体の状態に合わせて、ストレッチ・自重トレーニング・ウェイトトレーニングの比率を調整します。</p>
 
+    <!-- 帯の幅は --w × 2。--w には「80分に対する割合」を入れる（40分なら50%→幅100%）。
+         この決め方にしているので、50分の例は3本合わせても80分の例より短く見える。
+         ★合計時間と帯の合計が合っているか、値を触ったら必ず数え直すこと。 -->
     <div class="mixes" data-reveal>
       <figure class="mix">
+        <p class="mix__len">50分の場合</p>
         <figcaption class="mix__t">身体が硬く、動きが出にくい日</figcaption>
         <ul class="mix__bar">
-          <li class="mix--s" style="--w:12.5%"><span>ストレッチ 10分</span></li>
-          <li class="mix--b" style="--w:18.75%"><span>自重 15分</span></li>
-          <li class="mix--w" style="--w:31.25%"><span>ウェイト 25分</span></li>
+          <li class="mix--s" style="--w:12.5%"><span class="mix__k">ストレッチ</span><span class="mix__v">10分</span></li>
+          <li class="mix--b" style="--w:18.75%"><span class="mix__k">自重</span><span class="mix__v">15分</span></li>
+          <li class="mix--w" style="--w:31.25%"><span class="mix__k">ウェイト</span><span class="mix__v">25分</span></li>
         </ul>
       </figure>
       <figure class="mix">
+        <p class="mix__len">80分の場合</p>
         <figcaption class="mix__t">しっかり鍛えて、最後に緩める日</figcaption>
         <ul class="mix__bar">
-          <li class="mix--w" style="--w:37.5%"><span>ウェイト 30分</span></li>
-          <li class="mix--s" style="--w:25%"><span>疲労回復ストレッチ 20分</span></li>
+          <li class="mix--w" style="--w:50%"><span class="mix__k">ウェイトトレーニング</span><span class="mix__v">40分</span></li>
+          <li class="mix--s" style="--w:50%"><span class="mix__k">ストレッチ</span><span class="mix__v">40分</span></li>
         </ul>
       </figure>
       <figure class="mix">
+        <p class="mix__len">80分の場合</p>
         <figcaption class="mix__t">疲労が抜けきっていない日</figcaption>
         <ul class="mix__bar">
-          <li class="mix--s" style="--w:50%"><span>全身ケアストレッチ 40分</span></li>
-          <li class="mix--b" style="--w:25%"><span>自重 20分</span></li>
-          <li class="mix--w" style="--w:25%"><span>ウェイト 20分</span></li>
+          <li class="mix--s" style="--w:50%"><span class="mix__k">全身ケアストレッチ</span><span class="mix__v">40分</span></li>
+          <li class="mix--b" style="--w:25%"><span class="mix__k">自重</span><span class="mix__v">20分</span></li>
+          <li class="mix--w" style="--w:25%"><span class="mix__k">ウェイト</span><span class="mix__v">20分</span></li>
         </ul>
       </figure>
     </div>
-    <p class="note" data-reveal>※ 帯の長さは80分に対する時間の目安です。実際の配分は当日の状態で決まります。</p>
+    <p class="note" data-reveal>※ 帯の長さは時間の目安です。実際の配分は当日の状態で決まります。50分・80分のほか110分もお選びいただけます。</p>
   </div>
 </section>
 
@@ -642,7 +648,7 @@
   <a class="btn btn--main" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">空き状況を見る</a>
 </div>
 
-<script src="assets/js/analytics.js?v=20260903d" defer></script>
-<script src="assets/js/lp-b.js?v=20260903d" defer></script>
+<script src="assets/js/analytics.js?v=20260903f" defer></script>
+<script src="assets/js/lp-b.js?v=20260903f" defer></script>
 </body>
 </html>

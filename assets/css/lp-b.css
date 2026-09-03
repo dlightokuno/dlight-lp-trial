@@ -258,14 +258,27 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty;lin
 @media(min-width:900px){.mixes{grid-template-columns:repeat(3,1fr)}}
 .mix{border:1px solid var(--line);border-radius:var(--radius);
   background:var(--surface);padding:clamp(16px,2.2vw,20px)}
-.mix__t{font-weight:700;font-size:14.5px;color:var(--navy);line-height:1.6}
-.mix__bar{margin-top:12px;display:flex;flex-direction:column;gap:6px}
-.mix__bar li{--w:25%;position:relative;border-radius:3px;padding:7px 10px;
-  font-size:12.5px;font-weight:700;line-height:1.4;color:#fff;
-  width:calc(var(--w) * 2);min-width:max-content}
-.mix--s{background:var(--gold-d)}
-.mix--b{background:var(--navy-s)}
-.mix--w{background:var(--navy)}
+/* セッション時間のバッジ。どの長さの例なのかが最初に分かるよう、状況の見出しより
+   先に置いている。50分と80分が混在するので、これが無いと帯の長さの差が
+   「その日の内容の違い」に見えてしまう。 */
+.mix__len{display:inline-block;font-family:var(--f-en);font-size:11.5px;font-weight:600;
+  letter-spacing:.06em;color:var(--gold-d);border:1px solid var(--gold);
+  border-radius:3px;padding:2px 9px}
+.mix__t{margin-top:9px;font-weight:700;font-size:14.5px;color:var(--navy);line-height:1.6}
+/* 文字を帯の中に入れると、10分のような短い帯がラベル幅に押し広げられて
+   15分より長く見える（実際にそうなっていた）。文字は上、帯は下に分けて、
+   帯の幅だけを時間に比例させる。--w は「80分に対する割合」で、幅は --w×2。
+   つまり40分＝幅100%。この決め方なので、50分の例は80分の例より必ず短く出る。 */
+.mix__bar{margin-top:12px;display:flex;flex-direction:column;gap:11px}
+.mix__bar li{--w:25%;display:grid;grid-template-columns:1fr auto;align-items:baseline;
+  column-gap:10px;font-size:12.5px;font-weight:700;line-height:1.45;color:var(--navy)}
+.mix__bar li::after{content:"";grid-column:1/-1;margin-top:5px;height:9px;
+  border-radius:2px;width:calc(var(--w) * 2);min-width:5px}
+.mix__v{font-family:var(--f-en);font-variant-numeric:tabular-nums;color:var(--gold-d);
+  letter-spacing:.02em}
+.mix--s::after{background:var(--gold-d)}
+.mix--b::after{background:var(--navy-s)}
+.mix--w::after{background:var(--navy)}
 
 /* ---------- 指導事例 ---------- */
 /* 「これは事例だ」と一目で分かるようにするための3点。
