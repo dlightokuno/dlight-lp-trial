@@ -32,7 +32,10 @@ body{margin:0;font-family:var(--f-sans);color:var(--ink);background:var(--bg);
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3,p,ul,ol,figure,dl,dd,table{margin:0}
-ul{padding:0;list-style:none}
+/* ol も対象にすること。体験の流れ・道案内・事例の3か所は <ol> で、
+   どれも番号を自前で描いている（data-n / counter + ::before）。
+   ul だけ消すと、既定の「1. 2. 3.」が自前の番号の左に二重で出る。 */
+ul,ol{padding:0;list-style:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--gold-d);outline-offset:3px}
 /* 日本語の折り返し。語の途中や2〜3文字のぶら下がりを防ぐ */
@@ -81,10 +84,16 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty}
   border-bottom:1px solid var(--line-soft);backdrop-filter:blur(6px)}
 .hd__in{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:9px clamp(12px,2vw,22px)}
-.hd__name{font-family:var(--f-en);font-size:clamp(16px,2vw,20px);font-weight:600;
-  letter-spacing:.1em;text-decoration:none;color:var(--navy)}
+/* 店名はページ内で唯一のブランド表示なので、はっきり見せる。
+   金の下線は文字と同じ幅（display:inline-block）にして、
+   下の一行（整える×鍛える）と分けている。 */
+.hd__name{display:inline-block;font-family:var(--f-en);
+  font-size:clamp(19px,2.5vw,25px);font-weight:600;
+  letter-spacing:.11em;text-decoration:none;color:var(--navy);line-height:1.15;
+  border-bottom:2px solid var(--gold);padding-bottom:3px}
 .hd__sub{display:block;font-family:var(--f-sans);font-size:11.5px;
-  letter-spacing:.04em;color:var(--ink-3);font-weight:400}
+  letter-spacing:.04em;color:var(--ink-3);font-weight:500;
+  border-bottom:0;padding-top:5px}
 .hd__cta{background:var(--cta);color:#fff;font-weight:700;
   font-size:clamp(12.5px,1.6vw,14.5px);line-height:1.35;text-align:center;
   padding:9px 16px;border-radius:var(--radius);text-decoration:none;white-space:nowrap}
@@ -183,11 +192,20 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty}
 .cta .btn--line{background:transparent;color:#fff}
 
 /* ---------- 悩みへの共感 ---------- */
+/* 悩みチップ。以前は1pxの隙間からコンテナのグレーを見せる作りだったが、
+   項目数（6）と列数が合わない幅で、余った升目がグレーの塊として残った。
+   いまは1枚ずつ枠線を持たせ、隙間は本物の余白にしている。空きが出ても
+   何も描かれないので、列数が変わっても崩れない。 */
 .syms{margin-top:clamp(24px,3.4vw,34px);display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
-  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.syms li{background:var(--surface);padding:14px 12px;text-align:center;
-  font-size:14px;line-height:1.6;color:var(--ink-2)}
+  grid-template-columns:repeat(2,1fr);gap:10px}
+.syms li{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:13px 10px;text-align:center;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+@media(min-width:600px){.syms{grid-template-columns:repeat(3,1fr)}}
+/* PCは6項目を1行に。1行に収めるため、この幅だけ字を少し詰める。 */
+@media(min-width:900px){
+  .syms{grid-template-columns:repeat(6,1fr);gap:8px}
+  .syms li{padding:12px 6px;font-size:12.5px;line-height:1.55}
+}
 
 /* ---------- 比較 ---------- */
 /* 表は必ずこの箱に入れる。4列あるのでスマホでははみ出す。
@@ -237,10 +255,29 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty}
 .mix--w{background:var(--navy)}
 
 /* ---------- 指導事例 ---------- */
-.case__ttl{margin-top:14px;font-family:var(--f-serif);font-weight:700;color:#fff;
+/* 「これは事例だ」と一目で分かるようにするための3点。
+   ①日本語のラベルを金の枠で置く ②誰の話かを枠付きで出す
+   ③経過を3段に割って、番号と見出し（ご相談時／最初の3カ月／その後）を付ける */
+.case__label{display:block;width:max-content;margin-inline:auto;
+  border:1px solid var(--gold);border-radius:var(--radius);
+  padding:5px 16px;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--gold)}
+.case__ttl{margin-top:18px;font-family:var(--f-serif);font-weight:700;color:#fff;
   font-size:clamp(20px,3vw,30px);line-height:1.62;letter-spacing:.03em;text-align:center}
-.case__who{margin-top:14px;text-align:center;font-size:13px;letter-spacing:.1em;
-  color:var(--gold)}
+.case__who{margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.case__who span{border:1px solid rgba(255,255,255,.28);border-radius:var(--radius);
+  padding:4px 13px;font-size:12.5px;color:rgba(255,255,255,.86);white-space:nowrap}
+.case__steps{margin-top:clamp(24px,3.4vw,34px);counter-reset:c;display:grid;gap:12px}
+.case__steps li{counter-increment:c;position:relative;
+  background:rgba(255,255,255,.06);border-left:3px solid var(--gold);
+  border-radius:0 var(--radius) var(--radius) 0;padding:14px 18px 16px 52px}
+.case__steps li::before{content:counter(c);position:absolute;left:16px;top:15px;
+  width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--navy-d);
+  font-family:var(--f-en);font-size:12px;font-weight:600;display:grid;place-items:center}
+.case__k{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--gold)}
+.case__t{margin-top:5px;font-size:14.5px;line-height:1.95;color:rgba(255,255,255,.9)}
+.case__t strong{color:#fff;font-weight:700;
+  background:linear-gradient(transparent 62%,rgba(198,166,103,.45) 62%)}
+@media(min-width:820px){.case__steps{grid-template-columns:repeat(3,1fr);align-items:start}}
 
 /* ---------- ビフォーアフター ---------- */
 .bas{margin-top:clamp(26px,4vw,40px);display:grid;gap:clamp(18px,2.6vw,26px)}
@@ -292,6 +329,9 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty}
 .purpose{background:var(--surface);border:1px solid var(--line);
   border-radius:var(--radius);overflow:hidden}
 .purpose img{width:100%;aspect-ratio:4/3;object-fit:cover}
+/* 縦位置の写真を4:3の枠に入れると上下が切れる。この1枚は顔が上寄りなので、
+   中央のままだと2人の顔の上が欠ける。上寄りで切る。 */
+.purpose__img--upper{object-position:50% 34%}
 .purpose figcaption{padding:15px 16px 19px}
 .purpose h3{font-family:var(--f-serif);font-size:16.5px;font-weight:700;color:var(--navy)}
 .purpose p{margin-top:7px;font-size:13.5px;line-height:1.85;color:var(--ink-2)}
