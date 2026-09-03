@@ -3,13 +3,17 @@
 (function () {
   'use strict';
 
-  /* スマホ固定CTA：ファーストビューを抜けたら出す */
+  /* スマホ固定CTA。
+     ファーストビューには見出し・写真・料金・CTAを全部入れているので縦に長く、
+     「抜けてから出す」だと画面にCTAが無い時間が長くなる。少しスクロールした
+     時点（400px、またはFVの35%のどちらか短いほう）で出す。 */
   var mcta = document.querySelector('.mcta');
   var fv = document.querySelector('.fv');
   function onScroll() {
     if (!mcta) return;
     var h = fv ? fv.offsetHeight : 600;
-    mcta.classList.toggle('is-on', (window.scrollY || window.pageYOffset) > h * 0.65);
+    var trigger = Math.min(400, h * 0.35);
+    mcta.classList.toggle('is-on', (window.scrollY || window.pageYOffset) > trigger);
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -32,11 +36,23 @@
     });
   });
 
-  /* 見出しの「残り◯ヶ月」を今日の日付から入れ直す。
-     手で書いたままだと月をまたいだ瞬間に嘘になるため。
-     当月は数えない（8月なら9〜12月で4ヶ月）。12月だけは0にせず1と出す。 */
-  document.querySelectorAll('[data-months-left]').forEach(function (e) {
-    e.textContent = Math.max(1, 11 - new Date().getMonth());
+  /* 動画は押されたものだけ読み込む。
+     道案内2本＋室内1本を最初から読むと、それだけで表示が数秒遅くなる。
+     ポスター画像のボタンを押した瞬間に <video> を作って差し替える。
+     HTML側の .videos ブロックはいま動画ファイル待ちでコメントアウト中。 */
+  document.querySelectorAll('[data-video]').forEach(function (fig) {
+    var btn = fig.querySelector('.video__btn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var v = document.createElement('video');
+      v.src = fig.getAttribute('data-video');
+      v.controls = true;
+      v.playsInline = true;      /* iOSで勝手に全画面にしない */
+      v.preload = 'auto';
+      v.setAttribute('playsinline', '');
+      btn.replaceWith(v);
+      v.play().catch(function () { /* 自動再生が拒否されたら操作を待つ */ });
+    }, { once: true });
   });
 
   document.querySelectorAll('[data-year]').forEach(function (e) { e.textContent = new Date().getFullYear(); });
