@@ -280,6 +280,56 @@ https://dlightgym.com/lp/trial/?utm_source=google&utm_medium=cpc&utm_campaign=tr
 - **ビフォーアフター2枚目を差し替え**（`ba-body-30s.webp`／1920×1920）。
   旧 `ba-diet-30s.webp` は残してあるが、いまはどのページからも参照していない。
 
+## 日本語の折り返し
+
+`word-break:auto-phrase` が文節（「一人の」「担当者が」）で切ってくれる。
+Chromeで実際に効いていることは確認済み。そのうえで足りないのが2つある。
+
+**1. 短い見出し・リード文は `pretty` ではなく `balance`。**
+`pretty` は最終行しか見ないので、2〜3行の中央寄せだと行の長さがばらついて雑に見える。
+`balance` は全行を均そうとする。長文には効かない仕様なので、付けても副作用がない。
+対象は `.ttl / .lead / .fv__ttl / .case__ttl / .cta__ttl` など短い塊だけ。
+**本文（`.prose p` など）は `pretty` のまま**にすること。
+
+**2. 数字は auto-phrase の対象外。**
+「71,000〜96,000円」のような並びは、桁の途中や記号の前後で平気で切れる。
+止める方法は `.nw` で囲うか `white-space:nowrap` しかない。
+金額を書き足したら**必ず `.nw` で囲うこと**。
+
+`.costbox__v`（別々に通った場合の金額）は `white-space:nowrap` で1行固定にしている。
+折らない代わりに、狭い画面では字を小さくして収める（下限20px）。
+**この下限を上げると320px級の端末で右にはみ出す。**
+
+### 折り返しの確かめ方
+
+見た目ではなく、実際の行の切れ目を取り出して確認する。
+（`<small>` を含む要素は、文字ごとの `getBoundingClientRect().top` がずれて
+誤検出するので、行数は要素の高さ÷行高で数えること）
+
+```js
+// 390px幅で読み込んでから実行する
+function lines(el){
+  const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+  const out=[];let cur='',lastTop=null,n;
+  while(n=w.nextNode()){for(let i=0;i<n.data.length;i++){
+    const r=document.createRange();r.setStart(n,i);r.setEnd(n,i+1);
+    const b=r.getBoundingClientRect();
+    if(b.height===0){cur+=n.data[i];continue}
+    if(lastTop===null||Math.abs(b.top-lastTop)<3){cur+=n.data[i]}
+    else{out.push(cur);cur=n.data[i]}
+    lastTop=b.top;
+  }}
+  if(cur)out.push(cur);return out;
+}
+lines(document.querySelector('#compare .lead'));
+```
+
+## 比較表の列順
+
+**D/LIGHT を左端（比較項目のすぐ隣）に置いている。** 2026/09/03に右端から移した。
+スマホでは表が横スクロールになるので、右端だと**自社列が最初に見えない**。
+列を足すときも、D/LIGHT は必ず先頭のままにすること。
+
 ## 体験料金は3,300円
 
 2026/09/01に **5,000円 → 3,300円** へ変更した。LP内では次の5か所で使っている。

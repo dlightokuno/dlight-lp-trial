@@ -38,8 +38,19 @@ h1,h2,h3,p,ul,ol,figure,dl,dd,table{margin:0}
 ul,ol{padding:0;list-style:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--gold-d);outline-offset:3px}
-/* 日本語の折り返し。語の途中や2〜3文字のぶら下がりを防ぐ */
-h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty}
+/* ---------- 日本語の折り返し ----------
+   auto-phrase は文節（「一人の」「担当者が」）で切ってくれる。これは効いている。
+   そのうえで足りないのが次の2つ。
+
+   1. 短い見出し・リード文は pretty より balance。pretty は最終行だけを見るので、
+      2〜3行の中央寄せだと行の長さがばらついて雑に見える。balance は全行を
+      均そうとするので、見出しとリードはこちらにする（長文には効かないので安全）。
+   2. 数字は auto-phrase の対象外。「71,000〜96,000円」のような並びは
+      平気で桁の途中や記号の前後で切れる。これは .nw で囲って止めるしかない。 */
+h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty;line-break:strict}
+.ttl,.lead,.fv__ttl,.fv__sub,.fv__usp,.case__ttl,.cta__ttl,.costbox__t,
+.mix__t,.ba__n,.checkgrid__hd,.camp__main,.note,.plan__per,.plan__n,
+.scope__hd,.photonote__hd,.route__t,.incl__hd,.terms__hd{text-wrap:balance}
 .nw{display:inline-block;white-space:nowrap}
 
 .wrap{width:min(100% - 32px,var(--wrap));margin-inline:auto}
@@ -234,8 +245,10 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty}
   padding:16px;text-align:center;background:var(--paper)}
 .costbox__col--me{border-color:var(--gold);background:rgba(198,166,103,.12)}
 .costbox__k{font-size:13px;font-weight:700;color:var(--ink-2);letter-spacing:.04em}
+/* 金額は1行に固定する（4行に割れていた）。折らない代わりに、
+   狭い画面では字を小さくして収める。下限20pxは390px幅で1行に入る値。 */
 .costbox__v{margin-top:6px;font-family:var(--f-en);font-weight:600;color:var(--navy);
-  font-size:clamp(25px,4vw,34px);line-height:1.2}
+  font-size:clamp(20px,4.6vw,34px);line-height:1.25;white-space:nowrap}
 .costbox__v small{font-family:var(--f-sans);font-size:.46em;font-weight:700;margin:0 2px}
 .costbox__n{margin-top:8px;font-size:12.5px;line-height:1.8;color:var(--ink-2)}
 @media(min-width:720px){.costbox__grid{grid-template-columns:1fr 1fr;align-items:stretch}}
