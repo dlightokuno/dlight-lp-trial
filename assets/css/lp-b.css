@@ -127,7 +127,7 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty;lin
   display:grid;grid-template-areas:"head" "photo" "lead" "act" "sup"}
 .fv__head{grid-area:head;padding:clamp(12px,2.4vw,20px) 16px clamp(12px,2vw,18px);text-align:center}
 .fv__photo{grid-area:photo}
-.fv__lead{grid-area:lead;padding:clamp(14px,2.4vw,20px) 16px 0;text-align:center}
+.fv__lead{grid-area:lead;padding:clamp(8px,2.4vw,20px) 16px 0;text-align:center}
 .fv__act{grid-area:act;padding:0 16px;text-align:center}
 .fv__sup{grid-area:sup;padding:clamp(20px,3vw,26px) 16px 0;text-align:center}
 
@@ -136,7 +136,7 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty;lin
 .fv__area span{border:1px solid var(--line);border-radius:var(--radius);padding:3px 10px;white-space:nowrap}
 .fv__ttl{margin-top:11px;font-family:var(--f-serif);font-weight:700;color:var(--navy);
   font-size:clamp(27px,6.2vw,46px);line-height:1.5;letter-spacing:.03em}
-.fv__sub{font-size:clamp(15px,1.8vw,17.5px);line-height:2;color:var(--ink-2)}
+.fv__sub{font-size:clamp(15px,1.8vw,17.5px);line-height:1.85;color:var(--ink-2)}
 .fv__usp{font-family:var(--f-serif);font-size:clamp(16px,2.1vw,20px);
   line-height:1.85;letter-spacing:.03em;color:var(--navy)}
 .fv__usp b{font-weight:700;
@@ -171,7 +171,7 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty;lin
 
 /* オファー */
 .offer{border:1px solid var(--gold);border-radius:var(--radius);
-  background:var(--paper);padding:clamp(16px,2.4vw,22px);text-align:center}
+  background:var(--paper);padding:clamp(13px,2.4vw,22px);text-align:center}
 .offer__hd{font-size:12.5px;letter-spacing:.14em;color:var(--gold-d);font-weight:700}
 .offer__main{margin-top:6px;display:flex;align-items:baseline;justify-content:center;gap:8px;
   font-family:var(--f-en);color:var(--navy)}
@@ -547,16 +547,16 @@ h1,h2,h3,p,li,dd,dt,figcaption,th,td{word-break:auto-phrase;text-wrap:pretty;lin
     padding-inline:max(24px,calc((100% - 1240px)/2));
     padding-bottom:clamp(40px,5vw,72px)}
   .fv__head{padding:0;text-align:left}
-  .fv__lead{padding:10px 0 0;text-align:left}
+  .fv__lead{padding:6px 0 0;text-align:left}
   .fv__sup{padding:12px 0 0;text-align:left}
-  .fv__act{padding:14px 0 0;text-align:left}
+  .fv__act{padding:10px 0 0;text-align:left}
   .fv__area{justify-content:flex-start}
   .incl__hd--fv{text-align:left;margin-top:12px}
   /* PCの左カラムは「見出し・料金・CTAが1画面に収まる」ことを最優先に詰めている。
      ここを緩めると、1440×800級のノートで CTA が折り返しの下へ落ちる。
      数字を変えたら必ず 1440×800 で CTA の下端が800px以内か測り直すこと。 */
   .fv__ttl{font-size:clamp(30px,3.2vw,42px);line-height:1.45}
-  .fv__sub{font-size:16px;line-height:1.9}
+  .fv__sub{font-size:16px;line-height:1.8}
   .fv__usp{font-size:18px;line-height:1.75}
   .proof li{padding:10px 6px}
   .offer__list{grid-template-columns:repeat(3,1fr);font-size:11.5px;gap:4px 10px;margin-top:8px}
