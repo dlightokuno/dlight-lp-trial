@@ -10,3 +10,11 @@ _*.html
 # エディタ
 .vscode/
 *.swp
+
+# 女性向けLP（women.html）は未公開。公開の判断が出るまでGitに乗せない。
+# publish.sh が git add -A するため、ここで止めないと一緒に公開されてしまう。
+women.html
+women-lp-notes.md
+assets/css/lp-w.css
+assets/js/lp-w.js
+assets/img/w/

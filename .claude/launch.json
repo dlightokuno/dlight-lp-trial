@@ -8,14 +8,6 @@
         "/Users/yudaiokuno/Desktop/クロードプロジェクト/D:LIGHT/LP作成/serve.py"
       ],
       "port": 4322
-    },
-    {
-      "name": "lp-tmp",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": [
-        "/private/tmp/claude-502/-Users-yudaiokuno-Desktop------------D-LIGHT-LP--/d52782cd-9ded-43fb-a71a-7337c0f25ac6/scratchpad/serve-tmp.py"
-      ],
-      "port": 4399
     }
   ]
 }
