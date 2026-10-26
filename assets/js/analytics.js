@@ -92,7 +92,7 @@ var ADS_LABEL_LINE    = 'Y0arCOnuzescEOug1rFE';   // 公式LINEへのリンク
       gtag('event', 'reserve_click', params);
       /* GA4推奨イベント版。position などを引き継がないと
          「どのCTAがリードを生んだか」を標準レポートで分解できない */
-      gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: 5000 }, params));
+      gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: 3300 }, params));
 
       /* ---------- Google広告へのコンバージョン送信 ----------
          予約もLINEもリンクは全部 target="_blank"。別タブが開いてこのページは
@@ -100,7 +100,7 @@ var ADS_LABEL_LINE    = 'Y0arCOnuzescEOug1rFE';   // 公式LINEへのリンク
          同じタブで遷移する作りに変えたら、event_callback で待つ必要が出る。
 
          金額を送っていない理由：ここで分かるのは「予約ページを開いた」ことだけで、
-         体験の5,000円が入ったわけではない。仮の金額を送ると、その嘘の数字で
+         体験の3,300円が入ったわけではない。仮の金額を送ると、その嘘の数字で
          入札が最適化されてしまう。金額を入れるなら、Google広告の
          コンバージョンアクション側で「デフォルト値」として設定すること。
 
