@@ -18,3 +18,11 @@ women-lp-notes.md
 assets/css/lp-w.css
 assets/js/lp-w.js
 assets/img/w/
+
+# 別セッションで作りかけのもの。公開の判断が出るまでGitに乗せない。
+# publish.sh が git add -A するため、ここで止めないと一緒に公開されてしまう。
+autumn.html
+assets/css/lp-autumn.css
+assets/js/lp-autumn.js
+PRODUCT.md
+.impeccable/

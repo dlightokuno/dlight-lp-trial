@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>初回体験80分 3,300円｜八丁堀・新富町のパーソナルジム D/LIGHT GYM</title>
+<!-- ============================================================
+     lp2.html ＝ index.html の改善版（2026/10/27）。
+     「広告のクリックはあるのに予約が入らない」を直すために作った。
+     index.html は触っていないので、2本を同時に出して比べられる。
+     何を・なぜ変えたかは lp2-notes.md に全部書いてある。
+     ★CSSは lp-b.css をそのまま使い、追加分だけ下の <style> にある。
+     ============================================================ -->
+<!-- GA4もGoogle広告も assets/js/analytics.js が読み込む（gtag.jsは1本だけ）。
+     Google広告が案内するスニペットをここに貼ると、ライブラリが2本になり
+     コンバージョンも二重に飛ぶ。IDとラベルは analytics.js の冒頭にある。 -->
+<meta name="description" content="八丁堀駅・新富町駅から徒歩5分、完全個室・完全予約制のパーソナルジム D/LIGHT GYM。ストレッチとトレーニングを掛け合わせ、その日の身体に合わせて整えながら鍛えます。初回体験80分3,300円（税込）、手ぶらでOK・無理な勧誘なし。">
+<!-- このページが本番のLP（B案）。lp-a.html は比較用に残しているだけ。
+     GitHub Pages は確認用の仮URLなので、同じ内容が2箇所にある状態を避けるため
+     いまは検索対象外にしている。本番 dlightgym.com/lp/trial/ へ移すときに
+     ここを "index, follow" へ戻すこと。 -->
+<meta name="robots" content="noindex, nofollow">
+<!-- lp2 は検証用。canonical は置かない（noindex のまま運用する） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="初回体験80分 3,300円｜D/LIGHT GYM（八丁堀・新富町）">
+<meta property="og:description" content="整えながら鍛える、ストレッチ×パーソナルトレーニングのハイブリッドジム。完全個室・担当制。初回体験80分3,300円（税込）、手ぶらでOK・無理な勧誘なし。">
+<!-- LINEやSNSに貼ったときのサムネ。絶対URLでないと読まれないため、いま実際に
+     配信されている GitHub Pages を指している。本番へ移したら
+     https://dlightgym.com/lp/trial/assets/img/og-trial.jpg に直すこと。
+     ★画像には体験料金が焼き込まれている。料金や見出しを変えたら作り直すこと
+       （作り方は README「SNS・LINEに貼ったときのサムネ」）。 -->
+<meta property="og:image" content="https://dlightokuno.github.io/dlight-lp-trial/assets/img/og-trial.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="仕事は頑張れても、身体はごまかせない。初回体験80分3,300円｜D/LIGHT GYM">
+<meta property="og:site_name" content="D/LIGHT GYM">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://dlightokuno.github.io/dlight-lp-trial/lp2.html">
+<meta name="twitter:card" content="summary_large_image">
+<!-- スマホのブラウザ上部の色。ページ最上部（固定ヘッダー）が白なので白に合わせる -->
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/lp-b.css?v=20261010b">
+
+<!-- lp2 で足したぶんだけ。lp-b.css は1行も変えていないので、
+     このブロックを消せば index.html と同じ見た目に戻る。 -->
+<style>
+/* 予約の進め方。Squareの画面が「追加」から始まるので、
+   その1手目を先に見せておかないと、ここで止まる人が出る。 */
+.bk{margin-top:clamp(16px,2.4vw,24px);border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--paper);padding:14px 16px;text-align:left}
+.bk--on-navy{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22)}
+.bk__hd{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--gold-d)}
+.bk--on-navy .bk__hd{color:var(--sand)}
+.bk__list{margin-top:9px;display:grid;gap:7px}
+.bk__list li{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;
+  font-size:12.5px;line-height:1.7;color:var(--ink-2)}
+.bk--on-navy .bk__list li{color:rgba(255,255,255,.88)}
+.bk__list li b{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;
+  background:var(--navy);color:#fff;font-family:var(--f-en);font-size:11px;
+  font-weight:600;line-height:1;margin-top:2px}
+.bk--on-navy .bk__list li b{background:var(--gold);color:var(--navy-d)}
+.bk__alt{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);
+  font-size:12px;line-height:1.7;color:var(--ink-3)}
+.bk--on-navy .bk__alt{border-top-color:rgba(255,255,255,.18);color:rgba(255,255,255,.72)}
+.bk__alt a{color:var(--gold-d);font-weight:700}
+.bk--on-navy .bk__alt a{color:var(--sand)}
+
+/* ファーストビューに置く1行版。ここで長い説明を足すと料金が下へ落ちるので、
+   1行だけにしてある（詳しい手順は #trial と最終CTAにある）。 */
+.bk__mini{margin-top:10px;font-size:11.5px;line-height:1.65;color:var(--ink-3);text-wrap:pretty}
+
+/* いつ通うか */
+.when{margin-top:clamp(18px,2.6vw,26px);display:grid;gap:10px}
+@media(min-width:800px){.when{grid-template-columns:repeat(3,1fr)}}
+.when li{border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--paper);padding:14px 16px}
+.when__t{display:inline-block;font-size:14px;font-weight:700;color:var(--navy);
+  border-bottom:2px solid var(--gold);padding-bottom:3px}
+.when__d{margin-top:9px;font-size:13px;line-height:1.8;color:var(--ink-2)}
+</style>
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.acc__a{display:block!important}.mcta{transform:none!important}</style></noscript>
+
+<!-- ============ 構造化データ ============
+     検索エンジンに「何の店か・いくらか・どんな質問に答えているか」を機械可読で渡す。
+
+     ★aggregateRating（★5.0・10件）は意図的に入れていない。
+       Googleのガイドラインで、自社サイトに自社の評価をマークアップするのは
+       「自己申告のレビュー」として禁止されている。GBPのクチコミは検索結果側で
+       Googleが出すものなので、こちらで書くと手動対策の対象になりうる。
+       ページ上での表示（見える形での引用）は問題ないので、そちらだけ行う。
+
+     FAQPage は、ページに実際に表示されている質問と回答だけを、同じ文面で書くこと。
+     見えていないものを書くとGoogleに無視されるか、手動対策の対象になる。
+     FAQを増減したら、必ずこちらも同じ数・同じ文面に直す（現在12問）。 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "D/LIGHT GYM",
+  "description": "ストレッチで「整える」とトレーニングで「鍛える」を掛け合わせ、その日の身体の状態に合わせて比率を調整するパーソナルジム",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "104-0042",
+    "addressRegion": "東京都",
+    "addressLocality": "中央区",
+    "streetAddress": "入船2-2-7 ドルチェ銀座東弐番館1101号室"
+  },
+  "email": "dlight.okuno@gmail.com",
+  "url": "https://dlightgym.com/",
+  "image": "https://dlightgym.com/assets/img/hero-home.jpg",
+  "sameAs": ["https://www.instagram.com/dlight_personalgym"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "08:00", "closes": "22:00" }
+  ],
+  "priceRange": "¥¥¥"
+}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"体験パーソナルトレーニング","provider":{"@type":"HealthAndBeautyBusiness","name":"D/LIGHT GYM"},"areaServed":"東京都中央区","offers":{"@type":"Offer","name":"初回体験 80分","price":"3300","priceCurrency":"JPY","availability":"https://schema.org/InStock","url":"https://dlightgym.com/lp/trial/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"運動経験がなくても大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"大丈夫です。入会時にトレーニング未経験だった方が、およそ3人に2人です。まず身体の状態を確認してから、その日にできる範囲で組み立てます。"}},
+{"@type":"Question","name":"肩や腰が気になる状態でもできますか？","acceptedAnswer":{"@type":"Answer","text":"はい。肩や腰の重さ、身体の硬さがある方こそ、状態を確認しながら進めます。動かせる範囲を広げてから鍛えるので、いきなり負荷をかけることはありません。"}},
+{"@type":"Question","name":"強い痛みがある場合も利用できますか？","acceptedAnswer":{"@type":"Answer","text":"強い痛みや急な症状がある場合は、先に医療機関へご相談ください。当ジムは治療を行う施設ではありません。医療機関を受診されたうえで運動の許可が出ている場合は、その範囲で対応します。"}},
+{"@type":"Question","name":"体験後に入会を勧められますか？","acceptedAnswer":{"@type":"Answer","text":"体験の最後に、今の身体の状態と、続けるとしたらどう進めるかをご説明します。そのうえでご検討いただき、納得された場合のみご入会ください。無理な勧誘は行いません。"}},
+{"@type":"Question","name":"何を持って行けばよいですか？","acceptedAnswer":{"@type":"Answer","text":"手ぶらでお越しいただけます。ウェア・タオル・お水は無料でご用意しています。人工芝とマットの上で行うため、シューズも必要ありません。"}},
+{"@type":"Question","name":"どのくらい通えば変化を確認できますか？","acceptedAnswer":{"@type":"Answer","text":"個人差はありますが、まず週1回・80分を3カ月続けることをおすすめしています。初回と3カ月後に姿勢・筋力・柔軟性とご本人の実感を振り返り、その後の方針を一緒に決めます。"}},
+{"@type":"Question","name":"通えない月の料金はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"0円です。月額は、その月の最初のセッション時にお支払いいただきます。通わなかった月に料金は発生しません。"}},
+{"@type":"Question","name":"休会・退会手続きは必要ですか？","acceptedAnswer":{"@type":"Answer","text":"必要ありません。契約期間の縛りがないため、休会や退会の手続きなしでご利用を止めていただけます。再開したくなったときも、ご予約いただくだけです。"}},
+{"@type":"Question","name":"月4回を消化できなかった場合はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"未消化分は1回まで翌月へ繰り越せます。また、月ごとにプランを変更できますので、忙しい月は回数の少ないプランへ切り替えることもできます。"}},
+{"@type":"Question","name":"予約の変更・キャンセルのルールは？","acceptedAnswer":{"@type":"Answer","text":"ご予約の24時間前まで、変更・キャンセルは無料です。体験のご予約も同じ扱いです。"}},
+{"@type":"Question","name":"50分と80分のどちらを選べばよいですか？","acceptedAnswer":{"@type":"Answer","text":"ストレッチとトレーニングの両方を1回のセッションに入れたい場合は80分をおすすめします。50分は、目的を絞って短時間で行いたい方向けです。体験は80分なので、実際に受けてから決めていただけます。"}},
+{"@type":"Question","name":"体験当日に契約を決める必要がありますか？","acceptedAnswer":{"@type":"Answer","text":"ありません。持ち帰ってご検討いただけます。体験当日にご入会された場合は体験料が0円になりますが、後日のご入会でも入会金無料キャンペーンは適用されます。"}}
+]}</script>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd__in">
+    <a class="hd__name" href="https://dlightgym.com/" target="_blank" rel="noopener">D/LIGHT GYM
+      <span class="hd__sub">整える × 鍛える｜八丁堀・新富町</span></a>
+    <a class="hd__cta" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する<small>初回80分 3,300円（税込）</small></a>
+  </div>
+</header>
+
+<!-- ============ ファーストビュー ============
+     PCは左右2カラム（左＝コピー／右＝写真）。1カラムだと写真の高さぶんコピーが
+     下がり、1440×800級のノートで見出しと料金とCTAが折り返しの下に落ちる。
+     2カラムなら写真の高さがコピーの位置に影響しないので、この3つを必ず画面内に
+     置ける。スマホは写真→コピーの縦積み。 -->
+<section class="fv">
+  <!-- FVは5ブロックに分けて、スマホとPCで並び順を変えている（grid-template-areas）。
+       スマホ： 見出し → 写真 → サブコピー → 料金とCTA → 独自性・信頼材料
+       PC　　： 左に 見出し→サブ→独自性・信頼→料金とCTA、右に写真
+
+       スマホで料金とCTAを先に出しているのは、
+       「タイトル・料金・CTAが早い段階で見えること」を満たすため。
+       仕様書の並び（サブ→独自性→信頼→オファー→CTA）のまま縦に積むと、
+       390px幅の端末で料金が945px、CTAが1117pxの位置になり、
+       最初の画面（844px）にどちらも入らなかった。 -->
+  <div class="fv__head">
+    <p class="fv__area"><span>八丁堀駅・新富町駅から徒歩5分</span><span>完全個室・完全予約制</span></p>
+    <h1 class="fv__ttl">仕事は頑張れても、<br>身体はごまかせない。</h1>
+  </div>
+
+  <!-- 写真は切り抜きではなく、下辺を斜めに切ったパネル。斜めの下から金のくさびが
+       のぞく。写真を差し替えるときは lp-b.css の aspect-ratio と object-position の
+       Y を必ず測り直すこと（README「枠が正方形（1/1）である理由」）。 -->
+  <div class="fv__photo">
+    <span class="fv__wedge" aria-hidden="true"></span>
+    <img class="fv__shot" src="assets/img/hero-lat-pulldown-wide.webp" alt="D/LIGHT GYM のトレーナーが50代男性のラットプルダウンのフォームを指導している様子" width="1023" height="1537" fetchpriority="high">
+  </div>
+
+  <div class="fv__lead">
+    <p class="fv__sub">今の身体を知ることから、すべてが始まる。<br>
+      無理に追い込まず、整えながら鍛える。<br>
+      <span class="nw">10年後も、</span>仕事も遊びも妥協しない身体へ。</p>
+  </div>
+
+  <div class="fv__act">
+    <div class="offer">
+      <p class="offer__hd">初回体験</p>
+      <p class="offer__main"><span>80分</span><b>3,300</b><small>円（税込）</small></p>
+    </div>
+    <div class="btnrow">
+      <a class="btn btn--main" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する<span class="btn__sub">次の画面で日時を選べます・約2分</span></a>
+      <a class="btn btn--line" href="https://lin.ee/v4NK1TV" target="_blank" rel="noopener">予約前にLINEで相談する</a>
+    </div>
+    <p class="bk__mini">予約ページは、次の画面で<strong>「追加」</strong>→ カレンダーで日時を選ぶ流れです。約2分で終わります。</p>
+  </div>
+
+  <div class="fv__sup">
+    <!-- 2026/10/10：ここにあった「整えながら鍛える。」はサブコピーと重複するため削除した。
+         金のマーカーだけ「ハイブリッドジム」に移して、FVの視線の引っかかりを残している。 -->
+    <p class="fv__usp"><span class="nw">ストレッチ×パーソナルトレーニングの</span><span class="nw"><b>ハイブリッドジム</b>。</span></p>
+
+    <ul class="proof">
+      <li><b>★5.0</b><span>Google口コミ 10件</span></li>
+      <li><b>10,000</b><span>セッション以上の指導実績</span></li>
+      <li><b>約2/3</b><span>が入会時トレーニング未経験</span></li>
+    </ul>
+
+    <p class="incl__hd incl__hd--fv">体験80分に含まれるもの</p>
+    <ul class="offer__list">
+      <li>カウンセリング・身体チェック</li>
+      <li>ウェア・タオル・水 無料</li>
+      <li>シューズ不要・手ぶらでOK</li>
+      <li>24時間前まで変更・キャンセル無料</li>
+      <li>無理な勧誘なし</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 悩みへの共感 ============ -->
+<section class="sec sec--white" id="empathy">
+  <div class="wrap wrap--narrow">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Your Body</span>まだ動けるから、<br class="sp-br">身体のことを<br class="pc-br">後回しにしていませんか。</h2>
+    <div class="prose" data-reveal>
+      <p>仕事はできている。日常生活にも大きな支障はない。<br class="pc-br">
+        だから、疲れや肩・腰の重さがあっても、ついそのままにしてしまう。</p>
+      <p>しかし、<strong><span class="nw">疲れが抜けにくい、</span><span class="nw">身体が硬い、</span><span class="nw">以前より動きにくい</span></strong>という変化は、身体との向き合い方を見直すサインかもしれません。</p>
+      <p>そして身体が整うと、変わるのは10年後だけではありません。<br class="pc-br">
+        <strong><span class="nw">午後の集中力、</span><span class="nw">夕方の疲れの残り方、</span><span class="nw">週明けの動き出し。</span></strong><br class="pc-br">
+        <span class="nw">今日のパフォーマンスから変わっていきます。</span></p>
+      <p>今の自分を最大化するために。<br class="pc-br">
+        そして10年後も仕事や旅行、ゴルフを楽しむために。<br class="pc-br">
+        身体づくりを始めるなら、<span class="nw">まだ動けている今です。</span></p>
+    </div>
+    <ul class="syms" data-reveal>
+      <li>疲れが抜けにくい</li><li>肩こり・腰の重さが続く</li><li>身体が硬い</li>
+      <li>何をすればいいか分からない</li><li>自己流で痛めるのが怖い</li><li>ジムが続かなかった</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 他の選択肢との違い ============ -->
+<section class="sec sec--paper" id="compare">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Difference</span>トレーニングだけでも、<br class="sp-br">ストレッチだけでもない。</h2>
+    <p class="lead" data-reveal>どれが良い・悪いではなく、<strong>ケアと運動を一人の担当者が一貫して設計できる</strong>かどうかの違いです。</p>
+
+    <!-- 表は必ず横スクロールできる箱に入れること。4列あるのでスマホでは
+         はみ出す。箱に入れないとページ全体が横に伸びる。 -->
+    <div class="tablewrap" data-reveal>
+      <table class="cmp">
+        <thead>
+          <tr><th scope="col">比較項目</th><th scope="col" class="cmp__me">D/LIGHT</th><th scope="col">24時間ジム</th><th scope="col">パーソナルジム</th><th scope="col">ストレッチ専門店</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">トレーニング指導</th><td class="cmp__me">あり</td><td>なし</td><td>あり</td><td>なし</td></tr>
+          <tr><th scope="row">パーソナルストレッチ</th><td class="cmp__me">あり</td><td>なし</td><td>店舗による</td><td>あり</td></tr>
+          <tr><th scope="row">当日の状態確認</th><td class="cmp__me">あり</td><td>自分で判断</td><td>あり</td><td>あり</td></tr>
+          <tr><th scope="row">ケアと運動の比率調整</th><td class="cmp__me">毎回調整</td><td>なし</td><td>店舗による</td><td>なし</td></tr>
+          <tr><th scope="row">担当者</th><td class="cmp__me">担当制</td><td>なし</td><td>替わる場合あり</td><td>替わる場合あり</td></tr>
+          <tr><th scope="row">必要な通店回数</th><td class="cmp__me">月4回で両方</td><td>自由</td><td>月4回</td><td>月4回</td></tr>
+          <tr><th scope="row">通わない月の料金</th><td class="cmp__me">0円</td><td>月額発生の場合あり</td><td>契約による</td><td>利用方法による</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" data-reveal>※ 一般的なサービス形態をもとにした整理です。同じ業態でも店舗により条件は異なります。</p>
+
+    <div class="costbox" data-reveal>
+      <h3 class="costbox__t">別々に通うと、<span class="nw">月8回・約71,000〜96,000円</span></h3>
+      <div class="costbox__grid">
+        <div class="costbox__col">
+          <p class="costbox__k">別々に通う場合</p>
+          <p class="costbox__v">約71,000<small>〜</small>96,000<small>円</small></p>
+          <p class="costbox__n"><span class="nw">パーソナルトレーニング月4回</span> <span class="nw">約33,000〜58,080円</span><br>
+            <span class="nw">＋ ストレッチ60分 月4回</span> <span class="nw">約38,000円（1回9,500円）</span><br>
+            通店は<strong>月8回</strong></p>
+        </div>
+        <div class="costbox__col costbox__col--me">
+          <p class="costbox__k">D/LIGHT 80分・月4回</p>
+          <p class="costbox__v">56,100<small>円</small></p>
+          <p class="costbox__n"><span class="nw">ストレッチとトレーニングを</span><strong>同じセッションで</strong><br>
+            通店は<strong>月4回</strong></p>
+        </div>
+      </div>
+      <p class="note note--in">※ 近隣施設の公開通常料金をもとに作成（調査：2026年9月）。実名は掲載していません。施設によりセッション時間・契約条件・入会金の有無が異なるため、単純な比較ではありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ハイブリッド方式 ============ -->
+<section class="sec sec--white" id="hybrid">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">How</span>その日の身体に、<br class="sp-br">その日の最適な時間を。</h2>
+    <p class="lead" data-reveal>毎回、<strong>姿勢・可動域・疲労状態</strong>を確認します。決まったメニューを繰り返すのではなく、身体の状態に合わせて、ストレッチ・自重トレーニング・ウェイトトレーニングの比率を調整します。</p>
+
+    <!-- 帯の幅は --w × 2。--w には「80分に対する割合」を入れる（40分なら50%→幅100%）。
+         この決め方にしているので、50分の例は3本合わせても80分の例より短く見える。
+         ★合計時間と帯の合計が合っているか、値を触ったら必ず数え直すこと。 -->
+    <div class="mixes" data-reveal>
+      <figure class="mix">
+        <p class="mix__len">50分の場合</p>
+        <figcaption class="mix__t">身体が硬く、動きが出にくい日</figcaption>
+        <ul class="mix__bar">
+          <li class="mix--s" style="--w:12.5%"><span class="mix__k">ストレッチ</span><span class="mix__v">10分</span></li>
+          <li class="mix--b" style="--w:18.75%"><span class="mix__k">自重</span><span class="mix__v">15分</span></li>
+          <li class="mix--w" style="--w:31.25%"><span class="mix__k">ウェイト</span><span class="mix__v">25分</span></li>
+        </ul>
+      </figure>
+      <figure class="mix">
+        <p class="mix__len">80分の場合</p>
+        <figcaption class="mix__t">しっかり鍛えて、最後に緩める日</figcaption>
+        <ul class="mix__bar">
+          <li class="mix--w" style="--w:50%"><span class="mix__k">ウェイトトレーニング</span><span class="mix__v">40分</span></li>
+          <li class="mix--s" style="--w:50%"><span class="mix__k">ストレッチ</span><span class="mix__v">40分</span></li>
+        </ul>
+      </figure>
+      <figure class="mix">
+        <p class="mix__len">80分の場合</p>
+        <figcaption class="mix__t">疲労が抜けきっていない日</figcaption>
+        <ul class="mix__bar">
+          <li class="mix--s" style="--w:50%"><span class="mix__k">全身ケアストレッチ</span><span class="mix__v">40分</span></li>
+          <li class="mix--b" style="--w:25%"><span class="mix__k">自重</span><span class="mix__v">20分</span></li>
+          <li class="mix--w" style="--w:25%"><span class="mix__k">ウェイト</span><span class="mix__v">20分</span></li>
+        </ul>
+      </figure>
+    </div>
+    <p class="note" data-reveal>※ 帯の長さは時間の目安です。実際の配分は当日の状態で決まります。50分・80分のほか110分もお選びいただけます。</p>
+  </div>
+</section>
+
+<!-- ============ 指導事例（40代男性SE） ============
+     いきなり "Case" とだけ置くと何のブロックか分からないので、
+     日本語のラベル → 見出し → 誰の話か → 経過3段、の順で組んでいる。
+     経過を「ご相談時 → 最初の3カ月 → その後」に割ったのは、
+     ひと続きの文章だと「事例」ではなく「説明文」に見えるため。 -->
+<section class="sec sec--navy" id="case">
+  <div class="wrap wrap--narrow">
+    <p class="case__label" data-reveal>実際の指導事例</p>
+    <h2 class="case__ttl" data-reveal>肩・腰・膝の不調で運動を中断。<br>
+      身体を整え、<span class="nw">再びトレーニングできる状態へ。</span></h2>
+    <p class="case__who" data-reveal><span>40代 男性</span><span>SE・デスクワーク中心</span></p>
+
+    <ol class="case__steps" data-reveal>
+      <li>
+        <p class="case__k">ご相談時</p>
+        <p class="case__t">ハードなトレーニングによって肩・腰・膝を痛め、<strong>運動が難しい状態</strong>になっていました。</p>
+      </li>
+      <li>
+        <p class="case__k">最初の3カ月</p>
+        <p class="case__t">身体の状態を確認し、<strong>ストレッチとコンディショニングを中心に</strong>実施しました。</p>
+      </li>
+      <li>
+        <p class="case__k">その後</p>
+        <p class="case__t">状態に合わせて<strong>段階的にトレーニングを再開</strong>し、以前は難しかった動きもできるようになりました。</p>
+      </li>
+    </ol>
+    <p class="note note--on-navy" data-reveal>※ ご本人の体験をもとに、掲載許可を得て内容を編集しています。結果には個人差があります。</p>
+  </div>
+</section>
+
+<!-- ============ ビフォーアフター ============ -->
+<section class="sec sec--paper" id="results">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Before &amp; After</span>実際に通われた方の変化</h2>
+    <div class="bas" data-reveal>
+      <figure class="ba">
+        <img src="assets/img/ba-posture-50s.webp" alt="50代男性のビフォーアフター：2ヶ月で背中と首の位置が改善" loading="lazy" width="1600" height="1600">
+        <figcaption class="ba__b">
+          <p class="ba__tag">姿勢</p>
+          <h3 class="ba__n">2ヶ月で、背中と首の位置が変わる</h3>
+          <p class="ba__m">50代 男性 ／ 期間 2ヶ月</p>
+          <p class="ba__t">丸まっていた背中と前に出ていた頭の位置が整い、立ち姿そのものが変わりました。姿勢が変わると、同じ時間働いても夕方の身体の重さが違ってきます。</p>
+        </figcaption>
+      </figure>
+      <figure class="ba">
+        <img src="assets/img/ba-body-30s.webp" alt="30代男性のビフォーアフター：1ヶ月で身体つきが変化" loading="lazy" width="1920" height="1920">
+        <figcaption class="ba__b">
+          <p class="ba__tag">身体の変化</p>
+          <h3 class="ba__n">1ヶ月で、身体のラインが変わる</h3>
+          <p class="ba__m">30代 男性 ／ 期間 1ヶ月</p>
+          <p class="ba__t">食事を極端に削るのではなく、まず身体を整えて「動ける状態」をつくることから始めました。無理なく続けられる設計にしたことが、この変化につながっています。</p>
+        </figcaption>
+      </figure>
+      <figure class="ba">
+        <img src="assets/img/ba-posture-20s.webp" alt="20代男性のビフォーアフター：2ヶ月間の姿勢改善の変化" loading="lazy" width="1600" height="1600">
+        <figcaption class="ba__b">
+          <p class="ba__tag">姿勢</p>
+          <h3 class="ba__n">2ヶ月で、立ち姿がここまで変わる</h3>
+          <p class="ba__m">20代 男性 ／ 期間 2ヶ月</p>
+          <p class="ba__t">反り腰と前に出ていた頭の位置を整えました。無理に「良い姿勢」をつくるのではなく、自然に立てる状態へ導いています。</p>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="note" data-reveal>※ 掲載写真はすべてご本人の掲載許可を得ています。結果には個人差があります。</p>
+
+    <div class="btnrow btnrow--mid" data-reveal>
+      <a class="btn btn--main" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する<span class="btn__sub">次の画面で日時を選べます・約2分</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 週1回・3カ月の進め方 ============ -->
+<section class="sec sec--white" id="plan3">
+  <div class="wrap wrap--narrow">
+    <h2 class="ttl" data-reveal><span class="ttl__en">3 Months</span>まずは週1回、3カ月。<br class="sp-br">身体の変化を<br class="pc-br">一緒に確認します。</h2>
+    <div class="prose" data-reveal>
+      <p>姿勢や身体の動かし方は、一度のセッションだけで定着するものではありません。</p>
+      <p>身体の状態を確認しながら「整える」と「鍛える」を繰り返し、無理なく運動を習慣にするため、まず<strong>週1回・80分を3カ月</strong>続けることをおすすめしています。</p>
+      <p class="prose__note">3カ月は契約上の必須期間ではなく、<strong>身体の変化を確認するための推奨期間</strong>です。</p>
+    </div>
+    <div class="checkgrid" data-reveal>
+      <p class="checkgrid__hd">初回と3カ月後に、この4つを振り返ります</p>
+      <ul class="checkgrid__list">
+        <li>姿勢</li><li>筋力</li><li>柔軟性</li><li>ご本人の実感</li>
+      </ul>
+      <p class="checkgrid__ft">振り返りの結果をもとに、その後の方針を一緒に決めます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 担当制とトレーナー ============ -->
+<section class="sec sec--paper" id="trainer">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Trainer</span>毎回、身体の続きを<br class="sp-br">見られる担当制。</h2>
+    <p class="lead" data-reveal>現在、体験から入会後のセッションまで、代表の奥野が担当しています。前回の姿勢、疲労、肩や腰の状態を把握したうえで、毎回その日の内容を調整します。</p>
+
+    <div class="trainer" data-reveal>
+      <img src="assets/img/trainer-yudai.webp" alt="D/LIGHT GYM 代表 奥野雄大" loading="lazy" width="1066" height="1600">
+      <div>
+        <p class="trainer__role">D/LIGHT GYM 代表</p>
+        <h3 class="trainer__name">奥野 雄大<span>OKUNO YUDAI</span></h3>
+        <p class="trainer__p">今まで運動が続かなかった方や、マッサージを受けても変わらなかった方へ。それはあなたのせいではありません。整えることと鍛えることをバランスよく取り入れることで、身体を変化へと導きます。</p>
+        <ul class="trainer__list">
+          <li><span>指導歴</span><b>10年</b></li>
+          <li><span>累計</span><b>1,000名以上</b></li>
+          <li><span>累計</span><b>10,000セッション以上</b></li>
+        </ul>
+        <p class="trainer__q">保有資格：JATI-ATI／NSCA-CPT／健康運動実践指導者／NCA コンディショニングトレーナー</p>
+      </div>
+    </div>
+    <p class="note" data-reveal>※ 将来スタッフが増えた場合も、一人のお客様を同じトレーナーが継続して見る担当制を基本方針としています。</p>
+  </div>
+</section>
+
+<!-- ============ 目的別の対応例 ============ -->
+<section class="sec sec--white" id="purpose">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Purpose</span>目的に応じた対応例</h2>
+    <p class="lead" data-reveal>整えて鍛えるという土台は同じで、比率と種目を目的に合わせて変えていきます。</p>
+    <div class="purposes" data-reveal>
+      <figure class="purpose">
+        <img class="purpose__img--upper" src="assets/img/training-man.webp" alt="トレーナーがラットプルダウンのフォームを指導している様子" loading="lazy" width="899" height="1200">
+        <figcaption>
+          <h3>筋力アップ</h3>
+          <p>動かせる範囲を広げてから、狙った部位に効かせます。フォームを毎回見るので、<strong>効かせたい場所に効く</strong>状態で回数を重ねられます。</p>
+        </figcaption>
+      </figure>
+      <figure class="purpose">
+        <img src="assets/img/golf-medball.webp" alt="ゴルフコンディショニングの様子" loading="lazy" width="895" height="671">
+        <figcaption>
+          <h3>ゴルフ</h3>
+          <p>ゴルフに必要な可動域・体幹・身体の連動性を高めます。飛距離とスコア、そして怪我をしない身体を同時に。</p>
+        </figcaption>
+      </figure>
+      <figure class="purpose">
+        <img src="assets/img/pilates.webp" alt="ストレッチとコンディショニングの様子" loading="lazy" width="1066" height="1600">
+        <figcaption>
+          <h3>ダイエット・体重</h3>
+          <p>食事を極端に削らず、動ける身体をつくってから運動量を上げます。続けられる設計を優先します。</p>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="note" data-reveal>※ 掲載写真はご本人の掲載許可を得ています。結果には個人差があります。</p>
+  </div>
+</section>
+
+<!-- ============ 料金 ============ -->
+<section class="sec sec--paper" id="price">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Price</span>料金と、含まれるもの</h2>
+    <p class="lead" data-reveal>どのプランでも、受けられる内容は変わりません。</p>
+
+    <!-- 並び順は「月額50分 → 月額80分（おすすめ）→ 都度払い」。値段順ではない。
+         見せたい月額80分を真ん中に置き、比較の起点にするための順番。
+         都度払いを最後にしているのは、先に置くと「1回だけ試す」が既定の選択肢に
+         見えてしまうため。スマホは1カラムに積まれるので、この順番がそのまま
+         上から下の順になる。CSS側に nth-child は無いので、並べ替えても崩れない。 -->
+    <div class="plans" data-reveal>
+      <div class="plan">
+        <p class="plan__name">月額 50分コース</p>
+        <div class="plan__body">
+          <p class="plan__price"><b>37,400</b><small>円（税込）／月</small></p>
+          <p class="plan__per"><span class="nw">1回あたり 9,350円</span><span class="nw">（月4回の場合）</span></p>
+          <p class="plan__n">月2回・月8回のコースもあります</p>
+        </div>
+      </div>
+
+      <div class="plan plan--best">
+        <span class="plan__badge">おすすめ</span>
+        <p class="plan__name">月額 80分コース</p>
+        <div class="plan__body">
+          <p class="plan__price"><b>56,100</b><small>円（税込）／月</small></p>
+          <p class="plan__per"><span class="nw">1回あたり 14,025円</span><span class="nw">（月4回の場合）</span></p>
+          <p class="plan__n">ストレッチとトレーニングを1回で。<br>まず週1回・3カ月がおすすめです</p>
+        </div>
+      </div>
+
+      <div class="plan">
+        <p class="plan__name">都度払い</p>
+        <div class="plan__body">
+          <p class="plan__price"><b>12,000</b><small>円（税込）／50分</small></p>
+          <p class="plan__per"><span class="nw">80分 18,000円</span>／<span class="nw">110分 24,000円</span></p>
+          <p class="plan__n">入会金なし・回数の縛りなし</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="incl" data-reveal>
+      <p class="incl__hd">すべてのプランに含まれるもの</p>
+      <ul class="incl__list">
+        <li>パーソナルトレーニング</li><li>パーソナルストレッチ</li>
+        <li>姿勢・筋力・柔軟性の確認</li><li>メニューの毎回調整</li>
+        <li>ウェア</li><li>タオル</li><li>水</li>
+      </ul>
+    </div>
+
+    <div class="terms" data-reveal>
+      <p class="terms__hd">通い方の条件</p>
+      <ul class="terms__list">
+        <li>契約期間の縛りなし</li>
+        <li>休会・退会手続きなし</li>
+        <li>通わない月は料金0円</li>
+        <li>月ごとにプラン変更可能</li>
+        <li>未消化分は1回まで翌月へ繰り越し可能</li>
+        <li>毎月最初のセッション時に当月分をお支払い</li>
+      </ul>
+      <p class="note note--in">※ 決済後の返金条件は公式規定に準じます。</p>
+    </div>
+
+    <div class="camp" data-reveal>
+      <p class="camp__hd">新規会員募集キャンペーン（2026年12月31日まで）</p>
+      <p class="camp__main">このLPから体験をご予約いただいた方は、<br class="sp-br"><span class="camp__was nw">入会金 33,000円（税込）</span>が<b>0円</b></p>
+      <p class="camp__sub"><span class="nw">体験当日にご入会の場合は、</span><span class="nw">体験料 3,300円も0円になります。</span></p>
+      <p class="camp__note">体験後に内容をご検討いただき、納得された場合のみご入会ください。無理な勧誘は行いません。<br>
+        ※ 定員に達した場合は、期間内でも受付を終了する場合があります。</p>
+    </div>
+
+    <div class="btnrow btnrow--mid btnrow--two" data-reveal>
+      <a class="btn btn--main" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する<span class="btn__sub">次の画面で日時を選べます・約2分</span></a>
+      <a class="btn btn--line" href="https://lin.ee/v4NK1TV" target="_blank" rel="noopener">予約前にLINEで相談する</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ いつ通うか（lp2で追加） ============
+     「やったほうがいいのは分かるが、いつ行くのか」が決まらないと予約されない。
+     八丁堀・新富町はオフィス街で、来る人の大半は通勤導線の途中にいる。
+     ★空き枠の出やすさは実際のSquareの設定に合わせて書くこと。
+       ここで「朝が取れます」と書くと、取れなかったときに失望させる。 -->
+<section class="sec sec--white" id="commute">
+  <div class="wrap wrap--narrow">
+    <h2 class="ttl" data-reveal><span class="ttl__en">When</span>通勤の途中に、<br class="sp-br">週1回を置いていく。</h2>
+    <p class="lead" data-reveal>続かない理由の多くは、やる気ではなく<strong>移動</strong>です。わざわざ出向く場所ではなく、いつもの道の途中にあること。それが週1回を続けられるかどうかを、いちばん左右します。</p>
+    <ul class="when" data-reveal>
+      <li>
+        <p class="when__t">出社前</p>
+        <p class="when__d">8:00から営業しています。朝のうちに終わらせて、そのまま職場へ向かえます。</p>
+      </li>
+      <li>
+        <p class="when__t">日中</p>
+        <p class="when__d">外出の合間や在宅勤務の日に。<strong>比較的お取りいただきやすい時間帯</strong>です。</p>
+      </li>
+      <li>
+        <p class="when__t">仕事帰り</p>
+        <p class="when__d">最終のご予約は20:30から。残業があった日でも間に合います。</p>
+      </li>
+    </ul>
+    <p class="note" data-reveal>八丁堀駅はJR京葉線・東京メトロ日比谷線、新富町駅は東京メトロ有楽町線。どちらの駅からも徒歩5分、築地・銀座・茅場町からも歩ける距離です。<br>※ ご希望の時間が埋まっていることもあります。その場合はLINEからご相談ください。</p>
+  </div>
+</section>
+
+
+<!-- ============ いま始める理由（lp2で追加） ============
+     10月末〜12月向けの文面。★季節が変わったら必ず書き替えること。
+     1〜3月は「1月に決めた人が続かない時期」、4〜6月は健康診断、
+     7〜9月は夏と夏バテ、と軸が変わる。古い季節の文面が残っていると、
+     読んだ瞬間に「放置されたページ」に見える。 -->
+<section class="sec sec--paper" id="season">
+  <div class="wrap wrap--narrow">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Now</span>1月からだと、<br class="sp-br">少し遅いかもしれません。</h2>
+    <div class="prose" data-reveal>
+      <p>ここから年末にかけて、会食とお酒の予定が増えていきます。そのうえ寒くなり、歩く量も自然と減ります。<strong>1年のうちで、身体がいちばん崩れやすいのがこの2カ月です。</strong></p>
+      <p>崩れてから戻すより、崩れる前に整えておくほうが、かかる時間は短くて済みます。</p>
+      <p>そして年末年始を<strong>「すでに通っている状態」で迎えられるかどうか</strong>で、その後の続きやすさは変わります。1月に新しく始めるのは、1年でいちばん気持ちの切り替えが要る時期だからです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 初回体験80分 ============ -->
+<section class="sec sec--white" id="trial">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">First Visit</span>80分後には、<br class="sp-br">今の身体と、<br class="pc-br">これから必要なことが分かります。</h2>
+    <ol class="flow" data-reveal>
+      <li data-n="1"><h3>カウンセリング・各種チェック<em>30分</em></h3><p>お悩みと目的を伺い、姿勢・可動域・筋力を確認します。</p></li>
+      <li data-n="2"><h3>パーソナルストレッチ<em>10分</em></h3><p>硬くなっている部分をゆるめ、動かせる範囲を広げます。</p></li>
+      <li data-n="3"><h3>自重トレーニング<em>15分</em></h3><p>器具を使わず、自分の身体を思ったとおりに動かす練習から。</p></li>
+      <li data-n="4"><h3>ウェイトトレーニング<em>15分</em></h3><p>フォームを調整しながら、狙った部位に効かせます。</p></li>
+      <li data-n="5"><h3>今後の進め方のご提案<em>10分</em></h3><p>今の状態と、続けるとしたらどう進めるかをご説明します。<strong>無理な勧誘は行いません。</strong></p></li>
+    </ol>
+
+    <div class="photonote" data-reveal>
+      <p class="photonote__hd">ご希望の方へ：体験前後の姿勢写真</p>
+      <p>正面と横から撮影し、比較写真をLINEでお送りします。ご自身の立ち姿を客観的に見られます。</p>
+    </div>
+
+    <div class="scope" data-reveal>
+      <div class="scope__box">
+        <p class="scope__hd">対応できること</p>
+        <ul><li>日常的な肩こり</li><li>腰の重さ</li><li>身体の硬さ</li><li>疲労</li><li>動きにくさ</li></ul>
+      </div>
+      <div class="scope__box scope__box--care">
+        <p class="scope__hd">先に医療機関へ</p>
+        <p>強い痛みや急な症状がある場合は、まず医療機関へご相談ください。当ジムは治療を行う施設ではありません。</p>
+      </div>
+    </div>
+
+    <!-- Squareの画面を実際に通して確かめた手順（2026/10/27）。
+         ★Squareのメニュー構成を変えたら、ここも必ず直すこと。
+           特に【会員様】メニューが「無料」と表示される件は、
+           初回の方が「無料のほうを選べばいいのか」と迷う原因になっている。 -->
+    <div class="bk" data-reveal>
+      <p class="bk__hd">ご予約の進め方（約2分）</p>
+      <ol class="bk__list">
+        <li><b>1</b>「体験を予約する」を押すと、メニューの説明が開きます。いちばん下の<strong>「追加」</strong>を押してください</li>
+        <li><b>2</b>「さらに予約を追加しますか？」と出たら、そのまま<strong>「次へ」</strong>へ進みます</li>
+        <li><b>3</b>カレンダーから日時を選び、お名前と連絡先を入力すれば完了です</li>
+      </ol>
+      <p class="bk__alt"><strong>【会員様】と書かれたメニューは、すでに通われている方のものです。</strong>初回の方は「★初回限定★ 身体チェック付き｜80分体験 3,300円」をお選びください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec--paper" id="faq">
+  <div class="wrap wrap--narrow">
+    <h2 class="ttl" data-reveal><span class="ttl__en">FAQ</span>よくあるご質問</h2>
+    <div class="faq" data-reveal>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">運動経験がなくても大丈夫ですか？</button>
+        <div class="acc__a">大丈夫です。入会時にトレーニング未経験だった方が、およそ3人に2人です。まず身体の状態を確認してから、その日にできる範囲で組み立てます。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">肩や腰が気になる状態でもできますか？</button>
+        <div class="acc__a">はい。肩や腰の重さ、身体の硬さがある方こそ、状態を確認しながら進めます。動かせる範囲を広げてから鍛えるので、いきなり負荷をかけることはありません。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">強い痛みがある場合も利用できますか？</button>
+        <div class="acc__a">強い痛みや急な症状がある場合は、先に医療機関へご相談ください。当ジムは治療を行う施設ではありません。医療機関を受診されたうえで運動の許可が出ている場合は、その範囲で対応します。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">体験後に入会を勧められますか？</button>
+        <div class="acc__a">体験の最後に、今の身体の状態と、続けるとしたらどう進めるかをご説明します。そのうえでご検討いただき、納得された場合のみご入会ください。無理な勧誘は行いません。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">何を持って行けばよいですか？</button>
+        <div class="acc__a">手ぶらでお越しいただけます。ウェア・タオル・お水は無料でご用意しています。人工芝とマットの上で行うため、シューズも必要ありません。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">どのくらい通えば変化を確認できますか？</button>
+        <div class="acc__a">個人差はありますが、まず週1回・80分を3カ月続けることをおすすめしています。初回と3カ月後に姿勢・筋力・柔軟性とご本人の実感を振り返り、その後の方針を一緒に決めます。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">通えない月の料金はどうなりますか？</button>
+        <div class="acc__a">0円です。月額は、その月の最初のセッション時にお支払いいただきます。通わなかった月に料金は発生しません。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">休会・退会手続きは必要ですか？</button>
+        <div class="acc__a">必要ありません。契約期間の縛りがないため、休会や退会の手続きなしでご利用を止めていただけます。再開したくなったときも、ご予約いただくだけです。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">月4回を消化できなかった場合はどうなりますか？</button>
+        <div class="acc__a">未消化分は1回まで翌月へ繰り越せます。また、月ごとにプランを変更できますので、忙しい月は回数の少ないプランへ切り替えることもできます。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">予約の変更・キャンセルのルールは？</button>
+        <div class="acc__a">ご予約の24時間前まで、変更・キャンセルは無料です。体験のご予約も同じ扱いです。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">50分と80分のどちらを選べばよいですか？</button>
+        <div class="acc__a">ストレッチとトレーニングの両方を1回のセッションに入れたい場合は80分をおすすめします。50分は、目的を絞って短時間で行いたい方向けです。体験は80分なので、実際に受けてから決めていただけます。</div></div>
+      <div class="faq__i"><button class="acc__q" type="button" aria-expanded="false">体験当日に契約を決める必要がありますか？</button>
+        <div class="acc__a">ありません。持ち帰ってご検討いただけます。体験当日にご入会された場合は体験料が0円になりますが、後日のご入会でも入会金無料キャンペーンは適用されます。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ アクセス ============ -->
+<section class="sec sec--white" id="access">
+  <div class="wrap">
+    <h2 class="ttl" data-reveal><span class="ttl__en">Access</span>八丁堀駅・新富町駅から徒歩5分。<br class="sp-br">自宅近くで、<br class="pc-br">仕事帰りに通えます。</h2>
+
+    <div class="access" data-reveal>
+      <iframe src="https://www.google.com/maps?cid=6342977323958173212&output=embed" loading="lazy" title="D/LIGHT GYM の地図" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div>
+        <dl>
+          <dt>住所</dt><dd>〒104-0042 東京都中央区入船2-2-7<br><strong>ドルチェ銀座東弐番館 1101号室</strong></dd>
+          <dt>営業時間</dt><dd><span class="nw">火〜日 8:00〜22:00</span><br>（月曜定休・完全予約制）</dd>
+          <dt>アクセス</dt><dd>八丁堀駅・新富町駅から徒歩5分<br>茅場町・京橋からも徒歩圏です</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- 動画が再生できない環境でも道順が分かるように、テキストの道案内を必ず残すこと。 -->
+    <div class="route" data-reveal>
+      <div class="route__col">
+        <h3 class="route__t">八丁堀駅から（徒歩5分）</h3>
+        <ol class="route__steps">
+          <li>八丁堀駅 <strong>A2出口</strong>を出る</li>
+          <li>新大橋通りを<strong>築地方面</strong>へ進む</li>
+          <li>入船2丁目の交差点を渡る</li>
+          <li><strong>ドルチェ銀座東弐番館</strong>1階のエントランスから<strong>11階・1101号室</strong>へ</li>
+        </ol>
+      </div>
+      <div class="route__col">
+        <h3 class="route__t">新富町駅から（徒歩5分）</h3>
+        <ol class="route__steps">
+          <li>新富町駅 <strong>7番出口</strong>を出る</li>
+          <li>新大橋通りを<strong>八丁堀方面</strong>へ進む</li>
+          <li>入船2丁目方面へ入る</li>
+          <li><strong>ドルチェ銀座東弐番館</strong>1階のエントランスから<strong>11階・1101号室</strong>へ</li>
+        </ol>
+      </div>
+    </div>
+    <p class="note" data-reveal>※ 建物の入口が分かりにくい場合は、LINEでご連絡ください。すぐにご案内します。</p>
+
+    <!-- ▼ 道案内動画・室内動画は、動画ファイルを受け取ってから有効化する。
+         貼り付け用のひな形と必要ファイル一覧は README「アクセスの動画」にある。
+         押された動画だけ読み込む処理（lp-b.js の [data-video]）は実装済みなので、
+         ひな形をここに貼って assets/video/ にファイルを置けばそのまま動く。
+         ★3本を最初から読み込む書き方にしないこと。表示が数秒遅くなる。 -->
+  </div>
+</section>
+
+<!-- ============ 最終CTA ============ -->
+<section class="cta">
+  <div class="wrap wrap--narrow">
+    <h2 class="cta__ttl" data-reveal>10年後も、<br class="sp-br">仕事も休日も楽しめる身体へ。</h2>
+    <div class="prose prose--on-navy" data-reveal>
+      <p>疲れや肩・腰の重さを、年齢のせいにして終わらせない。</p>
+      <p>まだ動けている今から、身体を整えながら、必要な力をつけていきませんか。</p>
+      <p><strong>まずは80分で、今の身体の状態を一緒に確認します。</strong></p>
+    </div>
+
+    <div class="offer offer--on-navy" data-reveal>
+      <p class="offer__hd">初回体験</p>
+      <p class="offer__main"><span>80分</span><b>3,300</b><small>円（税込）</small></p>
+    </div>
+
+    <div class="btnrow" data-reveal>
+      <a class="btn btn--main" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する<span class="btn__sub">次の画面で日時を選べます・約2分</span></a>
+      <a class="btn btn--line" href="https://lin.ee/v4NK1TV" target="_blank" rel="noopener">予約前にLINEで相談する</a>
+    </div>
+    <div class="bk bk--on-navy" data-reveal>
+      <p class="bk__hd">ご予約の進め方（約2分）</p>
+      <ol class="bk__list">
+        <li><b>1</b>次の画面で、いちばん下の<strong>「追加」</strong>を押す</li>
+        <li><b>2</b>「さらに予約を追加しますか？」は、そのまま<strong>「次へ」</strong></li>
+        <li><b>3</b>カレンダーで日時を選び、お名前と連絡先を入力して完了</li>
+      </ol>
+      <p class="bk__alt">ご希望の日時が空いていないときは、<a href="https://lin.ee/v4NK1TV" target="_blank" rel="noopener">LINEからご相談ください</a>。</p>
+    </div>
+    <p class="cta__safe" data-reveal>完全個室／手ぶらOK／無理な勧誘なし／24時間前まで変更無料</p>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap center">
+    <p><strong>D/LIGHT GYM</strong>　〒104-0042 東京都中央区入船2-2-7 ドルチェ銀座東弐番館 1101号室</p>
+    <p style="margin-top:8px">
+      <a href="https://dlightgym.com/" target="_blank" rel="noopener">公式サイト</a>　／
+      <a href="https://www.instagram.com/dlight_personalgym" target="_blank" rel="noopener">Instagram</a>　／
+      <a href="mailto:dlight.okuno@gmail.com">dlight.okuno@gmail.com</a>
+    </p>
+    <p style="margin-top:12px;font-size:11.5px">© <span data-year></span> D/LIGHT GYM All Rights Reserved.</p>
+  </div>
+</footer>
+
+<div class="mcta">
+  <a class="btn btn--line" href="https://lin.ee/v4NK1TV" target="_blank" rel="noopener">LINEで相談</a>
+  <a class="btn btn--main" href="https://book.squareup.com/appointments/jqg8slb8u0tfya/location/L7PXPNPQZ5DK2/services/DS5GKGL3V32YYJWJ65FOD5EP" target="_blank" rel="noopener">体験を予約する</a>
+</div>
+
+<script src="assets/js/analytics.js?v=20261010b" defer></script>
+<script src="assets/js/lp-b.js?v=20261010b" defer></script>
+</body>
+</html>
