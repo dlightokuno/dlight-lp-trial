@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- autumn-men*.html のSNS・LINE用サムネ（1200×630）のひな形。
+     料金・見出し・特典を変えたら作り直すこと（作り方は README「SNS・LINEに貼ったときのサムネ」と同じ） -->
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@700&family=Shippori+Mincho+B1:wght@700&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f7f8f6;font-family:"BIZ UDPGothic",sans-serif;color:#1c2a3a}
+  .wrap{position:relative;width:1200px;height:630px}
+  .bg{position:absolute;right:-120px;top:-140px;width:640px;height:640px;border-radius:50%;background:#e3ece3}
+  .photo{position:absolute;right:56px;top:56px;width:440px;height:518px;object-fit:cover;object-position:50% 70%;border-radius:120px 8px 8px 8px}
+  .copy{position:absolute;left:64px;top:70px;width:620px}
+  .place{color:#8a5a00;font-size:24px;margin:0 0 22px}
+  h1{font-family:"Shippori Mincho B1",serif;font-size:52px;line-height:1.45;margin:0;letter-spacing:.02em}
+  .mk{background:linear-gradient(transparent 62%,#f5d36b 62%,#f5d36b 92%,transparent 92%)}
+  .badge{position:absolute;left:470px;bottom:40px;width:190px;height:190px;border-radius:50%;background:#e9b52c;color:#2a1f05;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-6deg);box-shadow:0 14px 30px -14px rgba(28,42,58,.5)}
+  .badge b{font-family:"Shippori Mincho B1",serif;font-size:50px;line-height:1.1}
+  .badge span{font-size:20px}
+  .logo{position:absolute;left:64px;bottom:56px;font-size:26px;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bg"></div>
+  <img class="photo" src="../assets/img/stretch.webp" alt="">
+  <div class="copy">
+    <p class="place">八丁堀駅・新富町駅 徒歩5分／完全個室</p>
+    <h1>季節の変わり目で<br><span class="mk">疲れがたまりやすい</span>、<br><span class="mk">腰が痛くなってきた</span>方へ</h1>
+  </div>
+  <div class="badge"><span>体験80分</span><b>3,300<small style="font-size:22px">円</small></b><span>税込</span></div>
+  <p class="logo">D/LIGHT GYM</p>
+</div>
+</body>
+</html>
