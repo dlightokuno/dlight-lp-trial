@@ -88,11 +88,15 @@ var ADS_LABEL_LINE    = 'Y0arCOnuzescEOug1rFE';   // 公式LINEへのリンク
     };
 
     if (href.indexOf('book.squareup.com') > -1) {
-      params.service = 'trial_training';
+      /* 予約ページはメニューごとにURLが違う。ヘッドコンディショニング単発
+         （初回50分 5,000円）を体験80分と同じ扱いにすると、GA4で
+         どちらの予約が入り口になったか分からなくなるので分けて記録する。 */
+      var isHead = href.indexOf('WINRGVNZ6C4P43N2MV3YMN2C') > -1;
+      params.service = isHead ? 'head_conditioning' : 'trial_training';
       gtag('event', 'reserve_click', params);
       /* GA4推奨イベント版。position などを引き継がないと
          「どのCTAがリードを生んだか」を標準レポートで分解できない */
-      gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: 3300 }, params));
+      gtag('event', 'generate_lead', Object.assign({ currency: 'JPY', value: isHead ? 5000 : 3300 }, params));
 
       /* ---------- Google広告へのコンバージョン送信 ----------
          予約もLINEもリンクは全部 target="_blank"。別タブが開いてこのページは
@@ -124,6 +128,15 @@ var ADS_LABEL_LINE    = 'Y0arCOnuzescEOug1rFE';   // 公式LINEへのリンク
     btn.addEventListener('click', function () {
       if (btn.getAttribute('aria-expanded') === 'true') return; // 閉じる操作は記録しない
       gtag('event', 'faq_open', { question: btn.textContent.trim().slice(0, 80) });
+    });
+  });
+
+  /* <details> 型のFAQ（秋のLPなど）。開いたときだけ記録する */
+  document.querySelectorAll('details').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      var q = d.querySelector('summary');
+      gtag('event', 'faq_open', { question: q ? q.textContent.trim().slice(0, 80) : '', page_path: location.pathname });
     });
   });
 

@@ -1,0 +1,86 @@
+/* =========================================================
+   秋の疲労回復LP・男性向け（autumn-men.html）
+   lp-autumn.css の色・文字・部品をそのまま使い、構成だけ足す。
+   ========================================================= */
+
+/* ---------- ファーストビュー ---------- */
+.hero{padding:clamp(32px,5vw,64px) 0 clamp(64px,8vw,104px)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero__place{margin:0 0 16px;font-size:14px;color:var(--ginkgo);font-weight:700}
+.hero__h{font-family:var(--mincho);font-weight:700;font-size:clamp(30px,3.6vw,46px);line-height:1.5;letter-spacing:.03em;margin:0 0 20px}
+.hero__sub{margin:0;color:var(--text);line-height:2}
+.hero__photo{margin:0;position:relative}
+.hero__photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 70%;border-radius:4px}
+
+/* ---------- 悩み ---------- */
+.worry .worry__list{margin:0}
+
+/* ---------- 得られる変化 ---------- */
+.change__list{list-style:none;margin:12px 0 28px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,40px)}
+.change__list li{padding-top:20px;border-top:2px solid var(--ginkgo)}
+.change__list h3{font-family:var(--mincho);font-size:21px;margin:0 0 10px;letter-spacing:.03em}
+.change__list p{margin:0;color:var(--mute);font-size:15px;line-height:1.9}
+
+/* ---------- 選ばれる理由 ---------- */
+.reason{background:var(--night-2)}
+.reason__row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,64px);align-items:center;padding:clamp(28px,4vw,48px) 0;border-bottom:1px solid var(--rule)}
+.reason__row:nth-of-type(even) img{order:2}
+.reason__row img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:4px}
+.reason__row h3{font-family:var(--mincho);font-size:clamp(20px,2.2vw,26px);line-height:1.5;margin:0 0 12px;letter-spacing:.03em}
+.reason__row p{margin:0;color:var(--mute);line-height:1.95}
+
+/* ---------- 根拠 ---------- */
+.proof__h{font-family:var(--mincho);font-size:24px;margin:clamp(64px,8vw,96px) 0 8px;letter-spacing:.04em}
+
+/* ---------- 料金 ---------- */
+.price{background:var(--night-2)}
+.price__main{border:1px solid var(--rule);border-radius:6px;padding:clamp(20px,3vw,36px);margin-bottom:56px}
+.price__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid var(--rule)}
+.price__name{margin:0;font-family:var(--mincho);font-weight:700;font-size:24px}
+.price__val{margin:0;font-size:18px}
+.price__val .num{font-family:var(--mincho);font-size:clamp(36px,4vw,48px);font-weight:700;color:var(--ginkgo)}
+.price__val small{font-size:13px;color:var(--mute)}
+.price__val--sm .num{font-size:30px}
+.price__main .incl{margin-top:8px}
+.price__sub{margin-top:56px;display:grid;grid-template-columns:minmax(0,1.2fr) auto auto;gap:16px 32px;align-items:center;padding:24px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.price__sub h3{margin:0 0 4px;font-size:18px;font-family:var(--mincho)}
+.price__sub p{margin:0;color:var(--mute);font-size:15px}
+.price__sub .price__val{color:var(--text)}
+.price__more{margin-top:28px}
+.price__more summary{cursor:pointer;color:var(--mute);font-size:15px;text-decoration:underline;text-underline-offset:4px;padding:8px 0}
+.price__more summary:hover{color:var(--text)}
+.price__more .access{margin-top:12px}
+.price__more .access div{grid-template-columns:7em 1fr}
+
+/* ---------- 申し込みの流れ ---------- */
+.flow__list{list-style:none;margin:16px 0 0;padding:0;counter-reset:f;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,32px)}
+.flow__list li{counter-increment:f;position:relative;padding-top:56px}
+.flow__list li::before{content:counter(f);position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;border:2px solid var(--ginkgo);color:var(--ginkgo);font-family:var(--mincho);font-weight:700;font-size:18px;display:grid;place-items:center}
+.flow__list li:not(:last-child)::after{content:"";position:absolute;top:20px;left:52px;right:-12px;height:1px;background:var(--rule)}
+.flow__list h3{margin:0 0 8px;font-size:17px}
+.flow__list p{margin:0;color:var(--mute);font-size:14px;line-height:1.85}
+.last__box{margin-top:clamp(64px,8vw,96px);padding:clamp(32px,5vw,56px) clamp(20px,4vw,48px);border-radius:6px;background:var(--night-3);text-align:center}
+.last__h{font-family:var(--mincho);font-weight:700;font-size:clamp(22px,2.8vw,30px);line-height:1.6;margin:0}
+.last__meta{margin:24px 0 0}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width:860px){
+  .hero__grid,.change__list,.reason__row,.price__sub{grid-template-columns:minmax(0,1fr)}
+  .hero__photo{order:-1;max-width:420px}
+  .hero__photo img{aspect-ratio:2/1;object-position:50% 55%}
+  .reason__row:nth-of-type(even) img{order:0}
+  .flow__list{grid-template-columns:minmax(0,1fr)}
+  .flow__list li{padding:0 0 0 56px}
+  .flow__list li:not(:last-child)::after{top:48px;left:20px;right:auto;bottom:-16px;width:1px;height:auto}
+}
+@media (max-width:520px){
+  .hero__h{font-size:26px;margin-bottom:14px}
+  .hero{padding-top:20px}
+  .hero__place{margin-bottom:10px}
+  .hero__sub{font-size:15px}
+  .price__sub .btn{width:100%}
+}
+
+/* お客様の声が4件のときは2列×2段 */
+.voice__list--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:860px){.voice__list--4{grid-template-columns:minmax(0,1fr)}}

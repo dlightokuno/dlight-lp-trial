@@ -1,0 +1,96 @@
+/* =========================================================
+   明るい版（autumn-men-light.html）
+   lp-autumn.css / lp-autumn-men.css の色だけを差し替える。
+   白に近い地と淡いグリーングレー。整体の清潔感と落ち着き。
+   ========================================================= */
+:root{
+  --night:#f7f8f6;      /* 地：白に近い、わずかに緑みのある白 */
+  --night-2:#edf1ec;    /* 交互のセクション：淡いグリーングレー */
+  --night-3:#e2e8e2;
+  --rule:rgba(28,42,58,.13);
+  --text:#1c2a3a;       /* 本文：藍がかった濃い墨 */
+  --mute:#4d5b69;       /* 補足（地に対し約6.8:1） */
+  --board:#ffffff;
+  --ink:#1c2a3a;
+  --ink-mute:#4d5b69;
+  --accent-ink:#8a5a00; /* 明るい地で読める、銀杏の濃い色 */
+}
+html{scrollbar-color:#cdd6cd var(--night)}
+
+.hd{background:rgba(247,248,246,.9);border-bottom-color:var(--rule)}
+.mcta{background:rgba(247,248,246,.96);border-top-color:var(--rule)}
+
+/* 銀杏色を文字に使っていた所は、読める濃さに */
+.hero__place,.offer__perk b,.line__d,.faq__list summary:hover{color:var(--accent-ink)}
+.offer__price .num,.price__val .num{color:var(--text)}
+.flow__list li::before{color:var(--accent-ink)}
+
+/* 写真は明るい地で沈まないよう、影をやわらかく */
+.hero__photo img,.reason__row img,.coach__img{box-shadow:0 18px 40px -24px rgba(28,42,58,.35)}
+.ticket{box-shadow:0 18px 40px -22px rgba(28,42,58,.3);border:1px solid var(--rule)}
+.price__main{background:#fff}
+.last__box{background:#fff;border:1px solid var(--rule)}
+.btn{box-shadow:0 6px 16px -10px rgba(28,42,58,.45)}
+.btn--ghost{background:#fff;color:var(--text);border-color:var(--text)}
+.btn--ghost:hover{background:var(--night-3)}
+.trust li+li::before{background:var(--rule)}
+
+/* ---------- ファーストビュー（明るい版だけの演出） ---------- */
+.hero{position:relative;overflow:hidden;padding-bottom:0;background:#f7f8f6}
+.hero::before{content:"";position:absolute;right:-8vw;top:-6vw;width:56vw;height:56vw;border-radius:50%;background:#e3ece3;z-index:0}
+.hero__grid{position:relative;z-index:1}
+.hero__h{font-size:clamp(30px,3.7vw,50px);line-height:1.45}
+.hero__h .nw{white-space:nowrap}
+.mk-y{background:linear-gradient(transparent 62%,#f5d36b 62%,#f5d36b 92%,transparent 92%);padding:0 .06em}
+.hero__photo img{aspect-ratio:4/5;border-radius:160px 8px 8px 8px}
+.badge{position:absolute;left:-28px;bottom:36px;z-index:2;margin:0;width:150px;height:150px;border-radius:50%;background:var(--ginkgo);color:var(--ginkgo-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;box-shadow:0 14px 30px -14px rgba(28,42,58,.5);transform:rotate(-6deg)}
+.badge__t{font-size:14px;font-weight:700}
+.badge__p{font-family:var(--mincho);font-weight:700;font-size:38px;margin:2px 0}
+.badge__p small{font-size:16px;margin-left:1px}
+.badge__s{font-size:11px}
+
+.points{list-style:none;position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:clamp(40px,5vw,64px) auto 0;padding-top:0;padding-bottom:0}
+.points li{display:flex;align-items:baseline;gap:6px;justify-content:center;padding:22px 12px;background:#fff;border-top:3px solid var(--ginkgo)}
+.points li+li{border-left:1px solid var(--rule)}
+.points b{font-family:var(--mincho);font-size:clamp(28px,3vw,40px);line-height:1;color:var(--text)}
+.points span{font-weight:700;font-size:15px}
+.points small{display:block;font-weight:400;font-size:12px;color:var(--mute);margin-top:4px}
+.points li:first-child{border-radius:8px 0 0 0}
+.points li:last-child{border-radius:0 8px 0 0}
+
+@media (max-width:860px){
+  .hero::before{width:90vw;height:90vw;right:-30vw;top:-20vw}
+  .hero__photo{max-width:none}
+  .hero__photo img{aspect-ratio:16/10;border-radius:80px 8px 8px 8px}
+  .badge{left:auto;right:10px;bottom:-24px;width:110px;height:110px}
+  .badge__p{font-size:28px}
+  .badge__t{font-size:12px}
+  .hero__place{margin-top:12px}
+}
+@media (max-width:520px){
+  .hero__h{font-size:27px}
+  .points li{flex-direction:column;align-items:center;text-align:center;gap:2px;padding:16px 6px}
+  .points b{font-size:26px}
+  .points small{font-size:11px}
+}
+
+/* 3つの強み：補足の文字を読める大きさ・濃さに */
+.points small{font-size:15px;font-weight:700;color:var(--text);margin-top:6px;line-height:1.5}
+@media (max-width:520px){
+  .points small{font-size:13px}
+  .points li{padding:16px 4px}
+}
+
+/* 3つの強み：すべて中央寄せ・縦並び */
+.points li{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
+.points span{display:block}
+
+/* 3つの強み：数字と単位を同じ行・同じ基準線に */
+.points li{justify-content:flex-start}
+.points__big{margin:0;display:flex;align-items:baseline;justify-content:center;gap:4px;font-weight:700;font-size:16px;min-height:44px}
+.points__big b{font-size:clamp(30px,3vw,40px);line-height:1}
+@media (max-width:520px){.points__big{font-size:14px;min-height:34px}.points__big b{font-size:26px}}
+
+/* ファーストビューの価格はバッジに任せ、本文側は控えめに */
+.hero .offer__price .num{font-size:26px}
+.hero .offer__price{font-size:15px}
