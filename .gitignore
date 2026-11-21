@@ -26,3 +26,15 @@ assets/js/lp-autumn.js
 # lp-autumn.css は公開中の autumn-men*.html が土台として読むので公開対象に含める
 PRODUCT.md
 .impeccable/
+
+# --- 機密を上げない（2026-11-21 セキュリティ強化）---
+.env
+.env.*
+!.env.example
+.secrets/
+.dev.vars
+*.pem
+*.key
+*.p12
+*token*.txt
+.DS_Store
